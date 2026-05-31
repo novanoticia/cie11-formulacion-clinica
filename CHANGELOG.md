@@ -6,6 +6,17 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
+## [1.5.1] — 2026-05-31
+
+### Corregido
+- Frontmatter YAML del `SKILL.md`: el campo `description` pasa a bloque escalar (`>-`) para evitar el error «mapping values are not allowed in this context» en parsers estrictos (p. ej. el de Perplexity). El texto de la descripción y los triggers de activación no cambian.
+- Paquete de `dist/` (`.zip` y `.skill`) regenerado con el `SKILL.md` corregido; la versión anterior embebía el descriptor que fallaba al instalar.
+
+### Añadido
+- README: **Perplexity (Skills)** documentado como Opción 2 de instalación; la frase de apertura deja de limitar el skill a Claude.
+
+---
+
 ## [1.5] — 2026-05-08
 
 ### Añadido

@@ -1,6 +1,6 @@
 # cie11-formulacion-clinica
 
-Skill para asistentes conversacionales (Claude, Anthropic) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
+Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de Perplexity**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
 
 > **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
 > **Licencia:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)
@@ -87,7 +87,7 @@ Detalle completo en [`SKILL.md`](./SKILL.md), lógica del razonamiento en [`fluj
 
 ## Instalación
 
-Hay tres formas de usar el skill, según dónde quieras invocarlo. La primera es la más sencilla.
+Hay cuatro formas de usar el skill, según dónde quieras invocarlo. La primera es la más sencilla.
 
 ### Opción 1 — Claude.ai (web, app de escritorio o móvil)
 
@@ -104,7 +104,16 @@ A partir de ese momento, el skill se invoca con `/cie11-formulacion-clinica` seg
 
 > El archivo equivalente con extensión `.skill` (**[`dist/cie11-formulacion-clinica.skill`](./dist/cie11-formulacion-clinica.skill)**) es el mismo paquete con extensión alternativa, presente para compatibilidad con marketplaces de terceros (Agensi, etc.). Para Claude.ai oficial hay que renombrarlo a `.zip` antes de subirlo, o simplemente usar directamente el `.zip`.
 
-### Opción 2 — Claude Code (línea de comandos)
+### Opción 2 — Perplexity (Skills)
+
+Perplexity admite Skills con el mismo formato de paquete que Claude.ai, así que la instalación es igual de directa.
+
+1. Descarga el paquete de instalación: **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)**.
+2. En Perplexity, abre la sección de **Skills**.
+3. Sube el archivo `.zip` descargado.
+4. Una vez instalado, invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en Claude.ai.
+
+### Opción 3 — Claude Code (línea de comandos)
 
 Para usar el skill desde Claude Code en tu Mac:
 
@@ -122,7 +131,7 @@ unzip /ruta/a/cie11-formulacion-clinica.zip
 
 Tras descomprimir tendrás `~/.claude/skills/cie11-formulacion-clinica/` con todos los archivos. Claude Code lo detecta automáticamente; se invoca igual que en la app: `/cie11-formulacion-clinica [modo]`.
 
-### Opción 3 — Otras inteligencias artificiales
+### Opción 4 — Otras inteligencias artificiales
 
 El skill es texto Markdown. Cualquier asistente conversacional capaz de seguir instrucciones extensas puede aplicarlo, pegándolo como prompt inicial.
 

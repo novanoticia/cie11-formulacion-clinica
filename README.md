@@ -1,6 +1,6 @@
 # cie11-formulacion-clinica
 
-Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de Perplexity**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
+Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de Perplexity** y de **Mistral AI**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
 
 > **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
 > **Licencia:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)
@@ -87,7 +87,7 @@ Detalle completo en [`SKILL.md`](./SKILL.md), lógica del razonamiento en [`fluj
 
 ## Instalación
 
-Hay cuatro formas de usar el skill, según dónde quieras invocarlo. La primera es la más sencilla.
+Hay cinco formas de usar el skill, según dónde quieras invocarlo. La primera es la más sencilla.
 
 ### Opción 1 — Claude.ai (web, app de escritorio o móvil)
 
@@ -113,7 +113,18 @@ Perplexity admite Skills con el mismo formato de paquete que Claude.ai, así que
 3. Sube el archivo `.zip` descargado.
 4. Una vez instalado, invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en Claude.ai.
 
-### Opción 3 — Claude Code (línea de comandos)
+### Opción 3 — Mistral AI (Skills)
+
+Mistral admite Skills en su espacio **Work**, a partir de la carpeta del skill ya descomprimida.
+
+1. Descarga el paquete **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)** y **descomprímelo**.
+2. En Mistral AI, dentro del espacio **Work**, abre la sección de **Skills**.
+3. Selecciona la **carpeta** resultante de la descompresión (la que contiene `SKILL.md`).
+4. Invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en las demás plataformas.
+
+> El descriptor (`description`) del `SKILL.md` se mantiene por debajo del límite de 500 caracteres que exige Mistral.
+
+### Opción 4 — Claude Code (línea de comandos)
 
 Para usar el skill desde Claude Code en tu Mac:
 
@@ -131,7 +142,7 @@ unzip /ruta/a/cie11-formulacion-clinica.zip
 
 Tras descomprimir tendrás `~/.claude/skills/cie11-formulacion-clinica/` con todos los archivos. Claude Code lo detecta automáticamente; se invoca igual que en la app: `/cie11-formulacion-clinica [modo]`.
 
-### Opción 4 — Otras inteligencias artificiales
+### Opción 5 — Otras inteligencias artificiales
 
 El skill es texto Markdown. Cualquier asistente conversacional capaz de seguir instrucciones extensas puede aplicarlo, pegándolo como prompt inicial.
 

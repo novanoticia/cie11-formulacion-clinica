@@ -6,6 +6,16 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
+## [1.5.2] — 2026-05-31
+
+### Añadido
+- Compatibilidad con **Mistral AI (Skills)**: documentada como Opción 3 de instalación en el README (descomprimir el paquete y seleccionar la carpeta en el espacio *Work*). La frase de apertura incluye Mistral.
+
+### Cambiado
+- `description` del `SKILL.md` reescrita y reducida a menos de 500 caracteres (479) para cumplir el límite de Mistral, conservando el trigger principal, los modos y los límites de seguridad (no autodiagnóstico, no datos identificables). Paquete `dist/` regenerado en consecuencia.
+
+---
+
 ## [1.5.1] — 2026-05-31
 
 ### Corregido

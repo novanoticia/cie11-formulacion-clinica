@@ -1,7 +1,7 @@
 ---
 name: cie11-formulacion-clinica
 description: >-
-  Apoya a clínicos (psiquiatría, psicología clínica) a estructurar la formulación de casos ya entrevistados, usando CIE-11 como referencia diagnóstica primaria. **Trigger principal y obligatorio: "/cie11-formulacion-clinica"**. Activa este skill SIEMPRE que el usuario escriba ese comando exacto, en cualquier contexto. Soporta modos: completo (default), diferenciales, lagunas, riesgo, auditoria, auditoria-lagunas. Activa también el skill cuando el usuario pida explícitamente apoyo a la formulación clínica de un caso, organizar hipótesis diagnósticas razonadas, identificar diferenciales obligatorios, detectar lagunas o cuestionar epistemológicamente una formulación, mediante expresiones como "formula este caso", "estructura este caso", "qué diferenciales debería considerar" o "audita esta formulación clínica". NO se activa para autodiagnóstico, autodescripciones del propio usuario sin mediación clínica, ni cuando el caso contenga datos identificables de pacientes reales.
+  Apoya a clínicos (psiquiatría, psicología clínica) a estructurar la formulación de casos ya entrevistados, con CIE-11 como referencia diagnóstica primaria. Trigger obligatorio: "/cie11-formulacion-clinica"; actívalo cuando se escriba ese comando o ante peticiones como "formula este caso" o "audita esta formulación". Modos: completo (default), diferenciales, lagunas, riesgo, auditoria, auditoria-lagunas. NO para autodiagnóstico ni con datos identificables de pacientes reales.
 author: Pablo
 homepage: https://mindandhealth.org
 repository: https://github.com/novanoticia

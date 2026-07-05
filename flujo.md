@@ -66,7 +66,7 @@ Antes de empezar, detecta si el usuario ha indicado un modo de invocación. La s
 - El paso 1 (caso estructurado) se ejecuta **siempre**, en todos los modos, porque el resto depende de él.
 - La nota final es **obligatoria** en todos los modos.
 - Si el usuario invoca un modo no reconocido, ejecuta `completo` por defecto y avisa brevemente al inicio: *"Modo no reconocido, ejecuto modo completo."*
-- Si el usuario ha invocado `diferenciales` o `lagunas` pero el caso contiene señales de riesgo agudo evidentes, **rompe el modo y ejecuta también el paso 5**, indicándolo: *"Activado paso 5 fuera de modo por señales de riesgo en el caso."* La seguridad clínica está por encima del modo de invocación elegido.
+- Si el usuario ha invocado **cualquier modo que no incluya el paso 5** (`diferenciales`, `lagunas`, `auditoria`, `auditoria-lagunas`) pero el caso contiene señales de riesgo agudo evidentes, **rompe el modo y ejecuta también el paso 5**, indicándolo: *"Activado paso 5 fuera de modo por señales de riesgo en el caso."* La seguridad clínica está por encima del modo de invocación elegido.
 
 ---
 

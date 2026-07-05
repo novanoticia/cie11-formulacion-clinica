@@ -86,11 +86,11 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 - `SKILL.md` — este descriptor.
 - `flujo.md` — flujo de razonamiento de seis pasos con reglas duras transversales y un caso resuelto canónico como apéndice de referencia.
 - `plantilla-caso.md` — formato esperado de entrada como referencia para el clínico.
-- `LICENSE` — texto íntegro de la licencia CC BY-NC-SA 4.0 y atribución sugerida.
+- `LICENSE` — texto íntegro de la licencia CC BY 4.0 y atribución sugerida.
 
 ## Limitaciones conocidas
 
-- Calibrado para población adulta. No usar en infanto-juvenil sin revisión específica.
+- Calibrado para población adulta. **Desaconsejado en infanto-juvenil sin revisión específica**: ante un caso de menor, el flujo emite un aviso y continúa bajo responsabilidad del clínico (ver `flujo.md`, "Aviso de población").
 - No calibrado para urgencias ni para evaluación de riesgo agudo.
 - No reemplaza pruebas estandarizadas, escalas validadas ni exploración complementaria.
 - Pendiente de validación con casos reales por clínicos habilitados antes de uso en consulta.
@@ -108,7 +108,7 @@ Después, invocar con `/cie11-formulacion-clinica [modo]` en una conversación c
 
 ## Versión
 
-v1.5 — división del modo `auditoria` en dos modos diferenciados (`auditoria` para errores y `auditoria-lagunas` para lagunas). Cada modo hace una sola cosa, evitando que el modelo se incline hacia uno de los sub-bloques y deje el otro pobre. Sigue pendiente de validación con casos reales por clínicos habilitados.
+v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con parsers YAML estrictos (Perplexity: `description` como bloque escalar `>-`); paquete `dist/` regenerado. Base funcional en v1.5 (división de `auditoria` en `auditoria` y `auditoria-lagunas`). Sigue pendiente de validación con casos reales por clínicos habilitados.
 
 ## Historial de versiones
 
@@ -118,3 +118,5 @@ v1.5 — división del modo `auditoria` en dos modos diferenciados (`auditoria` 
 - **v1.3** — identificadores indirectos, variantes de entrada, capa de comorbilidad sistémica, versiones exportables.
 - **v1.4** — refinamientos tras testeo: cabecera de comorbilidad, regla anti-redundancia, estructura "1+1-2" en paso 6, salida pre-pseudonimización, regla estructural en Puerta 1, bloque de auditoría ampliado.
 - **v1.5** — `auditoria` partido en `auditoria` (errores) y `auditoria-lagunas` (qué falta). Sugerencia cruzada entre ambos.
+- **v1.5.1** — fix del frontmatter YAML (`description` como bloque escalar `>-`) para parsers estrictos (Perplexity); paquete `dist/` regenerado.
+- **v1.5.2** — compatibilidad con Mistral AI (`description` < 500 caracteres); Mistral documentado en el README; paquete `dist/` regenerado.

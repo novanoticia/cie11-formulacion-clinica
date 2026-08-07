@@ -2,10 +2,11 @@
 name: cie11-formulacion-clinica
 description: >-
   Apoya a clínicos (psiquiatría, psicología clínica) a estructurar la formulación de casos ya entrevistados, con CIE-11 como referencia diagnóstica primaria. Trigger obligatorio: "/cie11-formulacion-clinica"; actívalo cuando se escriba ese comando o ante peticiones como "formula este caso" o "audita esta formulación". Modos: completo (default), diferenciales, lagunas, riesgo, auditoria, auditoria-lagunas. NO para autodiagnóstico ni con datos identificables de pacientes reales.
-author: Pablo
-homepage: https://mindandhealth.org
-repository: https://github.com/novanoticia
 license: CC BY 4.0
+metadata:
+  author: "Pablo"
+  homepage: "https://mindandhealth.org"
+  repository: "https://github.com/novanoticia"
 ---
 
 # Formulación Clínica (CIE-11)

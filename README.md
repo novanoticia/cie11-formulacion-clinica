@@ -17,8 +17,7 @@ Skill para asistentes conversacionales (Claude de Anthropic; también compatible
 > Claude. Su frontmatter valida contra el conjunto cerrado de
 > [Agent Skills](https://agentskills.io/specification), que es lo que ChatGPT, claude.ai
 > y la Skills API exigen para aceptar la subida: una clave de más ahí no se ignora, falla
-> con error duro. Las *Skills* de ChatGPT requieren plan Business, Enterprise, Healthcare
-> o Edu.
+> con error duro. Disponible también en el **plan gratuito**, con límites de uso.
 
 ---
 
@@ -118,20 +117,28 @@ A partir de ese momento, el skill se invoca con `/cie11-formulacion-clinica` seg
 
 > El archivo equivalente con extensión `.skill` (**[`dist/cie11-formulacion-clinica.skill`](./dist/cie11-formulacion-clinica.skill)**) es el mismo paquete con extensión alternativa, presente para compatibilidad con marketplaces de terceros (Agensi, etc.). Para Claude.ai oficial hay que renombrarlo a `.zip` antes de subirlo, o simplemente usar directamente el `.zip`.
 
-### Opción 2 — ChatGPT (Skills)
+### Opción 2 — ChatGPT (Complementos)
 
-ChatGPT admite el mismo paquete, sin pegar texto ni reempaquetar.
+ChatGPT instala este repositorio como **complemento**, sin descargar nada ni
+reempaquetar.
 
-1. Descarga el paquete: **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)**.
-2. En ChatGPT, ve a **Plugins → Skills**.
-3. Pulsa **Create** y luego **Upload from your computer**.
-4. Selecciona el `.zip` descargado y confirma.
-5. Invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en Claude.
+1. Abre ChatGPT y **activa `Work` en el selector**.
+2. Ve a **Complementos** (*Plugins*).
+3. Busca el complemento por nombre, o **añádelo desde URL** con la de este
+   repositorio:
+   ```
+   https://github.com/novanoticia/cie11-formulacion-clinica
+   ```
 
-> Requiere un plan **Business, Enterprise, Healthcare o Edu**: en las cuentas personales
-> las *Skills* de ChatGPT todavía no están disponibles. El paquete cumple sus requisitos
-> de forma —una única carpeta en la raíz del zip, un solo `SKILL.md`, `description` por
-> debajo de 1024 caracteres— sin tocar nada.
+Se invoca igual que en Claude: `/cie11-formulacion-clinica` seguido opcionalmente del modo.
+
+> Funciona también en el **plan gratuito**, con límites de uso.
+>
+> Que la instalación sea desde la URL del repositorio, y no subiendo un zip, es
+> posible porque el repo es un plugin conforme a
+> [Agent Plugins 1.0.0](https://agent-plugins.org/specification): lleva el
+> `plugin.json` portable en la raíz y el skill en `skills/cie11-formulacion-clinica/`. El paquete de
+> `dist/` sigue estando ahí para las plataformas que sí piden un zip.
 
 ### Opción 3 — Perplexity (Skills)
 

@@ -1,10 +1,24 @@
 # cie11-formulacion-clinica
 
-Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de Perplexity** y de **Mistral AI**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
+Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de ChatGPT**, de **Perplexity** y de **Mistral AI**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
 
 > **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
 > **Licencia:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)
-> **Versión actual:** v1.5
+> **Versión actual:** v1.6
+
+> **Compatible con [Agent Plugins 1.0.0](https://agent-plugins.org/specification)** — el
+> formato portátil de empaquetado de la Agentic AI Foundation (OpenAI, Amazon, Microsoft,
+> Cursor y Vercel, con Google como *core maintainer*). El paquete lleva el manifiesto
+> portable `plugin.json` en la raíz y el skill en `skills/cie11-formulacion-clinica/`, así
+> que cualquier cliente conformante lo descubre.
+>
+> **Funciona en ChatGPT.** El skill es texto —protocolo de razonamiento, criterios y
+> plantilla, sin ejecución local—, así que se sube tal cual y funciona igual que en
+> Claude. Su frontmatter valida contra el conjunto cerrado de
+> [Agent Skills](https://agentskills.io/specification), que es lo que ChatGPT, claude.ai
+> y la Skills API exigen para aceptar la subida: una clave de más ahí no se ignora, falla
+> con error duro. Las *Skills* de ChatGPT requieren plan Business, Enterprise, Healthcare
+> o Edu.
 
 ---
 
@@ -20,7 +34,7 @@ Es un documento de unas 22 páginas pensado para leer una vez antes del primer u
 
 ## Estado del proyecto
 
-Versión **1.5**. Probado únicamente con casos sintéticos diseñados para someter el flujo a tensión: un caso depresivo con condición tiroidea y consumo, un caso ansioso-somático con sospecha traumática, un caso oncológico con hormonoterapia para verificar la activación de la capa transversal de comorbilidad, y un ejercicio de modo `auditoria` sobre formulación ya hecha.
+Versión **1.6**. Probado únicamente con casos sintéticos diseñados para someter el flujo a tensión: un caso depresivo con condición tiroidea y consumo, un caso ansioso-somático con sospecha traumática, un caso oncológico con hormonoterapia para verificar la activación de la capa transversal de comorbilidad, y un ejercicio de modo `auditoria` sobre formulación ya hecha.
 
 > **No validado con casos reales por clínicos habilitados.** Pendiente de prueba en supervisión y formación reales antes de cualquier uso institucional.
 
@@ -68,7 +82,7 @@ Recibe un caso pseudonimizado ya entrevistado por un profesional habilitado y de
 - **Capa transversal de comorbilidad sistémica**: cuando el caso menciona oncológico activo, embarazo/posparto, dolor crónico, neurológico relevante, endocrinopatías complejas, VIH/hepatitis, inmunodepresión, insuficiencia orgánica avanzada o cardiopatía con limitación funcional, los pasos 2-6 se ejecutan con consideraciones específicas (regla de parsimonia clínica, ampliación del diferencial iatrogénico, lectura "respuesta adaptativa a enfermedad médica" como ángulo obligatorio).
 - **Salvaguarda de seguridad clínica**: si el caso muestra señales de riesgo agudo evidentes pero el modo elegido no incluye el paso 5, el flujo lo activa de todos modos y lo indica.
 
-Detalle completo en [`SKILL.md`](./SKILL.md), lógica del razonamiento en [`flujo.md`](./flujo.md), formato de entrada en [`plantilla-caso.md`](./plantilla-caso.md), y discusión exhaustiva en la guía PDF.
+Detalle completo en [`SKILL.md`](./skills/cie11-formulacion-clinica/SKILL.md), lógica del razonamiento en [`flujo.md`](./skills/cie11-formulacion-clinica/flujo.md), formato de entrada en [`plantilla-caso.md`](./skills/cie11-formulacion-clinica/plantilla-caso.md), y discusión exhaustiva en la guía PDF.
 
 ---
 
@@ -104,7 +118,22 @@ A partir de ese momento, el skill se invoca con `/cie11-formulacion-clinica` seg
 
 > El archivo equivalente con extensión `.skill` (**[`dist/cie11-formulacion-clinica.skill`](./dist/cie11-formulacion-clinica.skill)**) es el mismo paquete con extensión alternativa, presente para compatibilidad con marketplaces de terceros (Agensi, etc.). Para Claude.ai oficial hay que renombrarlo a `.zip` antes de subirlo, o simplemente usar directamente el `.zip`.
 
-### Opción 2 — Perplexity (Skills)
+### Opción 2 — ChatGPT (Skills)
+
+ChatGPT admite el mismo paquete, sin pegar texto ni reempaquetar.
+
+1. Descarga el paquete: **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)**.
+2. En ChatGPT, ve a **Plugins → Skills**.
+3. Pulsa **Create** y luego **Upload from your computer**.
+4. Selecciona el `.zip` descargado y confirma.
+5. Invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en Claude.
+
+> Requiere un plan **Business, Enterprise, Healthcare o Edu**: en las cuentas personales
+> las *Skills* de ChatGPT todavía no están disponibles. El paquete cumple sus requisitos
+> de forma —una única carpeta en la raíz del zip, un solo `SKILL.md`, `description` por
+> debajo de 1024 caracteres— sin tocar nada.
+
+### Opción 3 — Perplexity (Skills)
 
 Perplexity admite Skills con el mismo formato de paquete que Claude.ai, así que la instalación es igual de directa.
 
@@ -113,7 +142,7 @@ Perplexity admite Skills con el mismo formato de paquete que Claude.ai, así que
 3. Sube el archivo `.zip` descargado.
 4. Una vez instalado, invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en Claude.ai.
 
-### Opción 3 — Mistral AI (Skills)
+### Opción 4 — Mistral AI (Skills)
 
 Mistral admite Skills en su espacio **Work**, a partir de la carpeta del skill ya descomprimida.
 
@@ -124,7 +153,7 @@ Mistral admite Skills en su espacio **Work**, a partir de la carpeta del skill y
 
 > El descriptor (`description`) del `SKILL.md` se mantiene por debajo del límite de 500 caracteres que exige Mistral.
 
-### Opción 4 — Claude Code (línea de comandos)
+### Opción 5 — Claude Code (línea de comandos)
 
 Para usar el skill desde Claude Code en tu Mac:
 
@@ -142,7 +171,44 @@ unzip /ruta/a/cie11-formulacion-clinica.zip
 
 Tras descomprimir tendrás `~/.claude/skills/cie11-formulacion-clinica/` con todos los archivos. Claude Code lo detecta automáticamente; se invoca igual que en la app: `/cie11-formulacion-clinica [modo]`.
 
-### Opción 5 — Otras inteligencias artificiales
+### Opción 6 — Como plugin (Claude Code y Cowork)
+
+Desde la v1.6 el repositorio también es un **plugin** conforme a
+[Agent Plugins 1.0.0](https://agent-plugins.org/specification). Eso permite instalarlo
+entero desde el marketplace en vez de copiar la carpeta del skill:
+
+```
+/plugin marketplace add https://github.com/novanoticia/cie11-formulacion-clinica
+/plugin install cie11-formulacion-clinica@cie11-formulacion-clinica
+/reload-plugins
+```
+
+Lo que va después de la arroba es el nombre del **marketplace** (el campo `name` de
+`.claude-plugin/marketplace.json`), no un usuario de GitHub. Aquí coinciden porque el
+repositorio publica un único plugin.
+
+Para probarlo sin instalar nada:
+
+```bash
+git clone https://github.com/novanoticia/cie11-formulacion-clinica
+claude --plugin-dir ./cie11-formulacion-clinica
+```
+
+En Cowork: comprime la **raíz del repositorio** —donde están `plugin.json`,
+`.claude-plugin/` y `skills/`— y súbela en *Customize → Plugins → Upload*.
+
+**Cómo se invoca con `/`:** instalado como plugin, el comando va namespaced:
+
+| Qué escribes | Qué hace |
+|---|---|
+| `/cie11-formulacion-clinica:cie11-formulacion-clinica [modo]` | Forma canónica. |
+| `/cie11-formulacion-clinica [modo]` | Atajo. Funciona igual, salvo que otro plugin instalado use ya ese nombre. |
+
+Si prefieres el nombre corto sin ambigüedad posible, usa la Opción 5. Para actualizar:
+`/plugin marketplace update cie11-formulacion-clinica` seguido de
+`/plugin update cie11-formulacion-clinica` y `/reload-plugins`.
+
+### Opción 7 — Otras inteligencias artificiales
 
 El skill es texto Markdown. Cualquier asistente conversacional capaz de seguir instrucciones extensas puede aplicarlo, pegándolo como prompt inicial.
 
@@ -181,9 +247,17 @@ Independientemente de cómo lo instales:
 
 ```
 cie11-formulacion-clinica/
-├── SKILL.md                 # Descriptor del skill: trigger y resumen
-├── flujo.md                 # Flujo de razonamiento de seis pasos + apéndice canónico
-├── plantilla-caso.md        # Formato de entrada para el clínico
+├── plugin.json              # Manifiesto portable (Agent Plugins 1.0.0)
+├── .claude-plugin/
+│   ├── plugin.json          # Manifiesto de Claude Code
+│   └── marketplace.json     # Entrada de marketplace (permite /plugin install)
+├── skills/
+│   └── cie11-formulacion-clinica/
+│       ├── SKILL.md         # Descriptor del skill: trigger y resumen
+│       ├── flujo.md         # Flujo de razonamiento de seis pasos + apéndice canónico
+│       └── plantilla-caso.md # Formato de entrada para el clínico
+├── scripts/
+│   └── build-dist.sh        # Regenera dist/ desde skills/
 ├── LICENSE                  # CC BY 4.0
 ├── README.md                # Este archivo
 ├── CHANGELOG.md             # Historial de versiones
@@ -195,7 +269,7 @@ cie11-formulacion-clinica/
     └── cie11-formulacion-clinica-guia-profesional-v1.5.pdf
 ```
 
-El paquete de `dist/` es ligero (≈ 21 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md) más LICENSE.
+El paquete de `dist/` es ligero (≈ 21 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md) más LICENSE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se regenera con `./scripts/build-dist.sh`, nunca a mano.
 
 ---
 

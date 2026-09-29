@@ -315,6 +315,8 @@ Toda referencia es nominativa y conceptual. El usuario es responsable de cumplir
 
 Este skill ha sido elaborado con asistencia de **Claude (Anthropic)**. Su contenido refleja decisiones, criterios y revisión del autor humano, pero requiere revisión profesional adicional antes de cualquier uso real con pacientes.
 
+El **icono** del plugin se generó con asistencia de **ChatGPT (OpenAI)** a partir de un prompt del autor, que lo revisó y lo adoptó.
+
 ---
 
 ## Licencia

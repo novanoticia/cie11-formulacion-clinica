@@ -295,6 +295,16 @@ Ni el autor ni la herramienta ofrecen garantía alguna sobre la exactitud, idone
 
 ---
 
+## Privacidad
+
+- **Qué es el plugin:** tres archivos de texto (Markdown) con instrucciones. No contiene código ejecutable, no incluye servidores MCP ni conectores, y no hace llamadas de red.
+- **Qué datos recoge, guarda o envía el autor:** ninguno. No hay servidor, base de datos, analítica ni registro de uso asociados a este proyecto.
+- **Qué datos trata la plataforma donde lo uses:** el texto que escribas en la conversación (por ejemplo, el caso clínico) lo procesa la plataforma de IA que hayas elegido (Claude, ChatGPT, Perplexity, Mistral u otra), bajo **sus** condiciones y su política de privacidad, no bajo las de este proyecto. Consúltalas antes de usarlo.
+- **Qué no debes introducir:** datos identificables de pacientes reales. Trabaja siempre con casos pseudonimizados (véase «Qué NO hace»). El uso con datos sensibles es responsabilidad del profesional, según el marco normativo aplicable (RGPD, LOPDGDD, secreto profesional).
+- **Contacto:** para cualquier duda sobre este proyecto, abre una *issue* en este repositorio o escribe a través de [mindandhealth.org](https://mindandhealth.org).
+
+---
+
 ## Referencias y atribuciones
 
 Este skill referencia, sin reproducir literalmente, las siguientes obras y marcos:

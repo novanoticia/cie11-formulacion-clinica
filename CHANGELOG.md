@@ -6,6 +6,17 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
+## [Sin publicar]
+
+Solo documentación. **No cambia el paquete instalable** ni el contenido clínico.
+
+### Añadido
+
+- `SECURITY.md`: cómo informar de una vulnerabilidad (aviso privado de GitHub o contacto por la web del autor), qué se considera un problema de seguridad en un plugin de instrucciones y qué esperar como respuesta.
+- README: tres ejemplos de uso con un caso ficticio pseudonimizado (formulación completa, diagnóstico diferencial y auditoría de lagunas).
+
+---
+
 ## [1.6.1] — 2026-09-29
 
 Ajustes para el directorio de plugins de Claude. **No toca el contenido clínico**: ni el `SKILL.md`, ni el flujo, ni la plantilla, ni las salvaguardas.

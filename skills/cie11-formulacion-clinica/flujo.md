@@ -46,6 +46,19 @@ Si detectas identificadores directos o combinación identificadora indirecta, **
 
 Si el caso describe a un menor de edad, añade aviso al inicio: *"Este flujo no está calibrado para población infanto-juvenil; las consideraciones siguientes deben revisarse con un especialista en esa área."*
 
+### Aviso de asistencia de IA (inicio de sesión)
+
+El uso clínico entra en la categoría de alto riesgo (salud mental, diagnóstico), donde se debe informar de que se usa IA **al comienzo de cada sesión**. Por eso, **abre la primera respuesta de la sesión con esta línea, antes de cualquier otra cosa**:
+
+> **Aviso:** esta respuesta se elabora con asistencia de IA. Es un apoyo para el profesional responsable del caso y debe revisarla un profesional cualificado antes de cualquier decisión clínica.
+
+Reglas:
+
+- **Va antes de todo**, incluso antes de una parada por la Puerta 1 o la Puerta 2, de una petición de aclaración o de un aviso de población. Si la primera respuesta de la sesión es solo una parada, el aviso también aparece.
+- **Una sola vez por sesión.** No lo repitas en las respuestas siguientes de la misma conversación, salvo que el clínico presente un caso nuevo.
+- **No sustituye la nota final**, que sigue siendo obligatoria en todos los modos y en todas las respuestas.
+- **Redacción fija.** No la resumas ni la suavices, ni la mezcles con el contenido del paso 1.
+
 ---
 
 ## 0.5. Detección de modo
@@ -339,6 +352,7 @@ Tres a cinco elementos máximo, vinculando cada uno a la hipótesis o descarte q
 La respuesta final del skill debe seguir este orden y estos encabezados, sin añadir secciones decorativas:
 
 ```
+[Primera respuesta de la sesión: aviso de asistencia de IA, antes de todo lo demás]
 [Si capa de comorbilidad activada: cabecera ⚠ antes del paso 1]
 1. Caso estructurado
 2. Hipótesis diagnósticas a considerar

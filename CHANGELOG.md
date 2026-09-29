@@ -6,14 +6,20 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
-## [Sin publicar]
+## [1.6.2] — 2026-09-29
 
-Solo documentación. **No cambia el paquete instalable** ni el contenido clínico.
+Cambio pequeño de comportamiento por cumplimiento normativo: el skill se usa en un ámbito de alto riesgo (salud mental, diagnóstico), donde la política del directorio de plugins de Claude exige informar de que se usa IA al comienzo de cada sesión. **No cambia el razonamiento clínico**: ni los pasos, ni las puertas, ni los modos, ni la nota final.
 
 ### Añadido
 
+- **Aviso de asistencia de IA al inicio de la primera respuesta de cada sesión**, con redacción fija y antes de cualquier otra cosa, incluso si la respuesta es solo una parada por la Puerta 1 o la Puerta 2. Se muestra una vez por sesión, o de nuevo si el clínico presenta un caso nuevo. No sustituye la nota final, que sigue siendo obligatoria. Detalle en `flujo.md` y paso 2 de `SKILL.md`.
 - `SECURITY.md`: cómo informar de una vulnerabilidad (aviso privado de GitHub o contacto por la web del autor), qué se considera un problema de seguridad en un plugin de instrucciones y qué esperar como respuesta.
 - README: tres ejemplos de uso con un caso ficticio pseudonimizado (formulación completa, diagnóstico diferencial y auditoría de lagunas).
+
+### Cambiado
+
+- Versión 1.6.2 en `plugin.json`, `.claude-plugin/plugin.json` y `.claude-plugin/marketplace.json`.
+- Paquete de la *Release* regenerado con el `SKILL.md` y el `flujo.md` nuevos.
 
 ---
 

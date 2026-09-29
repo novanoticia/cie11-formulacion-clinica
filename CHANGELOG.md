@@ -16,7 +16,7 @@ Ajustes para el directorio de plugins de Claude. **No toca el contenido clínico
 
 ### Añadido
 
-- Icono del plugin (PNG de 512 × 512, en la carpeta de manifiestos de Claude).
+- Icono del plugin (PNG de 512 × 512, en la carpeta de manifiestos de Claude), generado con asistencia de ChatGPT (OpenAI) y revisado por el autor; la mención figura en el README.
 
 ### Cambiado
 

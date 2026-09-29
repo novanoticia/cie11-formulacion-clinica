@@ -75,7 +75,7 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 ## Cómo usarlo
 
 1. Lee `flujo.md` antes de procesar cualquier caso.
-2. En la primera respuesta de la sesión, abre con el aviso de asistencia de IA (véase «Aviso de asistencia de IA» en `flujo.md`), antes de cualquier otra cosa, incluso si solo vas a detenerte en una puerta.
+2. En la primera respuesta de la sesión, abre con el aviso de asistencia de IA, en español, inglés y francés (véase «Aviso de asistencia de IA» en `flujo.md`), antes de cualquier otra cosa, incluso si solo vas a detenerte en una puerta.
 3. Detecta si el usuario ha indicado un modo; si no, asume `completo`.
 4. Verifica las dos puertas de entrada: pseudonimización (con detección de identificadores indirectos) y mediación clínica.
 5. Detecta tipo de entrada (estructurada / prosa / notas) y ajusta paso 1.
@@ -122,4 +122,4 @@ v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con 
 - **v1.5** — `auditoria` partido en `auditoria` (errores) y `auditoria-lagunas` (qué falta). Sugerencia cruzada entre ambos.
 - **v1.5.1** — fix del frontmatter YAML (`description` como bloque escalar `>-`) para parsers estrictos (Perplexity); paquete `dist/` regenerado.
 - **v1.5.2** — compatibilidad con Mistral AI (`description` < 500 caracteres); Mistral documentado en el README; paquete `dist/` regenerado.
-- **v1.6.2** — aviso de asistencia de IA al inicio de la primera respuesta de cada sesión (requisito de uso de alto riesgo sanitario), sin cambiar el resto del flujo.
+- **v1.6.2** — aviso de asistencia de IA (en español, inglés y francés) al inicio de la primera respuesta de cada sesión (requisito de uso de alto riesgo sanitario), sin cambiar el resto del flujo.

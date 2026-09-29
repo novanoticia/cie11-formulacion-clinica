@@ -12,7 +12,7 @@ Cambio pequeño de comportamiento por cumplimiento normativo: el skill se usa en
 
 ### Añadido
 
-- **Aviso de asistencia de IA al inicio de la primera respuesta de cada sesión**, con redacción fija y antes de cualquier otra cosa, incluso si la respuesta es solo una parada por la Puerta 1 o la Puerta 2. Se muestra una vez por sesión, o de nuevo si el clínico presenta un caso nuevo. No sustituye la nota final, que sigue siendo obligatoria. Detalle en `flujo.md` y paso 2 de `SKILL.md`.
+- **Aviso de asistencia de IA al inicio de la primera respuesta de cada sesión**, con redacción fija **en español, inglés y francés**, siempre juntos, y antes de cualquier otra cosa, incluso si la respuesta es solo una parada por la Puerta 1 o la Puerta 2. Se muestra una vez por sesión, o de nuevo si el clínico presenta un caso nuevo. No sustituye la nota final, que sigue siendo obligatoria. Detalle en `flujo.md` y paso 2 de `SKILL.md`.
 - `SECURITY.md`: cómo informar de una vulnerabilidad (aviso privado de GitHub o contacto por la web del autor), qué se considera un problema de seguridad en un plugin de instrucciones y qué esperar como respuesta.
 - README: tres ejemplos de uso con un caso ficticio pseudonimizado (formulación completa, diagnóstico diferencial y auditoría de lagunas).
 

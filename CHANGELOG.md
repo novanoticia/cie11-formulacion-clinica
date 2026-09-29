@@ -6,6 +6,25 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
+## [1.6.1] — 2026-09-29
+
+Ajustes para el directorio de plugins de Claude. **No toca el contenido clínico**: ni el `SKILL.md`, ni el flujo, ni la plantilla, ni las salvaguardas.
+
+### Corregido
+
+- El validador del directorio retenía el envío por `BINARIES_NOT_INSPECTED`: no puede inspeccionar el `.zip` y el `.skill` de `dist/`. Los binarios salen del repositorio.
+
+### Añadido
+
+- Icono del plugin: `.claude-plugin/icon.png` (512 × 512).
+
+### Cambiado
+
+- `dist/` pasa a `.gitignore`. Los paquetes se siguen generando con `scripts/build-dist.sh` y se publican como adjuntos de cada *Release*; los enlaces de descarga del README apuntan ahora a la última *Release*.
+- Versión 1.6.1 en `plugin.json`, `.claude-plugin/plugin.json` y `.claude-plugin/marketplace.json`.
+
+---
+
 ## [1.6.0] — 2026-08-07
 
 Cambio de empaquetado. **No toca el contenido clínico**: ni el `SKILL.md`, ni el flujo de seis pasos, ni la plantilla, ni las capas condicionales, ni las salvaguardas. Solo cambia dónde viven los archivos y cómo se instala.

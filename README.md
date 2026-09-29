@@ -106,7 +106,7 @@ Hay cinco formas de usar el skill, según dónde quieras invocarlo. La primera e
 
 Es la vía recomendada y más rápida.
 
-1. Descarga el paquete de instalación: **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)**.
+1. Descarga el paquete de instalación desde la sección *Releases*: **[`cie11-formulacion-clinica.zip`](https://github.com/novanoticia/cie11-formulacion-clinica/releases/latest/download/cie11-formulacion-clinica.zip)**.
 2. En Claude.ai, ve a **Ajustes → Capacidades → Skills**.
 3. Asegúrate de que **Code execution and file creation** está activado.
 4. Pulsa **Subir skill** (o *Upload skill*).
@@ -115,7 +115,7 @@ Es la vía recomendada y más rápida.
 
 A partir de ese momento, el skill se invoca con `/cie11-formulacion-clinica` seguido opcionalmente del modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`) en cualquier conversación. Recomendado: hazlo en una **Conversación Temporal** para minimizar la huella de los datos sensibles.
 
-> El archivo equivalente con extensión `.skill` (**[`dist/cie11-formulacion-clinica.skill`](./dist/cie11-formulacion-clinica.skill)**) es el mismo paquete con extensión alternativa, presente para compatibilidad con marketplaces de terceros (Agensi, etc.). Para Claude.ai oficial hay que renombrarlo a `.zip` antes de subirlo, o simplemente usar directamente el `.zip`.
+> El archivo equivalente con extensión `.skill` (**[`cie11-formulacion-clinica.skill`](https://github.com/novanoticia/cie11-formulacion-clinica/releases/latest/download/cie11-formulacion-clinica.skill)**) es el mismo paquete con extensión alternativa, presente para compatibilidad con marketplaces de terceros (Agensi, etc.). Para Claude.ai oficial hay que renombrarlo a `.zip` antes de subirlo, o simplemente usar directamente el `.zip`.
 
 ### Opción 2 — ChatGPT (Complementos)
 
@@ -137,14 +137,14 @@ Se invoca igual que en Claude: `/cie11-formulacion-clinica` seguido opcionalment
 > Que la instalación sea desde la URL del repositorio, y no subiendo un zip, es
 > posible porque el repo es un plugin conforme a
 > [Agent Plugins 1.0.0](https://agent-plugins.org/specification): lleva el
-> `plugin.json` portable en la raíz y el skill en `skills/cie11-formulacion-clinica/`. El paquete de
-> `dist/` sigue estando ahí para las plataformas que sí piden un zip.
+> `plugin.json` portable en la raíz y el skill en `skills/cie11-formulacion-clinica/`. El paquete
+> zip de la sección *Releases* sigue estando ahí para las plataformas que sí piden un zip.
 
 ### Opción 3 — Perplexity (Skills)
 
 Perplexity admite Skills con el mismo formato de paquete que Claude.ai, así que la instalación es igual de directa.
 
-1. Descarga el paquete de instalación: **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)**.
+1. Descarga el paquete de instalación desde la sección *Releases*: **[`cie11-formulacion-clinica.zip`](https://github.com/novanoticia/cie11-formulacion-clinica/releases/latest/download/cie11-formulacion-clinica.zip)**.
 2. En Perplexity, abre la sección de **Skills**.
 3. Sube el archivo `.zip` descargado.
 4. Una vez instalado, invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en Claude.ai.
@@ -153,7 +153,7 @@ Perplexity admite Skills con el mismo formato de paquete que Claude.ai, así que
 
 Mistral admite Skills en su espacio **Work**, a partir de la carpeta del skill ya descomprimida.
 
-1. Descarga el paquete **[`dist/cie11-formulacion-clinica.zip`](./dist/cie11-formulacion-clinica.zip)** y **descomprímelo**.
+1. Descarga desde *Releases* el paquete **[`cie11-formulacion-clinica.zip`](https://github.com/novanoticia/cie11-formulacion-clinica/releases/latest/download/cie11-formulacion-clinica.zip)** y **descomprímelo**.
 2. En Mistral AI, dentro del espacio **Work**, abre la sección de **Skills**.
 3. Selecciona la **carpeta** resultante de la descompresión (la que contiene `SKILL.md`).
 4. Invócalo con `/cie11-formulacion-clinica` seguido opcionalmente del modo, igual que en las demás plataformas.
@@ -264,19 +264,16 @@ cie11-formulacion-clinica/
 │       ├── flujo.md         # Flujo de razonamiento de seis pasos + apéndice canónico
 │       └── plantilla-caso.md # Formato de entrada para el clínico
 ├── scripts/
-│   └── build-dist.sh        # Regenera dist/ desde skills/
+│   └── build-dist.sh        # Genera el zip/.skill en dist/ (no versionado)
 ├── LICENSE                  # CC BY 4.0
 ├── README.md                # Este archivo
 ├── CHANGELOG.md             # Historial de versiones
 ├── .gitignore
-├── dist/
-│   ├── cie11-formulacion-clinica.zip    # Paquete de instalación para Claude.ai
-│   └── cie11-formulacion-clinica.skill  # Mismo paquete, extensión alternativa
 └── docs/
     └── cie11-formulacion-clinica-guia-profesional-v1.5.pdf
 ```
 
-El paquete de `dist/` es ligero (≈ 21 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md) más LICENSE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se regenera con `./scripts/build-dist.sh`, nunca a mano.
+El paquete que se adjunta a cada *Release* es ligero (≈ 21 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md) más LICENSE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se genera con `./scripts/build-dist.sh` (crea `dist/`, que no se versiona en el repositorio) y se sube como adjunto de la *Release*, nunca a mano.
 
 ---
 

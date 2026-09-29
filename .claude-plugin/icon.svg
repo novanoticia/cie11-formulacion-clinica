@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="CIE-11">
+  <rect width="256" height="256" rx="48" fill="#1f3a5f"/>
+  <!-- cruz clínica -->
+  <path d="M116 44h24v24h24v24h-24v24h-24V92H92V68h24z" fill="#8fc1e3"/>
+  <!-- «11» -->
+  <g fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 170l22-16v72"/>
+    <path d="M148 170l22-16v72"/>
+  </g>
+</svg>

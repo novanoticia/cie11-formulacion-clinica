@@ -16,7 +16,7 @@ Ajustes para el directorio de plugins de Claude. **No toca el contenido clínico
 
 ### Añadido
 
-- Icono del plugin: `.claude-plugin/icon.png` (512 × 512).
+- Icono del plugin (PNG de 512 × 512, en la carpeta de manifiestos de Claude).
 
 ### Cambiado
 

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # ═══════════════════════════════════════════════════════════════
-# build-dist.sh — regenera dist/ desde skills/<nombre>/
+# build-dist.sh — genera dist/ desde skills/<nombre>/
 #
 # Hasta la v1.5 el paquete se armaba a mano desde la raíz del repo. Al
 # pasar el skill a skills/<nombre>/ (estructura de Agent Plugins 1.0.0)
@@ -18,6 +18,10 @@ set -euo pipefail
 #
 # El .skill es una copia byte a byte del .zip: algunos destinos filtran
 # por extensión.
+#
+# dist/ NO se versiona (está en .gitignore): el directorio de plugins de
+# Claude retiene los repos con binarios que no puede inspeccionar. Los
+# paquetes se publican como adjuntos de una GitHub Release.
 #
 # Uso:  ./scripts/build-dist.sh
 # ═══════════════════════════════════════════════════════════════

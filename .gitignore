@@ -42,3 +42,6 @@ env/
 *.synctex.gz
 *.toc
 *.out
+
+# Paquetes generados por scripts/build-dist.sh (se publican como adjuntos de Release)
+dist/

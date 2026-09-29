@@ -10,7 +10,7 @@
       "name": "cie11-formulacion-clinica",
       "source": "./",
       "description": "Apoya a clínicos (psiquiatría, psicología clínica) a estructurar la formulación de casos ya entrevistados, con la CIE-11 como referencia diagnóstica primaria. Seis modos (completo, diferenciales, lagunas, riesgo, auditoria, auditoria-lagunas). No para autodiagnóstico ni con datos identificables de pacientes reales.",
-      "version": "1.6.1",
+      "version": "1.6.2",
       "homepage": "https://github.com/novanoticia/cie11-formulacion-clinica",
       "category": "productivity",
       "keywords": [

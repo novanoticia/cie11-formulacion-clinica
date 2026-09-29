@@ -248,6 +248,42 @@ Independientemente de cómo lo instales:
 
 > La Conversación Temporal es una capa de privacidad de interfaz, no una bóveda criptográfica. Reduce la exposición pero no la elimina. Para usos que requieran cumplimiento RGPD pleno (publicación, peritaje, expediente), considera procesamiento local (LLM en máquina propia) y revisión humana experta como capas adicionales.
 
+### Tres ejemplos de uso
+
+Los tres usan el mismo caso **ficticio y ya pseudonimizado**; sustitúyelo por el tuyo, siempre pseudonimizado.
+
+**1. Formulación completa** (modo por defecto):
+
+```
+/cie11-formulacion-clinica
+
+M.R., 38 años, vive en pareja, trabaja en administración. Consulta derivada
+por su médico de familia por "no poder desconectar" desde hace unos 8 meses:
+sueño fragmentado, irritabilidad, preocupación constante por el trabajo y
+tensión muscular. Sin antecedentes psiquiátricos previos. Consume alcohol de
+forma ocasional. Caso pseudonimizado; entrevista realizada por una psicóloga
+clínica.
+```
+
+**2. Solo diagnóstico diferencial**, para jerarquizar hipótesis y descartes:
+
+```
+/cie11-formulacion-clinica diferenciales
+
+[mismo caso de M.R.] Quiero centrarme en distinguir entre un cuadro de
+ansiedad generalizada, un trastorno adaptativo y un componente depresivo.
+```
+
+**3. Auditoría de una formulación ya hecha**, para detectar qué falta o qué no se sostiene:
+
+```
+/cie11-formulacion-clinica auditoria-lagunas
+
+[pega aquí tu formulación ya redactada, sobre el caso pseudonimizado de M.R.]
+```
+
+En los tres casos, la salida es un andamio de hipótesis que debe revisar el profesional responsable, y termina con una nota final obligatoria.
+
 ---
 
 ## Estructura del repositorio
@@ -267,6 +303,7 @@ cie11-formulacion-clinica/
 │   └── build-dist.sh        # Genera el zip/.skill en dist/ (no versionado)
 ├── LICENSE                  # CC BY 4.0
 ├── README.md                # Este archivo
+├── SECURITY.md              # Cómo informar de un problema de seguridad
 ├── CHANGELOG.md             # Historial de versiones
 ├── .gitignore
 └── docs/

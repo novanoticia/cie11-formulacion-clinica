@@ -422,6 +422,9 @@ class TestCatalogosReales(unittest.TestCase):
             "`lbl_1_*`",
             "`lbl_hc_*`",
             "letra por letra",   # el nombre oficial no se parafrasea ni se reordena
+            # Revisión de Codex en el PR #12: dos reglas distintas para «sin datos» chocaban en el paso 1
+            "En el paso 1, un apartado vacío sigue marcándose con `no_documentado`",
+            "Rótulo sin datos de los pasos 2 a 6",
         ):
             with self.subTest(centinela=centinela):
                 self.assertIn(centinela, bloque)

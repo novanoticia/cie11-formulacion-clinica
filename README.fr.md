@@ -32,7 +32,7 @@ Installez-le depuis le dépôt ou depuis le paquet joint à chaque Release ; les
 
 ## Limites et avertissement
 
-Il s'agit d'un **outil méthodologique expérimental, non validé avec des cas réels par des cliniciens habilités**, et la couche linguistique **n'a pas encore été exécutée sur une plateforme réelle** (les 21 scénarios de `tests/escenarios.md` sont rédigés mais n'ont pas été exécutés). Il est calibré pour les adultes, pas pour les urgences ni pour l'évaluation du risque aigu. Sa sortie est une trame d'hypothèses que le clinicien responsable doit examiner ; tout usage réel avec des données sensibles relève de la seule responsabilité du professionnel qui l'emploie et doit respecter le cadre juridique applicable.
+Il s'agit d'un **outil méthodologique expérimental, non validé avec des cas réels par des cliniciens habilités**, et la couche linguistique **n'a pas encore été exécutée sur une plateforme réelle** (les 21 scénarios de `tests/escenarios.md` sont rédigés ; 9 ont été simulés avec des agents Claude, ce qui n'est pas une plateforme réelle ; aucun n'a été exécuté sur une plateforme réelle). Il est calibré pour les adultes, pas pour les urgences ni pour l'évaluation du risque aigu. Sa sortie est une trame d'hypothèses que le clinicien responsable doit examiner ; tout usage réel avec des données sensibles relève de la seule responsabilité du professionnel qui l'emploie et doit respecter le cadre juridique applicable.
 
 ## Assistance de l'IA et relecture
 

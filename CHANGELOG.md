@@ -28,7 +28,7 @@ Función nueva compatible: **el skill responde en español, inglés o francés**
 
 - **Las traducciones al inglés y al francés las ha redactado una IA y no las ha revisado una persona nativa ni un clínico.** Requieren revisión humana antes de cualquier uso profesional.
 - La guía PDF (v1.5), el CHANGELOG, SECURITY y el README completo siguen solo en español.
-- **La capa de idioma no se ha ejecutado todavía en una plataforma real.** Los 21 escenarios de `tests/escenarios.md` están escritos pero no se han ejecutado; las pruebas automáticas comprueban catálogos, validador, paquete y que el español no cambia, no el comportamiento del modelo.
+- **La capa de idioma no se ha ejecutado todavía en una plataforma real.** Los 21 escenarios de `tests/escenarios.md` están escritos; 9 se simularon con agentes de Claude (no es una plataforma real) y no se han ejecutado en ninguna plataforma real; las pruebas automáticas comprueban catálogos, validador, paquete y que el español no cambia, no el comportamiento del modelo.
 - Los ejemplos de la Puerta 1 son orientativos: el skill no deduce el país del clínico.
 - La descripción del skill (que decide su activación automática) sigue en español; en inglés o francés se invoca con el comando.
 - La salida la genera un modelo de lenguaje: las frases fijas salen del catálogo, pero el resto del texto puede variar entre ejecuciones.

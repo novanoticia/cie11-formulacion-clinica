@@ -42,4 +42,17 @@ Cómo usarlos: pega la entrada, comprueba cada punto de «Debe cumplirse» y ano
 
 | Fecha | Versión | Plataforma y modelo | Escenarios ejecutados | Resultado / incidencias |
 |---|---|---|---|---|
-| _pendiente_ | 1.7.0 | | | Ninguna ejecución registrada todavía: **los escenarios están escritos pero no se han ejecutado en una plataforma real**. |
+| 2026-10-06 | 1.7.0 | **Simulación con subagentes de Claude** (contexto limpio, solo el paquete instalado; **no es una plataforma real**) | 1, 2, 3, 6, 7, 8, 8b, 8c, 9 | Cumplidos según lo diseñado. Idioma, aviso de IA (uno solo, o trilingüe en 6, 7 y 8c), encabezados, nota final, marcador de laguna y Puerta 1 correctos; sin mezcla de idiomas; 27-29 de 31 claves del catálogo usadas literalmente. Incidencias: ver «Hallazgos de la simulación» más abajo. |
+| _pendiente_ | 1.7.0 | Plataforma real (Claude.ai, ChatGPT, Mistral…) | todos | **Ninguna ejecución en plataforma real registrada.** Las simulaciones no sustituyen esta prueba: los agentes leyeron todos los ficheros del paquete, y una plataforma puede cargar solo `SKILL.md` y no los `idioma-*.md`. |
+
+## Hallazgos de la simulación (2026-10-06)
+
+Instrucciones que los agentes tuvieron que resolver por su cuenta (no son fallos de la capa de idioma, pero afectan a la coherencia entre ejecuciones):
+
+- **«Comando sin caso» y paradas de las puertas:** el flujo no dice si llevan nota final ni versiones alternativas. Todos los agentes pusieron la nota final y omitieron las versiones, y añadieron por su cuenta recordatorios sobre modos, idioma y pseudonimización.
+- **Aviso de notas (Tipo B/C):** con el mismo caso breve y telegráfico, unas ejecuciones lo trataron como Tipo C (con `aviso_notas`) y otras como Tipo B. Ambigüedad previa del flujo («Ante duda, asume B» frente a «frases sueltas → C»).
+- **Códigos CIE-11:** todos los agentes sustituyeron de memoria los del apéndice (6A60.1, 6E60-6E61) por 6A61 y 6E62. No está verificado contra la OMS (tarea aparte).
+- **Frases sin clave:** «ninguna señal explícita documentada» se improvisó con redacciones distintas; el título de 2a/2b se abrevió en una ejecución (escenario 6).
+- **Vocabulario del caso:** en la salida en español del caso en portugués se coló «anedonia».
+- **Nombres de categoría CIE-11:** un agente usó nombres franceses sabiendo que no estaba seguro de la traducción oficial, en lugar de código y nombre inglés.
+- **No simulados:** 4, 5, 10-19 (todo lo que no es la primera respuesta de una sesión).

@@ -32,7 +32,7 @@ Install it from the repository or from the package attached to each Release; the
 
 ## Limitations and disclaimer
 
-This is an **experimental methodological tool, not validated with real cases by qualified clinicians**, and the language layer has **not yet been run on a real platform** (the 21 scenarios in `tests/escenarios.md` are written but have not been run). It is calibrated for adults, not for emergencies or acute risk assessment. Its output is a scaffold of hypotheses for the responsible clinician to weigh; any real use with sensitive data is the sole responsibility of the professional using it and must comply with the applicable legal framework.
+This is an **experimental methodological tool, not validated with real cases by qualified clinicians**, and the language layer has **not yet been run on a real platform** (the 21 scenarios in `tests/escenarios.md` are written; 9 were simulated with Claude agents, which is not a real platform; none has been run on a real platform). It is calibrated for adults, not for emergencies or acute risk assessment. Its output is a scaffold of hypotheses for the responsible clinician to weigh; any real use with sensitive data is the sole responsibility of the professional using it and must comply with the applicable legal framework.
 
 ## AI assistance and review
 

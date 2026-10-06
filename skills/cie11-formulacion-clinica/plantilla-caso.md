@@ -4,7 +4,7 @@ Esta plantilla es **orientativa**, no obligatoria. El skill puede procesar casos
 
 ## Encabezado
 
-- **Identificador del caso**: usar pseudónimo o iniciales no reconocibles (p. ej., "M.R., 38 años").
+- **Identificador del caso**: usar un código neutro sin relación con el nombre (p. ej., "Caso A, 38 años").
 - **Confirmación de pseudonimización**: una línea afirmando que se han retirado identificadores directos.
 - **Marco profesional**: quién entrevista (rol, no nombre) y en qué contexto.
 

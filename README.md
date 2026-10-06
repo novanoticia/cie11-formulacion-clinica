@@ -407,7 +407,7 @@ Bajo el siguiente término:
 
 Si lo referencias en un trabajo o adaptación:
 
-> Pablo (2026). *cie11-formulacion-clinica* (v1.5). Skill de apoyo a la formulación clínica basado en CIE-11. mindandhealth.org · github.com/novanoticia/cie11-formulacion-clinica
+> Pablo (2026). *cie11-formulacion-clinica* (v1.7.0). Skill de apoyo a la formulación clínica basado en CIE-11. mindandhealth.org · github.com/novanoticia/cie11-formulacion-clinica
 
 ---
 

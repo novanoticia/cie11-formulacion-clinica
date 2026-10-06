@@ -46,8 +46,8 @@ CLAVES = [
     "puerta1_identificadores", "puerta1_marco_legal", "glosario",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
-SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "puerta1_identificadores",
-                        "puerta1_marco_legal", "glosario"}
+SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria",
+                        "puerta1_identificadores", "puerta1_marco_legal", "glosario"}
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
 

@@ -4,7 +4,8 @@ Cada `##` es una clave. Las frases de este catálogo salen **literales de `flujo
 (la prueba `test_frases_es_son_literales_de_flujo` lo comprueba); las claves
 `idioma_no_disponible`, `sugerencia_auditoria`, `puerta1_*` y `glosario` son texto
 añadido por la capa de idioma. Las claves `lbl_*`, `urg_*`, `recordatorio_riesgo` y
-`especificadores_por_determinar` son los rótulos y frases que el flujo prescribe. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
+`especificadores_por_determinar` son los rótulos y frases que el flujo prescribe; `sin_datos_documentados`
+es texto añadido por la capa de idioma. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
 deben tener exactamente estas claves, los mismos marcadores `{nombre}` y los mismos
 textos entre comillas invertidas. Valídalo con `python3 scripts/validar_idiomas.py`.
 
@@ -164,3 +165,6 @@ Recordatorio: si el caso describe riesgo agudo o inminente, este flujo no sustit
 
 ## especificadores_por_determinar
 especificadores por determinar tras ampliar exploración
+
+## sin_datos_documentados
+sin datos documentados en el caso

@@ -140,6 +140,9 @@ Reminder: if the case describes acute or imminent risk, this workflow does not r
 ## especificadores_por_determinar
 specifiers to be determined after extending the assessment
 
+## sin_datos_documentados
+no data documented in the case
+
 ## glosario
 - formulation scaffold
 - clinician responsible for the case

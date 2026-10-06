@@ -48,10 +48,10 @@ CLAVES = [
     "lbl_4b_consulta", "lbl_4b_pruebas", "lbl_4b_fuentes",
     "urg_necesaria", "urg_util", "urg_opcional",
     "lbl_5_explicitas", "lbl_5_implicitas", "lbl_5_protectores",
-    "recordatorio_riesgo", "especificadores_por_determinar",
+    "recordatorio_riesgo", "especificadores_por_determinar", "sin_datos_documentados",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
-SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria",
+SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria", "sin_datos_documentados",
                         "puerta1_identificadores", "puerta1_marco_legal", "glosario"}
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
@@ -294,6 +294,11 @@ class TestCatalogosReales(unittest.TestCase):
             "El apéndice es solo un modelo de estructura",
             "(clave `no_documentado`)",
             "`sugerencia_auditoria`",
+            # Hallazgos 1, 4 y 5 de la simulación de escenarios (2026-10-06)
+            "llevan la nota final y no llevan versiones alternativas",  # paradas y comando sin caso
+            "`sin_datos_documentados`",                                  # rótulo sin datos: frase fija
+            "sin abreviar",                                              # enc_2a/enc_2b completos
+            "nunca traduzcas el nombre",                                 # nombre de categoría dudoso
         ):
             with self.subTest(centinela=centinela):
                 self.assertIn(centinela, bloque)

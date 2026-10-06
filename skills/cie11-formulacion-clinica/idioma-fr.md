@@ -140,6 +140,9 @@ Rappel : si le cas décrit un risque aigu ou imminent, cette démarche ne rempla
 ## especificadores_por_determinar
 spécificateurs à déterminer après élargissement de l'exploration
 
+## sin_datos_documentados
+aucune donnée documentée dans le cas
+
 ## glosario
 - trame de formulation
 - clinicien responsable du cas

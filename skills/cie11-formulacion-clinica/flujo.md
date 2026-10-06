@@ -28,18 +28,22 @@ Idiomas disponibles: los de los ficheros `idioma-<código>.md` de esta carpeta (
 
 **Comando sin caso** (solo el trigger, o el trigger con un modo y/o un idioma): si no hay idioma pedido, no hay base para decidir el idioma. Abre con el bloque trilingüe de «Aviso de asistencia de IA» y pide el caso en español.
 
+**Respuestas de parada** (Puerta 1, Puerta 2 y comando sin caso): llevan la nota final y no llevan versiones alternativas, porque no hay formulación que condensar. Van, como cualquier respuesta, precedidas del aviso de IA.
+
 **Aviso de IA y cambio de idioma.** El aviso se muestra una vez por sesión, salvo que el clínico presente un caso nuevo o cambie el idioma de la salida: en esos dos casos se vuelve a mostrar, en el idioma nuevo.
 
 **Qué hacer con el idioma elegido:**
 
 - Lee `idioma-<código>.md` del idioma elegido. Sus claves son las frases fijas de este documento y los rótulos que prescribe: encabezados del «Formato de salida» (`enc_*`), marcador de laguna, grupos de los pasos 3, 4b y 5 (`lbl_*`), escala de urgencia (`urg_*`), recordatorio de riesgo y frase de especificadores por determinar. `sugerencia_auditoria` y `sugerencia_auditoria_lagunas` son las frases de la sugerencia cruzada entre los dos modos de auditoría. En cualquier idioma usa la frase del catálogo en lugar de improvisar o recomponer una; solo se sustituyen los marcadores `{nombre}`. Para `es`, las frases que ya figuran en este documento son literales; el catálogo añade las claves nuevas.
 - Donde este documento cite `[no documentado en el caso]` (clave `no_documentado`) o cualquier otra frase en español de esa lista, usa la del catálogo del idioma elegido. Usa siempre los términos del `glosario`.
+- **Encabezados y rótulos tal como están en el catálogo**, sin abreviar ni reformular (por ejemplo, `enc_2a` y `enc_2b` con su paréntesis completo).
+- **Rótulo sin datos:** cuando un rótulo que este documento prescribe (por ejemplo «Señales explícitas» del paso 5) no tenga datos en el caso, escribe tras el rótulo la frase de la clave `sin_datos_documentados`; no escribas «ninguno» ni «ausente» (no documentado ≠ ausente).
 - **El apéndice es solo un modelo de estructura y de estilo.** En otro idioma no copies sus etiquetas en español («A favor», «En contra / matiza», etc.): tradúcelas de forma coherente con el glosario.
 - En la Puerta 1, además de los ejemplos de este documento, tienes en el catálogo ejemplos de identificadores y de marco legal (`puerta1_identificadores`, `puerta1_marco_legal`). Son ejemplos, no listas cerradas ni una deducción del país: el marco aplicable es el de la jurisdicción del clínico, no el del idioma.
 - **Un solo idioma en toda la salida**, incluidas las versiones alternativas (historia clínica y supervisión). Excepciones: las citas textuales del caso, que se conservan entre comillas en su idioma original, y el bloque trilingüe del aviso de IA en los dos supuestos anteriores (idioma no disponible y comando sin caso).
 - **Aviso de IA:** va primero y en el idioma elegido (clave `aviso_ia`); el bloque trilingüe solo se usa en los dos supuestos anteriores.
 - **No se traduce lo que es contrato:** el trigger, los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los nombres de fichero, los códigos CIE-11 y la numeración de los pasos. Cítalos tal cual en cualquier idioma.
-- **Nombres de categorías CIE-11:** usa la traducción oficial de la OMS en el idioma elegido. Si no la conoces con seguridad, pon el código y el nombre inglés de la OMS; no inventes una traducción.
+- **Nombres de categorías CIE-11:** usa la traducción oficial de la OMS en el idioma elegido solo si la conoces con seguridad. Ante la menor duda, nunca traduzcas el nombre: escribe el código y el nombre inglés de la OMS tal cual. Un nombre dudoso en el idioma elegido es peor que un nombre inglés correcto.
 
 ---
 

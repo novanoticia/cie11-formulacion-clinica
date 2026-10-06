@@ -43,6 +43,7 @@ Cómo usarlos: pega la entrada, comprueba cada punto de «Debe cumplirse» y ano
 | Fecha | Versión | Plataforma y modelo | Escenarios ejecutados | Resultado / incidencias |
 |---|---|---|---|---|
 | 2026-10-06 | 1.7.0 | **Simulación con subagentes de Claude** (contexto limpio, solo el paquete instalado; **no es una plataforma real**) | 1, 2, 3, 6, 7, 8, 8b, 8c, 9 | Cumplidos según lo diseñado. Idioma, aviso de IA (uno solo, o trilingüe en 6, 7 y 8c), encabezados, nota final, marcador de laguna y Puerta 1 correctos; sin mezcla de idiomas; 27-29 de 31 claves del catálogo usadas literalmente. Incidencias: ver «Hallazgos de la simulación» más abajo. |
+| 2026-10-06 | 1.7.0 (con los arreglos de los hallazgos 1, 4 y 5) | **Simulación con subagentes de Claude**, ronda 2 (**no es una plataforma real**) | 2 y 3 repetidos; 4, 5, 10, 11, 12, 13, 14, 15; y los de varios turnos 16 (versión HC en inglés y versión de supervisión en francés) y 17 (cambio a francés en la misma sesión) | Cumplidos según lo diseñado: aviso único y primero en el idioma correcto; encabezados completos (2a/2b sin abreviar); `sin_datos_documentados` usada; petición `fr` y `fr_FR.UTF-8` normalizadas; cabecera de comorbilidad una sola vez y antes del paso 1 (10); aviso de población tras el de IA (11); `riesgo` solo con pasos 1 y 5 (12); bloque B con su encabezado (13); **riesgo agudo fuera de modo activado, sin proponer conducta y con el recordatorio de riesgo (14)**; modo inventado (15); sin repetir el aviso al pedir una versión (16) y aviso nuevo en francés al cambiar de idioma (17). 0 marcadores de laguna de otro idioma. Incidencias: ver «Hallazgos de la ronda 2». |
 | _pendiente_ | 1.7.0 | Plataforma real (Claude.ai, ChatGPT, Mistral…) | todos | **Ninguna ejecución en plataforma real registrada.** Las simulaciones no sustituyen esta prueba: los agentes leyeron todos los ficheros del paquete, y una plataforma puede cargar solo `SKILL.md` y no los `idioma-*.md`. |
 
 ## Hallazgos de la simulación (2026-10-06)
@@ -55,4 +56,18 @@ Instrucciones que los agentes tuvieron que resolver por su cuenta (no son fallos
 - **Frases sin clave:** «ninguna señal explícita documentada» se improvisó con redacciones distintas; el título de 2a/2b se abrevió en una ejecución (escenario 6). *Corregido: clave `sin_datos_documentados` y regla de encabezados sin abreviar; pendiente de re-simular.*
 - **Vocabulario del caso:** en la salida en español del caso en portugués se coló «anedonia».
 - **Nombres de categoría CIE-11:** un agente usó nombres franceses sabiendo que no estaba seguro de la traducción oficial, en lugar de código y nombre inglés. *Corregido: la regla pasa a «ante la menor duda, nunca traduzcas el nombre»; pendiente de re-simular.*
-- **No simulados:** 4, 5, 10-19 (todo lo que no es la primera respuesta de una sesión).
+- **No simulados en la ronda 1:** 4, 5, 10-19. La ronda 2 los cubrió salvo el 19 (comparar con una salida de la 1.6.2).
+
+## Hallazgos de la ronda 2 (2026-10-06)
+
+Los agentes tuvieron que resolver por su cuenta, o produjeron, lo siguiente:
+
+- **Nombre de la clasificación en francés:** «CIE-11» (sigla española) aparece en 4 de 7 salidas francesas en lugar de «CIM-11»; en inglés es siempre «ICD-11». La regla «no se traducen los códigos CIE-11» se lee como «deja la cadena CIE-11». Ambigüedad de redacción.
+- **Nombres de categoría CIE-11 en inglés dentro de prosa francesa** (6 de 7 salidas francesas, p. ej. «**H1 — Single episode depressive disorder** (CIE-11 6A70)»): consecuencia directa de la regla «ante la menor duda, nunca traduzcas el nombre». Evita inventar traducciones, pero rompe «un solo idioma en toda la salida», también en la versión para historia clínica.
+- **Rótulos sin clave en el catálogo**, traducidos por cada agente a su manera: las 11 etiquetas del paso 1, el grupo «no explorado» del paso 5, «A favor / En contra / matiza», «Prioritario», «Gravedad», «Especificadores», encabezados de las versiones para historia clínica y supervisión.
+- **Aviso de notas (Tipo B/C):** con casos telegráficos casi idénticos, unas ejecuciones lo muestran y otras no (ambigüedad previa del flujo).
+- **Colocación sin definir:** dónde va la frase de «paso 5 fuera de modo» y el aviso de notas respecto a la cabecera ⚠.
+- **`sospecha_desarrollada`:** un agente reordenó las hipótesis (la secundaria como H1) para poder usar la frase literal «Sospecha desarrollada en H1»; la frase presupone una jerarquía que el flujo dice no establecer todavía.
+- **Códigos CIE-11 del apéndice:** los agentes usaron 6E62 y 6A61 (ahora coinciden con el apéndice corregido en el PR #11). Los demás códigos (6A70, 6A72, 6B43, 6B00…) los asignaron de memoria; no se han verificado.
+- **Dato clínico no presente en el caso:** en la salida 4 aparecen «transición perimenopáusica» y «pérdida de peso» como cosas a explorar «sin datos documentados» (no como hechos del caso). Correcto, pero conviene vigilarlo.
+

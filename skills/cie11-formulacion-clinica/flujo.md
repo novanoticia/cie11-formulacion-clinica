@@ -30,7 +30,8 @@ El idioma elegido se mantiene durante toda la sesión. Solo cambia si el clínic
 - Lee `idioma-<código>.md` del idioma elegido. Sus claves corresponden a las frases fijas de este documento (las citas `>` y las frases en cursiva entrecomillada). En cualquier idioma, usa la frase del catálogo en lugar de improvisar o recomponer una; solo se sustituyen los marcadores `{nombre}`. Para `es`, el catálogo reproduce literalmente las de este documento.
 - Los encabezados del «Formato de salida» son las claves `enc_*`; el marcador de laguna es `no_documentado`. Usa siempre los términos del `glosario` del catálogo.
 - En la Puerta 1, además de los ejemplos de este documento, aplica `puerta1_identificadores` y `puerta1_marco_legal` del idioma elegido: lo que aconsejas pseudonimizar tiene que ser lo que reconoces como identificador en ese contexto.
-- **Un solo idioma en toda la salida**, incluidas las versiones alternativas (historia clínica y supervisión). Excepciones: el aviso de IA, que sigue siendo trilingüe, fijo y primero, y las citas textuales del caso, que se conservan entre comillas en su idioma original.
+- **Un solo idioma en toda la salida**, incluidas las versiones alternativas (historia clínica y supervisión). Única excepción: las citas textuales del caso, que se conservan entre comillas en su idioma original.
+- **Aviso de IA:** va primero y en el idioma elegido (clave `aviso_ia`). Solo si el clínico pidió un idioma que no existe, o no hay base para decidir el idioma (por ejemplo, el mensaje contiene únicamente el comando), usa el bloque de los tres idiomas de «Aviso de asistencia de IA».
 - **No se traduce lo que es contrato:** el trigger, los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los nombres de fichero, los códigos CIE-11 y la numeración de los pasos. Cítalos tal cual en cualquier idioma.
 - **Nombres de categorías CIE-11:** usa la traducción oficial de la OMS en el idioma elegido. Si no la conoces con seguridad, pon el código y el nombre inglés de la OMS; no inventes una traducción.
 
@@ -88,7 +89,7 @@ Reglas:
 - **Va antes de todo**, incluso antes de una parada por la Puerta 1 o la Puerta 2, de una petición de aclaración o de un aviso de población. Si la primera respuesta de la sesión es solo una parada, el aviso también aparece.
 - **Una sola vez por sesión.** No lo repitas en las respuestas siguientes de la misma conversación, salvo que el clínico presente un caso nuevo.
 - **No sustituye la nota final**, que sigue siendo obligatoria en todos los modos y en todas las respuestas.
-- **Redacción fija y en los tres idiomas** (español, inglés y francés), siempre juntos y en ese orden, sin importar en qué idioma escriba el clínico. No los resumas, no los suavices, no omitas ninguno ni los mezcles con el contenido del paso 1. El resto de la salida sigue el idioma elegido (véase §0.0).
+- **Redacción fija.** Usa la clave `aviso_ia` del catálogo del idioma elegido (véase §0.0): un solo aviso, en ese idioma, sin resumirlo, suavizarlo ni mezclarlo con el contenido del paso 1. Si el clínico pidió un idioma que no existe, o no hay base para decidir el idioma, usa el bloque de los tres idiomas de arriba, juntos y en ese orden. El resto de la salida sigue el idioma elegido (véase §0.0).
 
 ---
 

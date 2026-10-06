@@ -38,7 +38,7 @@ def sha(texto):
 # flujo.md y los catálogos: si se añade texto fijo nuevo, se añade aquí.
 CLAVES = [
     "modo_no_reconocido", "paso5_fuera_de_modo", "aviso_poblacion", "aviso_notas",
-    "cabecera_comorbilidad", "no_documentado", "nota_final", "versiones_alternativas",
+    "cabecera_comorbilidad", "no_documentado", "nota_final", "aviso_ia", "versiones_alternativas",
     "auditoria_solida", "sugerencia_auditoria", "sugerencia_auditoria_lagunas",
     "sospecha_desarrollada", "no_explorado_ideacion", "idioma_no_disponible",
     "enc_1", "enc_2", "enc_2a", "enc_2b", "enc_3", "enc_4", "enc_4a", "enc_4b",
@@ -51,8 +51,25 @@ SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria",
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
 
-FRASE_VIEJA = "El resto de la salida sigue siendo en español."
-FRASE_NUEVA = "El resto de la salida sigue el idioma elegido (véase §0.0)."
+# Únicas líneas del español original que se modifican (aparte de los bloques i18n).
+# Cada par es (nueva, vieja): restaurando la nueva por la vieja se recupera la línea base.
+REEMPLAZOS = {
+    "flujo.md": [(
+        "- **Redacción fija.** Usa la clave `aviso_ia` del catálogo del idioma elegido "
+        "(véase §0.0): un solo aviso, en ese idioma, sin resumirlo, suavizarlo ni mezclarlo "
+        "con el contenido del paso 1. Si el clínico pidió un idioma que no existe, o no hay "
+        "base para decidir el idioma, usa el bloque de los tres idiomas de arriba, juntos y "
+        "en ese orden. El resto de la salida sigue el idioma elegido (véase §0.0).",
+        "- **Redacción fija y en los tres idiomas** (español, inglés y francés), siempre "
+        "juntos y en ese orden, sin importar en qué idioma escriba el clínico. No los "
+        "resumas, no los suavices, no omitas ninguno ni los mezcles con el contenido del "
+        "paso 1. El resto de la salida sigue siendo en español.")],
+    "SKILL.md": [(
+        "abre con el aviso de asistencia de IA en el idioma elegido (véase «Aviso de "
+        "asistencia de IA» y §0.0 en `flujo.md`), antes",
+        "abre con el aviso de asistencia de IA, en español, inglés y francés (véase «Aviso "
+        "de asistencia de IA» en `flujo.md`), antes")],
+}
 
 
 def normaliza(texto):
@@ -190,13 +207,23 @@ class TestCatalogosReales(unittest.TestCase):
     def test_flujo_declara_la_regla_de_idioma_y_no_hay_otra_salida_en_espanol(self):
         flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
         self.assertIn("<!-- i18n:inicio -->", flujo)
-        self.assertIn(FRASE_NUEVA, flujo)
-        self.assertNotIn(FRASE_VIEJA, flujo)
+        for nueva, vieja in REEMPLAZOS["flujo.md"]:
+            self.assertIn(nueva, flujo)
+            self.assertNotIn(vieja, flujo)
 
-    def test_aviso_ia_sigue_trilingue_y_fijo(self):
+    def test_bloque_trilingue_del_aviso_sigue_como_respaldo(self):
         flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
         for inicio in ("> **Aviso:**", "> **Notice:**", "> **Avertissement :**"):
             self.assertIn(inicio, flujo)
+
+    def test_aviso_ia_de_cada_idioma_es_el_texto_aprobado_del_bloque_trilingue(self):
+        # El aviso por idioma no se reescribe: es la línea ya aprobada del bloque trilingüe.
+        flujo = normaliza((SKILL / "flujo.md").read_text(encoding="utf-8"))
+        for codigo in ("es", "en", "fr"):
+            with self.subTest(idioma=codigo):
+                datos = self.V.parse_catalogo(
+                    (SKILL / f"idioma-{codigo}.md").read_text(encoding="utf-8"))
+                self.assertIn(normaliza(datos["aviso_ia"]), flujo)
 
 
 class TestEspanolInvariante(unittest.TestCase):
@@ -205,7 +232,9 @@ class TestEspanolInvariante(unittest.TestCase):
     def restaurado(self, nombre):
         texto = (SKILL / nombre).read_text(encoding="utf-8")
         texto = re.sub(r"(?s)<!-- i18n:inicio -->.*?<!-- i18n:fin -->\n", "", texto)
-        return texto.replace(FRASE_NUEVA, FRASE_VIEJA)
+        for nueva, vieja in REEMPLAZOS.get(nombre, []):
+            texto = texto.replace(nueva, vieja)
+        return texto
 
     def test_ficheros_del_skill_identicos_a_la_linea_base(self):
         for nombre, esperado in BASE["ficheros"].items():

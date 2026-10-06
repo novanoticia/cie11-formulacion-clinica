@@ -29,6 +29,9 @@ El material aportado tiene formato de notas; algunos apartados quedarán parcial
 ## nota_final
 Este documento es un andamio de formulación, no un diagnóstico. La decisión clínica corresponde al profesional responsable del caso. Texto generado con asistencia de IA; requiere revisión humana antes de cualquier uso clínico.
 
+## aviso_ia
+**Aviso:** esta respuesta se elabora con asistencia de IA. Es un apoyo para el profesional responsable del caso y debe revisarla un profesional cualificado antes de cualquier decisión clínica.
+
 ## versiones_alternativas
 *Si lo solicitas, puedo generar adicionalmente:*
 - *Versión condensada para historia clínica* (formato de informe: motivo de consulta, antecedentes, exploración, impresión diagnóstica con códigos CIE-11, plan; sin cuestionamiento epistémico ni metacomentarios).

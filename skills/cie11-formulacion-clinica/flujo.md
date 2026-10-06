@@ -28,18 +28,22 @@ Idiomas disponibles: los de los ficheros `idioma-<código>.md` de esta carpeta (
 
 **Comando sin caso** (solo el trigger, o el trigger con un modo y/o un idioma): si no hay idioma pedido, no hay base para decidir el idioma. Abre con el bloque trilingüe de «Aviso de asistencia de IA» y pide el caso en español.
 
+**Respuestas de parada** (Puerta 1, Puerta 2 y comando sin caso): llevan la nota final y no llevan versiones alternativas, porque no hay formulación que condensar. Van, como cualquier respuesta, precedidas del aviso de IA.
+
 **Aviso de IA y cambio de idioma.** El aviso se muestra una vez por sesión, salvo que el clínico presente un caso nuevo o cambie el idioma de la salida: en esos dos casos se vuelve a mostrar, en el idioma nuevo.
 
 **Qué hacer con el idioma elegido:**
 
 - Lee `idioma-<código>.md` del idioma elegido. Sus claves son las frases fijas de este documento y los rótulos que prescribe: encabezados del «Formato de salida» (`enc_*`), marcador de laguna, grupos de los pasos 3, 4b y 5 (`lbl_*`), escala de urgencia (`urg_*`), recordatorio de riesgo y frase de especificadores por determinar. `sugerencia_auditoria` y `sugerencia_auditoria_lagunas` son las frases de la sugerencia cruzada entre los dos modos de auditoría. En cualquier idioma usa la frase del catálogo en lugar de improvisar o recomponer una; solo se sustituyen los marcadores `{nombre}`. Para `es`, las frases que ya figuran en este documento son literales; el catálogo añade las claves nuevas.
 - Donde este documento cite `[no documentado en el caso]` (clave `no_documentado`) o cualquier otra frase en español de esa lista, usa la del catálogo del idioma elegido. Usa siempre los términos del `glosario`.
+- **Encabezados y rótulos tal como están en el catálogo**, sin abreviar ni reformular (por ejemplo, `enc_2a` y `enc_2b` con su paréntesis completo). Los rótulos tienen clave en todos los pasos: los once apartados del paso 1 y su «referido / observado» (`lbl_1_*`), «a favor / en contra / especificadores» de las hipótesis (`lbl_2_*`), las lagunas marcadas y detectadas (`lbl_4a_*`), «prioritario», las señales no exploradas del paso 5 (`lbl_5_*`), y los apartados y títulos de las versiones alternativas (`lbl_hc_*`, `lbl_version_*`). No improvises otros para esos mismos conceptos.
+- **Rótulo sin datos de los pasos 2 a 6:** cuando un rótulo que este documento prescribe en esos pasos (por ejemplo «Señales explícitas» del paso 5) no tenga datos en el caso, escribe tras el rótulo la frase de la clave `sin_datos_documentados`; no escribas «ninguno» ni «ausente» (no documentado ≠ ausente). **En el paso 1, un apartado vacío sigue marcándose con `no_documentado`**, como indica el propio paso 1.
 - **El apéndice es solo un modelo de estructura y de estilo.** En otro idioma no copies sus etiquetas en español («A favor», «En contra / matiza», etc.): tradúcelas de forma coherente con el glosario.
 - En la Puerta 1, además de los ejemplos de este documento, tienes en el catálogo ejemplos de identificadores y de marco legal (`puerta1_identificadores`, `puerta1_marco_legal`). Son ejemplos, no listas cerradas ni una deducción del país: el marco aplicable es el de la jurisdicción del clínico, no el del idioma.
 - **Un solo idioma en toda la salida**, incluidas las versiones alternativas (historia clínica y supervisión). Excepciones: las citas textuales del caso, que se conservan entre comillas en su idioma original, y el bloque trilingüe del aviso de IA en los dos supuestos anteriores (idioma no disponible y comando sin caso).
 - **Aviso de IA:** va primero y en el idioma elegido (clave `aviso_ia`); el bloque trilingüe solo se usa en los dos supuestos anteriores.
-- **No se traduce lo que es contrato:** el trigger, los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los nombres de fichero, los códigos CIE-11 y la numeración de los pasos. Cítalos tal cual en cualquier idioma.
-- **Nombres de categorías CIE-11:** usa la traducción oficial de la OMS en el idioma elegido. Si no la conoces con seguridad, pon el código y el nombre inglés de la OMS; no inventes una traducción.
+- **No se traduce lo que es contrato:** el trigger, los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los nombres de fichero, los códigos de la clasificación (p. ej. `6A70`) y la numeración de los pasos. Cítalos tal cual en cualquier idioma. La sigla de la clasificación sí se escribe según el glosario del idioma elegido (CIE-11, ICD-11 o CIM-11); no dejes «CIE-11» en una salida inglesa o francesa.
+- **Nombres de categorías CIE-11:** si el código figura en `categorias`, usa exactamente el nombre de esa lista en el idioma elegido, copiado letra por letra y con el mismo orden de palabras (es la traducción oficial de la OMS, ya verificada); no lo reformules, no lo reordenes ni lo cambies por otro de memoria. Para un código que no figure en la lista, usa la traducción oficial solo si la conoces con seguridad. Ante la menor duda, nunca traduzcas el nombre: escribe el código y el nombre inglés de la OMS tal cual. Un nombre dudoso en el idioma elegido es peor que un nombre inglés correcto.
 
 ---
 
@@ -135,7 +139,7 @@ El caso recibido puede llegar en tres formatos. Detecta cuál es y ajusta el pas
 - Acción: extrae lo que puedas y sé **especialmente generoso** marcando *[no documentado en el caso]*, porque la estructura fragmentaria suele esconder más lagunas reales que la prosa redactada. No fuerces coherencia narrativa donde no la hay.
 - Si la fragmentación es tal que apartados enteros quedan vacíos o casi, indica al clínico al inicio: *"El material aportado tiene formato de notas; algunos apartados quedarán parcialmente vacíos. Si dispone de un relato más estructurado, el flujo aprovechará mejor la información."* No deniegues procesamiento; procede de todos modos.
 
-**Detección:** el tipo se infiere del aspecto del input. Encabezados claros y secciones organizadas → A. Párrafos continuos con contenido completo → B. Frases sueltas, listas, marcas de tiempo, abreviaturas tipo apunte → C. Ante duda, asume B.
+**Detección:** el tipo se infiere del aspecto del input. Encabezados claros y secciones organizadas → A. Párrafos continuos con contenido completo → B. Frases sueltas, listas, marcas de tiempo, abreviaturas tipo apunte → C. **Criterio para decidir entre B y C (cuenta antes de decidir):** divide el texto en oraciones; si más de la mitad carecen de verbo conjugado (fragmentos nominales, listas, apuntes), es Tipo C, aunque estén bien ordenadas; si la mayoría son oraciones completas, es Tipo B. Solo si el recuento queda empatado, asume B.
 
 ---
 
@@ -207,7 +211,7 @@ Si alguno de estos apartados queda vacío, márcalo explícitamente como **[no d
 
 Genera una sección con **hipótesis principales** y, si procede, una segunda sección con **hipótesis a vigilar**.
 
-### 2a. Hipótesis principales (entre 2 y 4)
+### 2a. Hipótesis principales (entre 1 y 4; solo las que los datos sostienen, véase la regla anti-inflación de 2b)
 
 Son las que se sostienen con los datos disponibles. Para cada una:
 
@@ -220,7 +224,7 @@ Reglas:
 
 - No transcribas criterios. La justificación se hace por **correspondencia entre relato y categoría general**, no por checklist.
 - No jerarquices todavía las hipótesis. Eso lo decide el clínico tras los pasos 3 y 4.
-- Si dudas entre dos categorías cercanas (p. ej., trastorno depresivo recurrente vs trastorno depresivo persistente / distimia), inclúyelas ambas y márcalo.
+- Si dudas entre dos categorías cercanas (p. ej., trastorno depresivo recurrente vs trastorno distímico), inclúyelas ambas y márcalo.
 - Los especificadores son una herramienta para que el clínico afine, no una invitación a inflar la formulación. Si dudas entre proponer un especificador o no, propón menos.
 
 ### 2b. Hipótesis a vigilar (opcional)
@@ -480,15 +484,15 @@ Imítalo en estilo, no en contenido. Cada caso real exige sus propias hipótesis
 *A favor:* anhedonia + fatiga + despertar precoz + pérdida de peso + sentimientos de inutilidad + pensamientos pasivos de muerte; episodio previo a los 25; AF materna.
 *En contra / matiza:* coincidencia temporal con separación introduce componente reactivo; función tiroidea no actualizada y consumo de alcohol no caracterizado.
 
-**H2 — Trastorno depresivo secundario o agravado por condición médica y/o sustancia** (CIE-11 6E62).
+**H2 — Síndrome secundario del estado del ánimo, por condición médica y/o sustancia** (CIE-11 6E62).
 *Especificadores: por determinar* hasta resolver TSH y AUDIT.
 *A favor:* hipotiroidismo conocido sin control reciente; alcohol diario nocturno con efecto depresógeno conocido.
 *En contra / matiza:* el cuadro precede al consumo de alcohol; TSH en rango hace 9 meses, sin datos actuales no se sostiene componente tiroideo, solo se vigila.
 
 *2b. Hipótesis a vigilar*
 
-- **Trastorno bipolar tipo II** (CIE-11 6A61): episodio depresivo + AF materna inespecífica. Indagación de hipomanías por preguntas conductuales antes de cualquier consideración farmacológica.
-- **Trastornos por consumo de alcohol, uso perjudicial** (CIE-11 6C40.1): consumo diario reciente con autorreconocimiento parcial. Caracterización con AUDIT antes de etiquetar como diagnóstico independiente.
+- **Trastorno bipolar de tipo II** (CIE-11 6A61): episodio depresivo + AF materna inespecífica. Indagación de hipomanías por preguntas conductuales antes de cualquier consideración farmacológica.
+- **Patrón nocivo de uso de alcohol** (CIE-11 6C40.1): consumo diario reciente con autorreconocimiento parcial. Caracterización con AUDIT antes de etiquetar como diagnóstico independiente.
 
 **3. Diagnóstico diferencial obligatorio**
 
@@ -501,7 +505,7 @@ Imítalo en estilo, no en contenido. Cada caso real exige sus propias hipótesis
 - Alcohol: además de hipótesis a vigilar, contribución directa al insomnio de mantenimiento y fatiga matutina (fragmentación de sueño REM).
 
 *Otros trastornos psiquiátricos primarios:*
-- Trastorno depresivo persistente / distimia con episodio mayor superpuesto: indagar estado anímico basal entre los 26 y los 38.
+- Trastorno distímico con episodio mayor superpuesto: indagar estado anímico basal entre los 26 y los 38.
 - Trastornos de ansiedad comórbidos: la irritabilidad puede ser superficie de ansiedad subyacente.
 
 *Reacción a circunstancias vitales:*
@@ -515,7 +519,7 @@ Marcadas por el clínico: TSH actualizada, AUDIT, detalle del episodio a los 25,
 
 Detectadas por el flujo:
 - Cuantificación de la pérdida de peso (vinculada a H1 y a especificador melancólico).
-- Línea de base anímica entre los 26 y los 38 (vinculada a distimia subyacente).
+- Línea de base anímica entre los 26 y los 38 (vinculada a trastorno distímico subyacente).
 - Indagación conductual específica de hipomanías (vinculada a hipótesis a vigilar bipolaridad II).
 - Caracterización del episodio a los 25 (grupo terapéutico, respuesta, evolución).
 - AUDIT y caracterización funcional del consumo.
@@ -528,7 +532,7 @@ Detectadas por el flujo:
 Para próxima consulta (entrevista clínica):
 - Indagación escalonada de ideación autolítica (deseo de no estar → muerte → ideación → plan → acceso a medios). **Prioritario.**
 - Preguntas conductuales sobre hipomanías: dormir 4h funcionando bien, decisiones impulsivas que sorprendieran después, comentarios de terceros sobre activación. *Vinculado a hipótesis a vigilar bipolaridad II.*
-- Estado anímico basal entre 26 y 38, con preguntas concretas sobre sueño, libido, retirada social. *Vinculado a distimia subyacente.*
+- Estado anímico basal entre 26 y 38, con preguntas concretas sobre sueño, libido, retirada social. *Vinculado a trastorno distímico subyacente.*
 - Caracterización del consumo de alcohol con AUDIT. *Vinculado a hipótesis a vigilar consumo perjudicial.*
 - Antecedentes traumáticos básicos.
 

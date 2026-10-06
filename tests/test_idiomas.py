@@ -48,10 +48,22 @@ CLAVES = [
     "lbl_4b_consulta", "lbl_4b_pruebas", "lbl_4b_fuentes",
     "urg_necesaria", "urg_util", "urg_opcional",
     "lbl_5_explicitas", "lbl_5_implicitas", "lbl_5_protectores",
-    "recordatorio_riesgo", "especificadores_por_determinar",
+    "recordatorio_riesgo", "especificadores_por_determinar", "sin_datos_documentados",
+    "categorias",
+    # Rótulos del paso 1 y de los demás pasos que cada ejecución traducía a su manera
+    "lbl_1_demograficos", "lbl_1_motivo", "lbl_1_cronologia", "lbl_1_sintomas",
+    "lbl_1_ant_psiquiatricos", "lbl_1_ant_medicos", "lbl_1_sustancias", "lbl_1_ant_familiares",
+    "lbl_1_psicosocial", "lbl_1_exploracion", "lbl_1_pendientes",
+    "lbl_1_referido", "lbl_1_observado",
+    "lbl_2_a_favor", "lbl_2_en_contra", "lbl_2_especificadores",
+    "lbl_4a_marcadas", "lbl_4a_detectadas", "lbl_prioritario", "lbl_5_no_exploradas",
+    "lbl_hc_antecedentes", "lbl_hc_exploracion", "lbl_hc_impresion", "lbl_hc_plan",
+    "lbl_version_hc", "lbl_version_supervision", "lbl_hc_enfermedad_actual",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
-SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria",
+SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria", "sin_datos_documentados", "categorias",
+                        "lbl_1_referido", "lbl_1_observado", "lbl_hc_antecedentes", "lbl_hc_exploracion",
+                        "lbl_hc_impresion", "lbl_hc_plan", "lbl_hc_enfermedad_actual",
                         "puerta1_identificadores", "puerta1_marco_legal", "glosario"}
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
@@ -68,7 +80,37 @@ REEMPLAZOS = {
         "- **Redacción fija y en los tres idiomas** (español, inglés y francés), siempre "
         "juntos y en ese orden, sin importar en qué idioma escriba el clínico. No los "
         "resumas, no los suavices, no omitas ninguno ni los mezcles con el contenido del "
-        "paso 1. El resto de la salida sigue siendo en español.")],
+        "paso 1. El resto de la salida sigue siendo en español."),
+        # Decisión del autor (aviso de notas): criterio determinista entre Tipo B y Tipo C.
+        ("**Criterio para decidir entre B y C (cuenta antes de decidir):** divide el texto en "
+         "oraciones; si más de la mitad carecen de verbo conjugado (fragmentos nominales, listas, "
+         "apuntes), es Tipo C, aunque estén bien ordenadas; si la mayoría son oraciones completas, "
+         "es Tipo B. Solo si el recuento queda empatado, asume B.",
+         "Ante duda, asume B."),
+        # Decisión del autor: la regla anti-inflación prevalece sobre el mínimo de hipótesis.
+        ("### 2a. Hipótesis principales (entre 1 y 4; solo las que los datos sostienen, véase la "
+         "regla anti-inflación de 2b)",
+         "### 2a. Hipótesis principales (entre 2 y 4)"),
+        # Decisión del autor: 6A72 se llama en todo el flujo como la OMS en español («Trastorno distímico»).
+        ("trastorno depresivo recurrente vs trastorno distímico), inclúyelas",
+         "trastorno depresivo recurrente vs trastorno depresivo persistente / distimia), inclúyelas"),
+        ("- Trastorno distímico con episodio mayor superpuesto:",
+         "- Trastorno depresivo persistente / distimia con episodio mayor superpuesto:"),
+        ("(vinculada a trastorno distímico subyacente)", "(vinculada a distimia subyacente)"),
+        ("*Vinculado a trastorno distímico subyacente.*", "*Vinculado a distimia subyacente.*"),
+        # Apéndice: nombres de categoría = los oficiales de la OMS en español (catálogo `categorias`).
+        # Cada par de nombre va ANTES del par de código correspondiente.
+        ("**H2 — Síndrome secundario del estado del ánimo, por condición médica y/o sustancia** "
+         "(CIE-11 6E62).",
+         "**H2 — Trastorno depresivo secundario o agravado por condición médica y/o sustancia** "
+         "(CIE-11 6E62)."),
+        ("- **Trastorno bipolar de tipo II** (CIE-11 6A61)", "- **Trastorno bipolar tipo II** (CIE-11 6A61)"),
+        ("- **Patrón nocivo de uso de alcohol** (CIE-11 6C40.1)",
+         "- **Trastornos por consumo de alcohol, uso perjudicial** (CIE-11 6C40.1)"),
+        # Corrección clínica de dos códigos CIE-11 del apéndice (PR #11). Contenido clínico,
+        # verificado por esa sesión contra la tabulación simple de la OMS 2024-01.
+        ("(CIE-11 6E62).", "(CIE-11 6E60-6E61)."),
+        ("(CIE-11 6A61)", "(CIE-11 6A60.1)")],
     "SKILL.md": [(
         "abre con el aviso de asistencia de IA en el idioma elegido (véase «Aviso de "
         "asistencia de IA» y §0.0 en `flujo.md`), antes",
@@ -193,6 +235,28 @@ class TestValidadorSintetico(unittest.TestCase):
         self.escribe("en", catalogo(["glosario"], glosario="- one\n- two"))
         self.assertEqual(self.V.validar(self.dir), [])
 
+    def test_categorias_mismos_codigos_en_el_mismo_orden(self):
+        self.escribe("es", catalogo(["categorias"], categorias="- 6A70 | Uno\n- 6A71 | Dos"))
+        self.escribe("en", catalogo(["categorias"], categorias="- 6A71 | Two\n- 6A70 | One"))
+        self.assertIn("categorias", "\n".join(self.V.validar(self.dir)))
+
+    def test_categorias_con_un_codigo_menos(self):
+        self.escribe("es", catalogo(["categorias"], categorias="- 6A70 | Uno\n- 6A71 | Dos"))
+        self.escribe("en", catalogo(["categorias"], categorias="- 6A70 | One"))
+        self.assertTrue(self.V.validar(self.dir))
+
+    def test_categorias_formato_de_linea(self):
+        for malo in ("- 6A70 Uno", "- 6X70 | Uno", "- 6A70 | ", "6A70 | Uno"):
+            with self.subTest(linea=malo):
+                self.escribe("es", catalogo(["categorias"], categorias=malo))
+                self.escribe("en", catalogo(["categorias"], categorias=malo))
+                self.assertTrue(self.V.validar(self.dir), malo)
+
+    def test_categorias_correctas_no_dan_problemas(self):
+        self.escribe("es", catalogo(["categorias"], categorias="- 6A70 | Uno\n- 6C40.1 | Dos"))
+        self.escribe("en", catalogo(["categorias"], categorias="- 6A70 | One\n- 6C40.1 | Two"))
+        self.assertEqual(self.V.validar(self.dir), [])
+
     def test_comillas_invertidas_sin_cerrar(self):
         self.escribe("es", catalogo(["a"], a="invoca `auditoria"))
         self.escribe("en", catalogo(["a"], a="invoke `auditoria"))
@@ -263,6 +327,62 @@ class TestCatalogosReales(unittest.TestCase):
                     self.assertEqual(frases(d[clave]), frases(es[clave]), clave)
                     self.assertEqual(re.findall(r"\d+", d[clave]), re.findall(r"\d+", es[clave]), clave)
 
+    def test_categorias_cubren_todos_los_codigos_citados_en_el_flujo(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        usados = set(re.findall(r"\b(6[A-E]\d{2}(?:\.\d)?)\b", flujo))
+        for codigo in ("es", "en", "fr"):
+            nombres = {c for c, _ in self.V.categorias(self.datos(codigo)["categorias"])}
+            with self.subTest(idioma=codigo):
+                self.assertTrue(usados, "el apéndice debería citar algún código")
+                self.assertLessEqual(usados, nombres)
+
+    def test_categorias_declaran_su_fuente_oficial(self):
+        for codigo in ("es", "en", "fr"):
+            texto = (SKILL / f"idioma-{codigo}.md").read_text(encoding="utf-8")
+            preambulo = texto.split("\n## ", 1)[0]
+            with self.subTest(idioma=codigo):
+                self.assertIn("2024-01", preambulo)
+                self.assertIn("OMS", preambulo)
+
+    def test_criterio_determinista_entre_tipo_b_y_tipo_c(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        self.assertIn("más de la mitad carecen de verbo conjugado", flujo)
+        self.assertIn("Solo si el recuento queda empatado, asume B.", flujo)
+
+    def test_el_minimo_de_hipotesis_no_contradice_la_regla_anti_inflacion(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        self.assertIn("### 2a. Hipótesis principales (entre 1 y 4;", flujo)
+        self.assertNotIn("(entre 2 y 4)", flujo)
+
+    def test_el_apendice_usa_los_nombres_oficiales_del_catalogo(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        oficiales = dict(self.V.categorias(self.datos("es")["categorias"]))
+        citadas = 0
+        for linea in flujo.splitlines():
+            for codigo in re.findall(r"\(CIE-11 (6[A-E]\d{2}(?:\.\d)?)\)", linea):
+                citadas += 1
+                with self.subTest(codigo=codigo):
+                    self.assertIn(oficiales[codigo].lower(), linea.lower())
+        self.assertGreaterEqual(citadas, 4)
+
+    def test_el_flujo_nombra_6a72_como_la_oms(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8").lower()
+        oficial = dict(self.V.categorias(self.datos("es")["categorias"]))["6A72"].lower()
+        self.assertEqual(oficial, "trastorno distímico")
+        self.assertIn(oficial, flujo)
+        for antiguo in ("depresivo persistente", "distimia"):
+            with self.subTest(antiguo=antiguo):
+                self.assertNotIn(antiguo, flujo)
+
+    def test_titulos_de_las_versiones_coinciden_con_su_oferta(self):
+        # El título del informe que se genera tiene que ser el mismo que se ofreció.
+        for codigo in ("es", "en", "fr"):
+            d = self.datos(codigo)
+            oferta = normaliza(d["versiones_alternativas"])
+            for clave in ("lbl_version_hc", "lbl_version_supervision"):
+                with self.subTest(idioma=codigo, clave=clave):
+                    self.assertIn(normaliza(d[clave]), oferta)
+
     def test_puerta1_son_ejemplos_no_una_jurisdiccion(self):
         for codigo, giro in (("es", "por ejemplo"), ("en", "for example"), ("fr", "par exemple")):
             d = self.datos(codigo)
@@ -290,6 +410,21 @@ class TestCatalogosReales(unittest.TestCase):
             "El apéndice es solo un modelo de estructura",
             "(clave `no_documentado`)",
             "`sugerencia_auditoria`",
+            # Hallazgos 1, 4 y 5 de la simulación de escenarios (2026-10-06)
+            "llevan la nota final y no llevan versiones alternativas",  # paradas y comando sin caso
+            "`sin_datos_documentados`",                                  # rótulo sin datos: frase fija
+            "sin abreviar",                                              # enc_2a/enc_2b completos
+            "nunca traduzcas el nombre",                                 # nombre de categoría dudoso
+            # Nombres oficiales de la OMS en el catálogo y sigla de la clasificación
+            "figura en `categorias`",
+            "sigla de la clasificación",
+            # Rótulos de todos los pasos desde el catálogo
+            "`lbl_1_*`",
+            "`lbl_hc_*`",
+            "letra por letra",   # el nombre oficial no se parafrasea ni se reordena
+            # Revisión de Codex en el PR #12: dos reglas distintas para «sin datos» chocaban en el paso 1
+            "En el paso 1, un apartado vacío sigue marcándose con `no_documentado`",
+            "Rótulo sin datos de los pasos 2 a 6",
         ):
             with self.subTest(centinela=centinela):
                 self.assertIn(centinela, bloque)
@@ -395,6 +530,21 @@ class TestEspanolInvariante(unittest.TestCase):
                     ["SKILL.md", "flujo.md", "plantilla-caso.md", "LICENSE",
                      "idioma-es.md", "idioma-en.md", "idioma-fr.md"]}
         self.assertEqual(set(listado) - {"cie11-formulacion-clinica/"}, esperado)
+
+
+class TestIntegracionContinua(unittest.TestCase):
+    """El #11 dejó main en rojo porque nada ejecutaba estas pruebas al fusionar."""
+
+    def test_workflow_ejecuta_validador_y_pruebas_con_historial_completo(self):
+        ruta = RAIZ / ".github" / "workflows" / "tests.yml"
+        self.assertTrue(ruta.exists(), "falta .github/workflows/tests.yml")
+        texto = ruta.read_text(encoding="utf-8")
+        for orden in ("python3 scripts/validar_idiomas.py", "python3 -m unittest discover -s tests"):
+            with self.subTest(orden=orden):
+                self.assertIn(orden, texto)
+        self.assertIn("pull_request", texto)      # se ejecuta antes de fusionar
+        self.assertIn("fetch-depth: 0", texto)    # el commit base debe existir para comparar el español
+        self.assertIn("contents: read", texto)    # permisos mínimos
 
 
 if __name__ == "__main__":

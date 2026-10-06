@@ -4,7 +4,9 @@ Cada `##` es una clave. Las frases de este catálogo salen **literales de `flujo
 (la prueba `test_frases_es_son_literales_de_flujo` lo comprueba); las claves
 `idioma_no_disponible`, `sugerencia_auditoria`, `puerta1_*` y `glosario` son texto
 añadido por la capa de idioma. Las claves `lbl_*`, `urg_*`, `recordatorio_riesgo` y
-`especificadores_por_determinar` son los rótulos y frases que el flujo prescribe. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
+`especificadores_por_determinar` son los rótulos y frases que el flujo prescribe; `sin_datos_documentados`
+es texto añadido por la capa de idioma. Los nombres de `categorias` son los oficiales de la OMS
+(CIE-11 MMS, versión 2024-01, «Simple Tabulation» en español, inglés y francés), copiados sin retocar. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
 deben tener exactamente estas claves, los mismos marcadores `{nombre}` y los mismos
 textos entre comillas invertidas. Valídalo con `python3 scripts/validar_idiomas.py`.
 
@@ -164,3 +166,105 @@ Recordatorio: si el caso describe riesgo agudo o inminente, este flujo no sustit
 
 ## especificadores_por_determinar
 especificadores por determinar tras ampliar exploración
+
+## sin_datos_documentados
+sin datos documentados en el caso
+
+## categorias
+- 6A60 | Trastorno bipolar de tipo I
+- 6A61 | Trastorno bipolar de tipo II
+- 6A70 | Trastorno depresivo de episodio único
+- 6A71 | Trastorno depresivo recurrente
+- 6A72 | Trastorno distímico
+- 6A73 | Trastorno mixto de depresión y ansiedad
+- 6B00 | Trastorno de ansiedad generalizada
+- 6B04 | Trastorno de ansiedad social
+- 6B40 | Trastorno de estrés postraumático
+- 6B43 | Trastorno de adaptación
+- 6C40 | Trastornos debidos al uso de alcohol
+- 6C40.1 | Patrón nocivo de uso de alcohol
+- 6E60 | Síndrome de neurodesarrollo secundario
+- 6E61 | Síndrome psicótico secundario
+- 6E62 | Síndrome secundario del estado del ánimo
+- 6E63 | Síndrome de ansiedad secundario
+
+## lbl_1_demograficos
+Datos demográficos relevantes
+
+## lbl_1_motivo
+Motivo de consulta
+
+## lbl_1_cronologia
+Cronología del cuadro actual
+
+## lbl_1_sintomas
+Síntomas referidos
+
+## lbl_1_ant_psiquiatricos
+Antecedentes psiquiátricos personales
+
+## lbl_1_ant_medicos
+Antecedentes médicos y medicación actual
+
+## lbl_1_sustancias
+Consumo de sustancias
+
+## lbl_1_ant_familiares
+Antecedentes familiares
+
+## lbl_1_psicosocial
+Situación psicosocial
+
+## lbl_1_exploracion
+Exploración psicopatológica
+
+## lbl_1_pendientes
+Datos pendientes de recabar
+
+## lbl_1_referido
+Referido por el paciente
+
+## lbl_1_observado
+Observado por el clínico
+
+## lbl_2_a_favor
+A favor
+
+## lbl_2_en_contra
+En contra / matiza
+
+## lbl_2_especificadores
+Especificadores aplicables
+
+## lbl_4a_marcadas
+Marcadas por el clínico
+
+## lbl_4a_detectadas
+Detectadas por el flujo
+
+## lbl_prioritario
+Prioritario
+
+## lbl_5_no_exploradas
+Señales no exploradas en la entrevista (no documentado ≠ ausente)
+
+## lbl_hc_enfermedad_actual
+Enfermedad actual
+
+## lbl_hc_antecedentes
+Antecedentes
+
+## lbl_hc_exploracion
+Exploración
+
+## lbl_hc_impresion
+Impresión diagnóstica
+
+## lbl_hc_plan
+Plan
+
+## lbl_version_hc
+Versión condensada para historia clínica
+
+## lbl_version_supervision
+Versión sintética para supervisión

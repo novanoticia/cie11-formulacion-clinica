@@ -1,6 +1,6 @@
 # Catálogo de frases fijas — Français
 
-Traducción de `idioma-es.md`: mismas claves, mismos marcadores `{nombre}` y mismos textos entre comillas invertidas. Convenciones tipográficas del aviso de IA ya aprobado: espacio normal antes de «:», «;», «?» y «!», y apóstrofo recto; tratamiento de «vous». Traducción redactada por una IA, **no revisada por una persona nativa ni por un clínico**. Valídalo con `python3 scripts/validar_idiomas.py`.
+Traducción de `idioma-es.md`: mismas claves, mismos marcadores `{nombre}` y mismos textos entre comillas invertidas. Convenciones tipográficas del aviso de IA ya aprobado: espacio normal antes de «:», «;», «?» y «!», y apóstrofo recto; tratamiento de «vous». Traducción redactada por una IA, **no revisada por una persona nativa ni por un clínico**. Los nombres de `categorias` son los oficiales de la OMS (CIE-11 MMS, versión 2024-01, «Simple Tabulation» en español, inglés y francés), copiados sin retocar. Valídalo con `python3 scripts/validar_idiomas.py`.
 
 ## modo_no_reconocido
 Mode non reconnu, j'exécute le mode complet.
@@ -139,6 +139,108 @@ Rappel : si le cas décrit un risque aigu ou imminent, cette démarche ne rempla
 
 ## especificadores_por_determinar
 spécificateurs à déterminer après élargissement de l'exploration
+
+## sin_datos_documentados
+aucune donnée documentée dans le cas
+
+## categorias
+- 6A60 | Trouble bipolaire de type I
+- 6A61 | Trouble bipolaire de type II
+- 6A70 | Épisode dépressif unique
+- 6A71 | Trouble dépressif récurrent
+- 6A72 | Dysthymie
+- 6A73 | Trouble anxieux et dépressif mixte
+- 6B00 | Trouble d'anxiété généralisée
+- 6B04 | Trouble d'anxiété sociale
+- 6B40 | Trouble de stress posttraumatique
+- 6B43 | Trouble d'adaptation
+- 6C40 | Troubles dus à la consommation d'alcool
+- 6C40.1 | Mode de consommation nocif d'alcool
+- 6E60 | Syndrome neurodéveloppemental secondaire
+- 6E61 | Syndrome psychotique secondaire
+- 6E62 | Trouble de l'humeur secondaire
+- 6E63 | Syndrome d'anxiété secondaire
+
+## lbl_1_demograficos
+Données démographiques pertinentes
+
+## lbl_1_motivo
+Motif de consultation
+
+## lbl_1_cronologia
+Chronologie du tableau actuel
+
+## lbl_1_sintomas
+Symptômes rapportés
+
+## lbl_1_ant_psiquiatricos
+Antécédents psychiatriques personnels
+
+## lbl_1_ant_medicos
+Antécédents médicaux et traitement actuel
+
+## lbl_1_sustancias
+Consommation de substances
+
+## lbl_1_ant_familiares
+Antécédents familiaux
+
+## lbl_1_psicosocial
+Situation psychosociale
+
+## lbl_1_exploracion
+Examen psychique
+
+## lbl_1_pendientes
+Données à recueillir
+
+## lbl_1_referido
+Rapporté par le patient
+
+## lbl_1_observado
+Observé par le clinicien
+
+## lbl_2_a_favor
+En faveur
+
+## lbl_2_en_contra
+Contre / nuance
+
+## lbl_2_especificadores
+Spécificateurs applicables
+
+## lbl_4a_marcadas
+Signalées par le clinicien
+
+## lbl_4a_detectadas
+Détectées par la démarche
+
+## lbl_prioritario
+Prioritaire
+
+## lbl_5_no_exploradas
+Indicateurs non explorés lors de cet entretien (non documenté ≠ absent)
+
+## lbl_hc_enfermedad_actual
+Histoire de la maladie actuelle
+
+## lbl_hc_antecedentes
+Antécédents
+
+## lbl_hc_exploracion
+Examen psychique
+
+## lbl_hc_impresion
+Orientation diagnostique
+
+## lbl_hc_plan
+Plan
+
+## lbl_version_hc
+Version condensée pour le dossier patient
+
+## lbl_version_supervision
+Version synthétique pour la supervision
 
 ## glosario
 - trame de formulation

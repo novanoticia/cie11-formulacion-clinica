@@ -1,0 +1,27 @@
+name: Pruebas
+
+# Se ejecuta en cada pull request (sobre el resultado de fusionarlo con main) y en cada push a main.
+# Motivo: el PR #11 se fusionó sin ejecutar las pruebas y dejó main en rojo.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Historial completo: una prueba compara el español con el commit base a74ec22.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validar los catálogos de idioma
+        run: python3 scripts/validar_idiomas.py
+      - name: Ejecutar las pruebas
+        run: python3 -m unittest discover -s tests -v

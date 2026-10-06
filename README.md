@@ -109,7 +109,7 @@ El skill responde en **español, inglés o francés**.
 - **Qué no se traduce:** el trigger y los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los códigos CIE-11, los nombres de fichero y la numeración de pasos. Los nombres de categoría usan la traducción oficial de la OMS; si no se conoce con seguridad, se da el código y el nombre inglés. Las citas textuales del caso se conservan en su idioma.
 - **Un solo idioma por salida**, sin mezclar. Excepciones: las citas textuales del caso y el aviso de IA trilingüe de respaldo (idioma no disponible o comando sin caso).
 - **Añadir un idioma:** copia `skills/cie11-formulacion-clinica/idioma-es.md` como `idioma-<xx>.md` (código de dos o tres letras en minúsculas), traduce los valores sin tocar las claves (`## clave`), los `{marcadores}` ni lo que va entre comillas invertidas, y ejecuta `python3 scripts/validar_idiomas.py`: te dice qué falta. No hay que tocar nada más; el paquete lo incluye solo. Las pruebas se lanzan con `python3 -m unittest discover -s tests`.
-- **Limitaciones conocidas:** **la capa de idioma no se ha ejecutado todavía en una plataforma real**: los 21 escenarios de [`tests/escenarios.md`](./tests/escenarios.md) están escritos y 9 de ellos se simularon con agentes de Claude (no es una plataforma real), pero no se han ejecutado en ninguna plataforma real; las pruebas automáticas solo comprueban catálogos, validador, paquete y que el español no cambia. La descripción del skill (la que decide cuándo se activa solo) está en español: en inglés o francés, invócalo con el comando. Las traducciones las ha redactado una IA y **no las ha revisado una persona nativa ni un clínico**; deben revisarse antes de cualquier uso en consulta. La salida la genera un modelo de lenguaje: las frases fijas salen del catálogo, pero el resto lo redacta el modelo y puede variar entre ejecuciones. La documentación (guía PDF, CHANGELOG, SECURITY y este README completo) sigue solo en español; `README.en.md` y `README.fr.md` son versiones breves.
+- **Limitaciones conocidas:** **la capa de idioma no se ha ejecutado todavía en una plataforma real**: los 21 escenarios de [`tests/escenarios.md`](./tests/escenarios.md) están escritos y 20 de ellos se simularon con agentes de Claude (no es una plataforma real), pero no se han ejecutado en ninguna plataforma real; las pruebas automáticas solo comprueban catálogos, validador, paquete y que el español no cambia. La descripción del skill (la que decide cuándo se activa solo) está en español: en inglés o francés, invócalo con el comando. Las traducciones las ha redactado una IA y **no las ha revisado una persona nativa ni un clínico**; deben revisarse antes de cualquier uso en consulta. La salida la genera un modelo de lenguaje: las frases fijas salen del catálogo, pero el resto lo redacta el modelo y puede variar entre ejecuciones. La documentación (guía PDF, CHANGELOG, SECURITY y este README completo) sigue solo en español; `README.en.md` y `README.fr.md` son versiones breves.
 
 ---
 
@@ -272,7 +272,7 @@ Los tres usan el mismo caso **ficticio y ya pseudonimizado**; sustitúyelo por e
 ```
 /cie11-formulacion-clinica
 
-M.R., 38 años, vive en pareja, trabaja en administración. Consulta derivada
+Caso A, 38 años, vive en pareja, trabaja en administración. Consulta derivada
 por su médico de familia por "no poder desconectar" desde hace unos 8 meses:
 sueño fragmentado, irritabilidad, preocupación constante por el trabajo y
 tensión muscular. Sin antecedentes psiquiátricos previos. Consume alcohol de
@@ -285,7 +285,7 @@ clínica.
 ```
 /cie11-formulacion-clinica diferenciales
 
-[mismo caso de M.R.] Quiero centrarme en distinguir entre un cuadro de
+[mismo Caso A] Quiero centrarme en distinguir entre un cuadro de
 ansiedad generalizada, un trastorno adaptativo y un componente depresivo.
 ```
 
@@ -294,7 +294,7 @@ ansiedad generalizada, un trastorno adaptativo y un componente depresivo.
 ```
 /cie11-formulacion-clinica auditoria-lagunas
 
-[pega aquí tu formulación ya redactada, sobre el caso pseudonimizado de M.R.]
+[pega aquí tu formulación ya redactada, sobre el caso pseudonimizado, p. ej. el Caso A]
 ```
 
 En los tres casos, la salida es un andamio de hipótesis que debe revisar el profesional responsable, y termina con una nota final obligatoria.
@@ -319,6 +319,7 @@ cie11-formulacion-clinica/
 │   ├── build-dist.sh        # Genera el zip/.skill en dist/ (no versionado)
 │   └── validar_idiomas.py   # Valida que los catálogos de idioma están completos
 ├── tests/                   # Pruebas de la capa multiidioma y línea base del español
+├── .github/workflows/tests.yml  # Ejecuta el validador y las pruebas en cada pull request
 ├── LICENSE                  # CC BY 4.0
 ├── README.md                # Este archivo
 ├── README.en.md, README.fr.md # Versiones breves en inglés y francés

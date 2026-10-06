@@ -20,6 +20,8 @@ python3 scripts/validar_idiomas.py        # los catálogos están completos y co
 python3 -m unittest discover -s tests -v  # validador, catálogos, español invariante y paquete
 ```
 
+GitHub ejecuta esas mismas dos comprobaciones en cada pull request (`.github/workflows/tests.yml`); si fallan, no fusiones. Para que GitHub lo impida de verdad hay que activar en el repositorio una protección de la rama `main` que exija la comprobación `pruebas` (el nombre del trabajo del workflow, en minúscula; Settings → Branches); sin ella, el aviso en rojo no bloquea. El workflow existe porque el PR #11 se fusionó sin pasar por las pruebas y dejó `main` en rojo.
+
 Si subes la versión, cámbiala a la vez en `plugin.json`, `.claude-plugin/plugin.json` y `.claude-plugin/marketplace.json`, y añade la entrada al `CHANGELOG.md`.
 
 ## Añadir un idioma

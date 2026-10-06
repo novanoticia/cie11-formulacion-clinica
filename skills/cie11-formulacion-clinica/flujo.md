@@ -446,14 +446,14 @@ Imítalo en estilo, no en contenido. Cada caso real exige sus propias hipótesis
 *A favor:* anhedonia + fatiga + despertar precoz + pérdida de peso + sentimientos de inutilidad + pensamientos pasivos de muerte; episodio previo a los 25; AF materna.
 *En contra / matiza:* coincidencia temporal con separación introduce componente reactivo; función tiroidea no actualizada y consumo de alcohol no caracterizado.
 
-**H2 — Trastorno depresivo secundario o agravado por condición médica y/o sustancia** (CIE-11 6E60-6E61).
+**H2 — Trastorno depresivo secundario o agravado por condición médica y/o sustancia** (CIE-11 6E62).
 *Especificadores: por determinar* hasta resolver TSH y AUDIT.
 *A favor:* hipotiroidismo conocido sin control reciente; alcohol diario nocturno con efecto depresógeno conocido.
 *En contra / matiza:* el cuadro precede al consumo de alcohol; TSH en rango hace 9 meses, sin datos actuales no se sostiene componente tiroideo, solo se vigila.
 
 *2b. Hipótesis a vigilar*
 
-- **Trastorno bipolar tipo II** (CIE-11 6A60.1): episodio depresivo + AF materna inespecífica. Indagación de hipomanías por preguntas conductuales antes de cualquier consideración farmacológica.
+- **Trastorno bipolar tipo II** (CIE-11 6A61): episodio depresivo + AF materna inespecífica. Indagación de hipomanías por preguntas conductuales antes de cualquier consideración farmacológica.
 - **Trastornos por consumo de alcohol, uso perjudicial** (CIE-11 6C40.1): consumo diario reciente con autorreconocimiento parcial. Caracterización con AUDIT antes de etiquetar como diagnóstico independiente.
 
 **3. Diagnóstico diferencial obligatorio**

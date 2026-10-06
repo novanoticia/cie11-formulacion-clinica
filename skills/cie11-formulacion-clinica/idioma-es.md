@@ -187,3 +187,81 @@ sin datos documentados en el caso
 - 6E61 | Síndrome psicótico secundario
 - 6E62 | Síndrome secundario del estado del ánimo
 - 6E63 | Síndrome de ansiedad secundario
+
+## lbl_1_demograficos
+Datos demográficos relevantes
+
+## lbl_1_motivo
+Motivo de consulta
+
+## lbl_1_cronologia
+Cronología del cuadro actual
+
+## lbl_1_sintomas
+Síntomas referidos
+
+## lbl_1_ant_psiquiatricos
+Antecedentes psiquiátricos personales
+
+## lbl_1_ant_medicos
+Antecedentes médicos y medicación actual
+
+## lbl_1_sustancias
+Consumo de sustancias
+
+## lbl_1_ant_familiares
+Antecedentes familiares
+
+## lbl_1_psicosocial
+Situación psicosocial
+
+## lbl_1_exploracion
+Exploración psicopatológica
+
+## lbl_1_pendientes
+Datos pendientes de recabar
+
+## lbl_1_referido
+Referido por el paciente
+
+## lbl_1_observado
+Observado por el clínico
+
+## lbl_2_a_favor
+A favor
+
+## lbl_2_en_contra
+En contra / matiza
+
+## lbl_2_especificadores
+Especificadores aplicables
+
+## lbl_4a_marcadas
+Marcadas por el clínico
+
+## lbl_4a_detectadas
+Detectadas por el flujo
+
+## lbl_prioritario
+Prioritario
+
+## lbl_5_no_exploradas
+Señales no exploradas en la entrevista (no documentado ≠ ausente)
+
+## lbl_hc_antecedentes
+Antecedentes
+
+## lbl_hc_exploracion
+Exploración
+
+## lbl_hc_impresion
+Impresión diagnóstica
+
+## lbl_hc_plan
+Plan
+
+## lbl_version_hc
+Versión condensada para historia clínica
+
+## lbl_version_supervision
+Versión sintética para supervisión

@@ -50,9 +50,20 @@ CLAVES = [
     "lbl_5_explicitas", "lbl_5_implicitas", "lbl_5_protectores",
     "recordatorio_riesgo", "especificadores_por_determinar", "sin_datos_documentados",
     "categorias",
+    # Rótulos del paso 1 y de los demás pasos que cada ejecución traducía a su manera
+    "lbl_1_demograficos", "lbl_1_motivo", "lbl_1_cronologia", "lbl_1_sintomas",
+    "lbl_1_ant_psiquiatricos", "lbl_1_ant_medicos", "lbl_1_sustancias", "lbl_1_ant_familiares",
+    "lbl_1_psicosocial", "lbl_1_exploracion", "lbl_1_pendientes",
+    "lbl_1_referido", "lbl_1_observado",
+    "lbl_2_a_favor", "lbl_2_en_contra", "lbl_2_especificadores",
+    "lbl_4a_marcadas", "lbl_4a_detectadas", "lbl_prioritario", "lbl_5_no_exploradas",
+    "lbl_hc_antecedentes", "lbl_hc_exploracion", "lbl_hc_impresion", "lbl_hc_plan",
+    "lbl_version_hc", "lbl_version_supervision",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
 SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria", "sin_datos_documentados", "categorias",
+                        "lbl_1_referido", "lbl_1_observado", "lbl_hc_antecedentes", "lbl_hc_exploracion",
+                        "lbl_hc_impresion", "lbl_hc_plan",
                         "puerta1_identificadores", "puerta1_marco_legal", "glosario"}
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
@@ -307,6 +318,15 @@ class TestCatalogosReales(unittest.TestCase):
                 self.assertIn("2024-01", preambulo)
                 self.assertIn("OMS", preambulo)
 
+    def test_titulos_de_las_versiones_coinciden_con_su_oferta(self):
+        # El título del informe que se genera tiene que ser el mismo que se ofreció.
+        for codigo in ("es", "en", "fr"):
+            d = self.datos(codigo)
+            oferta = normaliza(d["versiones_alternativas"])
+            for clave in ("lbl_version_hc", "lbl_version_supervision"):
+                with self.subTest(idioma=codigo, clave=clave):
+                    self.assertIn(normaliza(d[clave]), oferta)
+
     def test_puerta1_son_ejemplos_no_una_jurisdiccion(self):
         for codigo, giro in (("es", "por ejemplo"), ("en", "for example"), ("fr", "par exemple")):
             d = self.datos(codigo)
@@ -342,6 +362,9 @@ class TestCatalogosReales(unittest.TestCase):
             # Nombres oficiales de la OMS en el catálogo y sigla de la clasificación
             "figura en `categorias`",
             "sigla de la clasificación",
+            # Rótulos de todos los pasos desde el catálogo
+            "`lbl_1_*`",
+            "`lbl_hc_*`",
         ):
             with self.subTest(centinela=centinela):
                 self.assertIn(centinela, bloque)

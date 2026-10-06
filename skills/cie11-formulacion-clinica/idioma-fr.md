@@ -161,6 +161,84 @@ aucune donnée documentée dans le cas
 - 6E62 | Trouble de l'humeur secondaire
 - 6E63 | Syndrome d'anxiété secondaire
 
+## lbl_1_demograficos
+Données démographiques pertinentes
+
+## lbl_1_motivo
+Motif de consultation
+
+## lbl_1_cronologia
+Chronologie du tableau actuel
+
+## lbl_1_sintomas
+Symptômes rapportés
+
+## lbl_1_ant_psiquiatricos
+Antécédents psychiatriques personnels
+
+## lbl_1_ant_medicos
+Antécédents médicaux et traitement actuel
+
+## lbl_1_sustancias
+Consommation de substances
+
+## lbl_1_ant_familiares
+Antécédents familiaux
+
+## lbl_1_psicosocial
+Situation psychosociale
+
+## lbl_1_exploracion
+Examen psychique
+
+## lbl_1_pendientes
+Données à recueillir
+
+## lbl_1_referido
+Rapporté par le patient
+
+## lbl_1_observado
+Observé par le clinicien
+
+## lbl_2_a_favor
+En faveur
+
+## lbl_2_en_contra
+Contre / nuance
+
+## lbl_2_especificadores
+Spécificateurs applicables
+
+## lbl_4a_marcadas
+Signalées par le clinicien
+
+## lbl_4a_detectadas
+Détectées par la démarche
+
+## lbl_prioritario
+Prioritaire
+
+## lbl_5_no_exploradas
+Indicateurs non explorés lors de cet entretien (non documenté ≠ absent)
+
+## lbl_hc_antecedentes
+Antécédents
+
+## lbl_hc_exploracion
+Examen psychique
+
+## lbl_hc_impresion
+Orientation diagnostique
+
+## lbl_hc_plan
+Plan
+
+## lbl_version_hc
+Version condensée pour le dossier patient
+
+## lbl_version_supervision
+Version synthétique pour la supervision
+
 ## glosario
 - trame de formulation
 - clinicien responsable du cas

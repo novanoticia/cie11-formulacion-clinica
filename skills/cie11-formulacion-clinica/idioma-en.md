@@ -161,6 +161,84 @@ no data documented in the case
 - 6E62 | Secondary mood syndrome
 - 6E63 | Secondary anxiety syndrome
 
+## lbl_1_demograficos
+Relevant demographic data
+
+## lbl_1_motivo
+Presenting complaint
+
+## lbl_1_cronologia
+Timeline of the current picture
+
+## lbl_1_sintomas
+Reported symptoms
+
+## lbl_1_ant_psiquiatricos
+Personal psychiatric history
+
+## lbl_1_ant_medicos
+Medical history and current medication
+
+## lbl_1_sustancias
+Substance use
+
+## lbl_1_ant_familiares
+Family history
+
+## lbl_1_psicosocial
+Psychosocial situation
+
+## lbl_1_exploracion
+Mental state examination
+
+## lbl_1_pendientes
+Pending data to be collected
+
+## lbl_1_referido
+Reported by the patient
+
+## lbl_1_observado
+Observed by the clinician
+
+## lbl_2_a_favor
+In favour
+
+## lbl_2_en_contra
+Against / qualifies
+
+## lbl_2_especificadores
+Applicable specifiers
+
+## lbl_4a_marcadas
+Flagged by the clinician
+
+## lbl_4a_detectadas
+Detected by the workflow
+
+## lbl_prioritario
+Priority
+
+## lbl_5_no_exploradas
+Indicators not explored in this interview (not documented ≠ absent)
+
+## lbl_hc_antecedentes
+History
+
+## lbl_hc_exploracion
+Mental state examination
+
+## lbl_hc_impresion
+Diagnostic impression
+
+## lbl_hc_plan
+Plan
+
+## lbl_version_hc
+Condensed version for the clinical record
+
+## lbl_version_supervision
+Summary version for supervision
+
 ## glosario
 - formulation scaffold
 - clinician responsible for the case

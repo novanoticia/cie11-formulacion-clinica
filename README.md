@@ -272,7 +272,7 @@ Los tres usan el mismo caso **ficticio y ya pseudonimizado**; sustitúyelo por e
 ```
 /cie11-formulacion-clinica
 
-M.R., 38 años, vive en pareja, trabaja en administración. Consulta derivada
+Caso A, 38 años, vive en pareja, trabaja en administración. Consulta derivada
 por su médico de familia por "no poder desconectar" desde hace unos 8 meses:
 sueño fragmentado, irritabilidad, preocupación constante por el trabajo y
 tensión muscular. Sin antecedentes psiquiátricos previos. Consume alcohol de
@@ -285,7 +285,7 @@ clínica.
 ```
 /cie11-formulacion-clinica diferenciales
 
-[mismo caso de M.R.] Quiero centrarme en distinguir entre un cuadro de
+[mismo Caso A] Quiero centrarme en distinguir entre un cuadro de
 ansiedad generalizada, un trastorno adaptativo y un componente depresivo.
 ```
 
@@ -294,7 +294,7 @@ ansiedad generalizada, un trastorno adaptativo y un componente depresivo.
 ```
 /cie11-formulacion-clinica auditoria-lagunas
 
-[pega aquí tu formulación ya redactada, sobre el caso pseudonimizado de M.R.]
+[pega aquí tu formulación ya redactada, sobre el caso pseudonimizado, p. ej. el Caso A]
 ```
 
 En los tres casos, la salida es un andamio de hipótesis que debe revisar el profesional responsable, y termina con una nota final obligatoria.

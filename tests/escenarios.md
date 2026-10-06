@@ -49,10 +49,10 @@ Cómo usarlos: pega la entrada, comprueba cada punto de «Debe cumplirse» y ano
 
 Instrucciones que los agentes tuvieron que resolver por su cuenta (no son fallos de la capa de idioma, pero afectan a la coherencia entre ejecuciones):
 
-- **«Comando sin caso» y paradas de las puertas:** el flujo no dice si llevan nota final ni versiones alternativas. Todos los agentes pusieron la nota final y omitieron las versiones, y añadieron por su cuenta recordatorios sobre modos, idioma y pseudonimización.
+- **«Comando sin caso» y paradas de las puertas:** el flujo no dice si llevan nota final ni versiones alternativas. Todos los agentes pusieron la nota final y omitieron las versiones, y añadieron por su cuenta recordatorios sobre modos, idioma y pseudonimización. *Corregido en `flujo.md` §0.0 (respuestas de parada); pendiente de re-simular.*
 - **Aviso de notas (Tipo B/C):** con el mismo caso breve y telegráfico, unas ejecuciones lo trataron como Tipo C (con `aviso_notas`) y otras como Tipo B. Ambigüedad previa del flujo («Ante duda, asume B» frente a «frases sueltas → C»).
-- **Códigos CIE-11:** todos los agentes sustituyeron de memoria los del apéndice (6A60.1, 6E60-6E61) por 6A61 y 6E62. No está verificado contra la OMS (tarea aparte).
-- **Frases sin clave:** «ninguna señal explícita documentada» se improvisó con redacciones distintas; el título de 2a/2b se abrevió en una ejecución (escenario 6).
+- **Códigos CIE-11:** todos los agentes sustituyeron de memoria los del apéndice (6A60.1, 6E60-6E61) por 6A61 y 6E62. No está verificado contra la OMS (tarea aparte). *Resuelto en el PR #11, que los corrigió en el apéndice tras verificarlos contra la OMS.*
+- **Frases sin clave:** «ninguna señal explícita documentada» se improvisó con redacciones distintas; el título de 2a/2b se abrevió en una ejecución (escenario 6). *Corregido: clave `sin_datos_documentados` y regla de encabezados sin abreviar; pendiente de re-simular.*
 - **Vocabulario del caso:** en la salida en español del caso en portugués se coló «anedonia».
-- **Nombres de categoría CIE-11:** un agente usó nombres franceses sabiendo que no estaba seguro de la traducción oficial, en lugar de código y nombre inglés.
+- **Nombres de categoría CIE-11:** un agente usó nombres franceses sabiendo que no estaba seguro de la traducción oficial, en lugar de código y nombre inglés. *Corregido: la regla pasa a «ante la menor duda, nunca traduzcas el nombre»; pendiente de re-simular.*
 - **No simulados:** 4, 5, 10-19 (todo lo que no es la primera respuesta de una sesión).

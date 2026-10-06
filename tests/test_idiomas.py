@@ -82,6 +82,11 @@ REEMPLAZOS = {
          "v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con "
          "parsers YAML estrictos (Perplexity: `description` como bloque escalar `>-`); paquete "
          "`dist/` regenerado. Base funcional en v1.5")],
+    # Decisión de diseño del autor: coherencia con la Puerta 1 de flujo.md (las iniciales
+    # en contextos identificables son rechazo automático). Cambio de contenido de seguridad.
+    "plantilla-caso.md": [(
+        'usar un código neutro sin relación con el nombre (p. ej., "Caso A, 38 años").',
+        'usar pseudónimo o iniciales no reconocibles (p. ej., "M.R., 38 años").')],
 }
 
 

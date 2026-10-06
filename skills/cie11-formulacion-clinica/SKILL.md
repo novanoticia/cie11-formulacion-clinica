@@ -135,3 +135,6 @@ v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con 
 - **v1.5.1** — fix del frontmatter YAML (`description` como bloque escalar `>-`) para parsers estrictos (Perplexity); paquete `dist/` regenerado.
 - **v1.5.2** — compatibilidad con Mistral AI (`description` < 500 caracteres); Mistral documentado en el README; paquete `dist/` regenerado.
 - **v1.6.2** — aviso de asistencia de IA (en español, inglés y francés) al inicio de la primera respuesta de cada sesión (requisito de uso de alto riesgo sanitario), sin cambiar el resto del flujo.
+<!-- i18n:inicio -->
+- **v1.7.0** — salida en español, inglés y francés (`flujo.md` §0.0 y catálogos `idioma-*.md`); el aviso de IA pasa a mostrarse en el idioma elegido, con el bloque trilingüe como respaldo. El razonamiento clínico no cambia.
+<!-- i18n:fin -->

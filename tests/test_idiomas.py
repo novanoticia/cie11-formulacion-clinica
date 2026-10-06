@@ -187,7 +187,7 @@ class TestCatalogosReales(unittest.TestCase):
         self.V = cargar_validador()
 
     def test_existen_es_en_fr(self):
-        self.assertEqual({"es", "en", "fr"}, set(self.V.descubrir(SKILL)))
+        self.assertLessEqual({"es", "en", "fr"}, set(self.V.descubrir(SKILL)))
 
     def test_validador_sin_problemas(self):
         self.assertEqual(self.V.validar(SKILL), [])

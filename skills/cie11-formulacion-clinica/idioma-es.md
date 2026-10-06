@@ -115,3 +115,6 @@ RGPD y LOPDGDD (los datos de salud son una categoría especial de datos).
 - no documentado en el caso
 - no explorado
 - capa de comorbilidad sistémica
+- CIE-11
+- puerta de entrada
+- mediación clínica

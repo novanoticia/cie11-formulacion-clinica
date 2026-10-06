@@ -164,6 +164,17 @@ class TestValidadorSintetico(unittest.TestCase):
         (self.dir / "idioma-EN_US.md").write_text(catalogo(["a"]), encoding="utf-8")
         self.assertTrue(self.V.validar(self.dir))
 
+    def test_glosario_mismo_numero_de_entradas(self):
+        self.escribe("es", catalogo(["glosario"], glosario="- uno\n- dos"))
+        self.escribe("en", catalogo(["glosario"], glosario="- one"))
+        problemas = "\n".join(self.V.validar(self.dir))
+        self.assertIn("glosario", problemas)
+
+    def test_glosario_correcto_no_da_problemas(self):
+        self.escribe("es", catalogo(["glosario"], glosario="- uno\n- dos"))
+        self.escribe("en", catalogo(["glosario"], glosario="- one\n- two"))
+        self.assertEqual(self.V.validar(self.dir), [])
+
     def test_codigos_de_maquina_identicos_entre_idiomas(self):
         # Lo que va entre comillas invertidas (modos, comandos) es contrato: no se traduce.
         self.escribe("es", catalogo(["a"], a="invoca `auditoria`"))

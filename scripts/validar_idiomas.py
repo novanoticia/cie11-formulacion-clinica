@@ -61,6 +61,11 @@ def problemas_marcadores(texto):
     return [f"llaves no válidas: {m!r}" for m in re.findall(r"\{[^{}]*\}?|\}", resto)]
 
 
+def _entradas(texto):
+    """Número de viñetas (- ...) de una lista, como la del glosario."""
+    return sum(1 for linea in texto.splitlines() if linea.lstrip().startswith("- "))
+
+
 def codigos_de_maquina(texto):
     return set(_CODIGO_MAQUINA.findall(texto))
 
@@ -121,6 +126,10 @@ def validar(carpeta):
             if clave not in ref:
                 problemas.append(f"{codigo}: sobra la clave '{clave}' (no existe en {REFERENCIA})")
         for clave in ref.keys() & datos.keys():
+            if clave == "glosario" and _entradas(datos[clave]) != _entradas(ref[clave]):
+                problemas.append(
+                    f"{codigo}: clave 'glosario': {_entradas(datos[clave])} entradas, "
+                    f"{REFERENCIA} tiene {_entradas(ref[clave])} (misma lista, mismo orden)")
             if marcadores(datos[clave]) != marcadores(ref[clave]):
                 problemas.append(
                     f"{codigo}: clave '{clave}': marcadores {sorted(marcadores(datos[clave]))} "

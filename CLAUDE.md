@@ -10,6 +10,8 @@ Este repositorio es un **skill de instrucciones** (Markdown), no un programa. La
 - **Todo añadido** a `flujo.md` o `SKILL.md` que sirva a la capa de idioma va entre `<!-- i18n:inicio -->` y `<!-- i18n:fin -->`. Las únicas líneas del español original que se pueden modificar están listadas en `REEMPLAZOS` de `tests/test_idiomas.py`.
 - **No toques el frontmatter de `SKILL.md`**: su conjunto de claves es cerrado (ChatGPT, claude.ai y la Skills API fallan con error duro ante una clave desconocida) y la `description` debe quedar por debajo de 500 caracteres (Mistral).
 - Las traducciones las redacta una IA: indícalo siempre y no las presentes como revisadas.
+- **Revisión humana obligatoria del diff** de cualquier cambio dentro de un bloque `i18n` o de un catálogo que toque reglas clínicas o de seguridad (Puertas 1 y 2, «no documentado ≠ ausente», paso 5, aviso de población, nota final, aviso de IA). Las pruebas solo comprueban la forma de esos textos, no su sentido clínico: un bloque `i18n` puede contener cualquier instrucción y las pruebas lo ignoran.
+- Las capas de idioma no se dan por verificadas hasta ejecutar los escenarios de `tests/escenarios.md` en una plataforma real y anotarlo en su tabla de registro.
 
 ## Comprobar antes de entregar
 

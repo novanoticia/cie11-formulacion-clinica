@@ -68,7 +68,11 @@ REEMPLAZOS = {
         "- **Redacción fija y en los tres idiomas** (español, inglés y francés), siempre "
         "juntos y en ese orden, sin importar en qué idioma escriba el clínico. No los "
         "resumas, no los suavices, no omitas ninguno ni los mezcles con el contenido del "
-        "paso 1. El resto de la salida sigue siendo en español.")],
+        "paso 1. El resto de la salida sigue siendo en español."),
+        # Corrección clínica de dos códigos CIE-11 del apéndice (PR #11). Contenido clínico,
+        # verificado por esa sesión contra la tabulación simple de la OMS 2024-01.
+        ("(CIE-11 6E62).", "(CIE-11 6E60-6E61)."),
+        ("(CIE-11 6A61)", "(CIE-11 6A60.1)")],
     "SKILL.md": [(
         "abre con el aviso de asistencia de IA en el idioma elegido (véase «Aviso de "
         "asistencia de IA» y §0.0 en `flujo.md`), antes",

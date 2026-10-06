@@ -49,9 +49,10 @@ CLAVES = [
     "urg_necesaria", "urg_util", "urg_opcional",
     "lbl_5_explicitas", "lbl_5_implicitas", "lbl_5_protectores",
     "recordatorio_riesgo", "especificadores_por_determinar", "sin_datos_documentados",
+    "categorias",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
-SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria", "sin_datos_documentados",
+SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria", "sin_datos_documentados", "categorias",
                         "puerta1_identificadores", "puerta1_marco_legal", "glosario"}
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
@@ -197,6 +198,28 @@ class TestValidadorSintetico(unittest.TestCase):
         self.escribe("en", catalogo(["glosario"], glosario="- one\n- two"))
         self.assertEqual(self.V.validar(self.dir), [])
 
+    def test_categorias_mismos_codigos_en_el_mismo_orden(self):
+        self.escribe("es", catalogo(["categorias"], categorias="- 6A70 | Uno\n- 6A71 | Dos"))
+        self.escribe("en", catalogo(["categorias"], categorias="- 6A71 | Two\n- 6A70 | One"))
+        self.assertIn("categorias", "\n".join(self.V.validar(self.dir)))
+
+    def test_categorias_con_un_codigo_menos(self):
+        self.escribe("es", catalogo(["categorias"], categorias="- 6A70 | Uno\n- 6A71 | Dos"))
+        self.escribe("en", catalogo(["categorias"], categorias="- 6A70 | One"))
+        self.assertTrue(self.V.validar(self.dir))
+
+    def test_categorias_formato_de_linea(self):
+        for malo in ("- 6A70 Uno", "- 6X70 | Uno", "- 6A70 | ", "6A70 | Uno"):
+            with self.subTest(linea=malo):
+                self.escribe("es", catalogo(["categorias"], categorias=malo))
+                self.escribe("en", catalogo(["categorias"], categorias=malo))
+                self.assertTrue(self.V.validar(self.dir), malo)
+
+    def test_categorias_correctas_no_dan_problemas(self):
+        self.escribe("es", catalogo(["categorias"], categorias="- 6A70 | Uno\n- 6C40.1 | Dos"))
+        self.escribe("en", catalogo(["categorias"], categorias="- 6A70 | One\n- 6C40.1 | Two"))
+        self.assertEqual(self.V.validar(self.dir), [])
+
     def test_comillas_invertidas_sin_cerrar(self):
         self.escribe("es", catalogo(["a"], a="invoca `auditoria"))
         self.escribe("en", catalogo(["a"], a="invoke `auditoria"))
@@ -267,6 +290,23 @@ class TestCatalogosReales(unittest.TestCase):
                     self.assertEqual(frases(d[clave]), frases(es[clave]), clave)
                     self.assertEqual(re.findall(r"\d+", d[clave]), re.findall(r"\d+", es[clave]), clave)
 
+    def test_categorias_cubren_todos_los_codigos_citados_en_el_flujo(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        usados = set(re.findall(r"\b(6[A-E]\d{2}(?:\.\d)?)\b", flujo))
+        for codigo in ("es", "en", "fr"):
+            nombres = {c for c, _ in self.V.categorias(self.datos(codigo)["categorias"])}
+            with self.subTest(idioma=codigo):
+                self.assertTrue(usados, "el apéndice debería citar algún código")
+                self.assertLessEqual(usados, nombres)
+
+    def test_categorias_declaran_su_fuente_oficial(self):
+        for codigo in ("es", "en", "fr"):
+            texto = (SKILL / f"idioma-{codigo}.md").read_text(encoding="utf-8")
+            preambulo = texto.split("\n## ", 1)[0]
+            with self.subTest(idioma=codigo):
+                self.assertIn("2024-01", preambulo)
+                self.assertIn("OMS", preambulo)
+
     def test_puerta1_son_ejemplos_no_una_jurisdiccion(self):
         for codigo, giro in (("es", "por ejemplo"), ("en", "for example"), ("fr", "par exemple")):
             d = self.datos(codigo)
@@ -299,6 +339,9 @@ class TestCatalogosReales(unittest.TestCase):
             "`sin_datos_documentados`",                                  # rótulo sin datos: frase fija
             "sin abreviar",                                              # enc_2a/enc_2b completos
             "nunca traduzcas el nombre",                                 # nombre de categoría dudoso
+            # Nombres oficiales de la OMS en el catálogo y sigla de la clasificación
+            "figura en `categorias`",
+            "sigla de la clasificación",
         ):
             with self.subTest(centinela=centinela):
                 self.assertIn(centinela, bloque)

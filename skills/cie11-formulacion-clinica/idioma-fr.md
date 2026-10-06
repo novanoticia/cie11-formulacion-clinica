@@ -1,6 +1,6 @@
 # Catálogo de frases fijas — Français
 
-Traducción de `idioma-es.md`: mismas claves, mismos marcadores `{nombre}` y mismos textos entre comillas invertidas. Convenciones tipográficas del aviso de IA ya aprobado: espacio normal antes de «:», «;», «?» y «!», y apóstrofo recto; tratamiento de «vous». Traducción redactada por una IA, **no revisada por una persona nativa ni por un clínico**. Valídalo con `python3 scripts/validar_idiomas.py`.
+Traducción de `idioma-es.md`: mismas claves, mismos marcadores `{nombre}` y mismos textos entre comillas invertidas. Convenciones tipográficas del aviso de IA ya aprobado: espacio normal antes de «:», «;», «?» y «!», y apóstrofo recto; tratamiento de «vous». Traducción redactada por una IA, **no revisada por una persona nativa ni por un clínico**. Los nombres de `categorias` son los oficiales de la OMS (CIE-11 MMS, versión 2024-01, «Simple Tabulation» en español, inglés y francés), copiados sin retocar. Valídalo con `python3 scripts/validar_idiomas.py`.
 
 ## modo_no_reconocido
 Mode non reconnu, j'exécute le mode complet.
@@ -142,6 +142,24 @@ spécificateurs à déterminer après élargissement de l'exploration
 
 ## sin_datos_documentados
 aucune donnée documentée dans le cas
+
+## categorias
+- 6A60 | Trouble bipolaire de type I
+- 6A61 | Trouble bipolaire de type II
+- 6A70 | Épisode dépressif unique
+- 6A71 | Trouble dépressif récurrent
+- 6A72 | Dysthymie
+- 6A73 | Trouble anxieux et dépressif mixte
+- 6B00 | Trouble d'anxiété généralisée
+- 6B04 | Trouble d'anxiété sociale
+- 6B40 | Trouble de stress posttraumatique
+- 6B43 | Trouble d'adaptation
+- 6C40 | Troubles dus à la consommation d'alcool
+- 6C40.1 | Mode de consommation nocif d'alcool
+- 6E60 | Syndrome neurodéveloppemental secondaire
+- 6E61 | Syndrome psychotique secondaire
+- 6E62 | Trouble de l'humeur secondaire
+- 6E63 | Syndrome d'anxiété secondaire
 
 ## glosario
 - trame de formulation

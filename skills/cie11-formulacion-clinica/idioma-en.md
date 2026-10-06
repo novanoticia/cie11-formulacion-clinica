@@ -1,6 +1,6 @@
 # Catálogo de frases fijas — English
 
-Traducción de `idioma-es.md`: mismas claves, mismos marcadores `{nombre}` y mismos textos entre comillas invertidas. Inglés británico (coherente con «pseudonymisation» y con el título oficial de la OMS). Traducción redactada por una IA, **no revisada por una persona nativa ni por un clínico**. Valídalo con `python3 scripts/validar_idiomas.py`.
+Traducción de `idioma-es.md`: mismas claves, mismos marcadores `{nombre}` y mismos textos entre comillas invertidas. Inglés británico (coherente con «pseudonymisation» y con el título oficial de la OMS). Traducción redactada por una IA, **no revisada por una persona nativa ni por un clínico**. Los nombres de `categorias` son los oficiales de la OMS (CIE-11 MMS, versión 2024-01, «Simple Tabulation» en español, inglés y francés), copiados sin retocar. Valídalo con `python3 scripts/validar_idiomas.py`.
 
 ## modo_no_reconocido
 Mode not recognised, running full mode.
@@ -142,6 +142,24 @@ specifiers to be determined after extending the assessment
 
 ## sin_datos_documentados
 no data documented in the case
+
+## categorias
+- 6A60 | Bipolar type I disorder
+- 6A61 | Bipolar type II disorder
+- 6A70 | Single episode depressive disorder
+- 6A71 | Recurrent depressive disorder
+- 6A72 | Dysthymic disorder
+- 6A73 | Mixed depressive and anxiety disorder
+- 6B00 | Generalised anxiety disorder
+- 6B04 | Social anxiety disorder
+- 6B40 | Post traumatic stress disorder
+- 6B43 | Adjustment disorder
+- 6C40 | Disorders due to use of alcohol
+- 6C40.1 | Harmful pattern of use of alcohol
+- 6E60 | Secondary neurodevelopmental syndrome
+- 6E61 | Secondary psychotic syndrome
+- 6E62 | Secondary mood syndrome
+- 6E63 | Secondary anxiety syndrome
 
 ## glosario
 - formulation scaffold

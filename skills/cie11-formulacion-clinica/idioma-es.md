@@ -5,7 +5,8 @@ Cada `##` es una clave. Las frases de este catálogo salen **literales de `flujo
 `idioma_no_disponible`, `sugerencia_auditoria`, `puerta1_*` y `glosario` son texto
 añadido por la capa de idioma. Las claves `lbl_*`, `urg_*`, `recordatorio_riesgo` y
 `especificadores_por_determinar` son los rótulos y frases que el flujo prescribe; `sin_datos_documentados`
-es texto añadido por la capa de idioma. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
+es texto añadido por la capa de idioma. Los nombres de `categorias` son los oficiales de la OMS
+(CIE-11 MMS, versión 2024-01, «Simple Tabulation» en español, inglés y francés), copiados sin retocar. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
 deben tener exactamente estas claves, los mismos marcadores `{nombre}` y los mismos
 textos entre comillas invertidas. Valídalo con `python3 scripts/validar_idiomas.py`.
 
@@ -168,3 +169,21 @@ especificadores por determinar tras ampliar exploración
 
 ## sin_datos_documentados
 sin datos documentados en el caso
+
+## categorias
+- 6A60 | Trastorno bipolar de tipo I
+- 6A61 | Trastorno bipolar de tipo II
+- 6A70 | Trastorno depresivo de episodio único
+- 6A71 | Trastorno depresivo recurrente
+- 6A72 | Trastorno distímico
+- 6A73 | Trastorno mixto de depresión y ansiedad
+- 6B00 | Trastorno de ansiedad generalizada
+- 6B04 | Trastorno de ansiedad social
+- 6B40 | Trastorno de estrés postraumático
+- 6B43 | Trastorno de adaptación
+- 6C40 | Trastornos debidos al uso de alcohol
+- 6C40.1 | Patrón nocivo de uso de alcohol
+- 6E60 | Síndrome de neurodesarrollo secundario
+- 6E61 | Síndrome psicótico secundario
+- 6E62 | Síndrome secundario del estado del ánimo
+- 6E63 | Síndrome de ansiedad secundario

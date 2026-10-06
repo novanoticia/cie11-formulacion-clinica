@@ -66,6 +66,28 @@ def _entradas(texto):
     return sum(1 for linea in texto.splitlines() if linea.lstrip().startswith("- "))
 
 
+_LINEA_CATEGORIA = re.compile(r"^- (6[A-E]\d{2}(?:\.\d)?) \| (\S.*)$")
+
+
+def categorias(texto):
+    """[(código, nombre)] de una lista `- 6A70 | Nombre`; las líneas con otro formato se ignoran."""
+    return [m.groups() for m in map(_LINEA_CATEGORIA.match, texto.splitlines()) if m]
+
+
+def _problemas_categorias(codigo, valor):
+    problemas = []
+    lineas = [l for l in valor.splitlines() if l.strip()]
+    validas = categorias(valor)
+    if len(validas) != len(lineas):
+        malas = [l for l in lineas if not _LINEA_CATEGORIA.match(l)]
+        problemas.append(f"{codigo}: clave 'categorias': líneas con formato no válido "
+                         f"(se espera '- 6A70 | Nombre'): {malas}")
+    codigos = [c for c, _ in validas]
+    if len(codigos) != len(set(codigos)):
+        problemas.append(f"{codigo}: clave 'categorias': códigos repetidos")
+    return problemas
+
+
 def codigos_de_maquina(texto):
     return set(_CODIGO_MAQUINA.findall(texto))
 
@@ -96,6 +118,8 @@ def _validar_uno(codigo, texto):
             problemas.append(f"{codigo}: clave '{clave}': comillas invertidas sin cerrar")
         for p in problemas_marcadores(valor):
             problemas.append(f"{codigo}: clave '{clave}': {p}")
+        if clave == "categorias":
+            problemas += _problemas_categorias(codigo, valor)
     return problemas
 
 
@@ -132,6 +156,14 @@ def validar(carpeta):
                 problemas.append(
                     f"{codigo}: clave 'glosario': {_entradas(datos[clave])} entradas, "
                     f"{REFERENCIA} tiene {_entradas(ref[clave])} (misma lista, mismo orden)")
+            if clave == "categorias":
+                mios = [c for c, _ in categorias(datos[clave])]
+                suyos = [c for c, _ in categorias(ref[clave])]
+                if mios != suyos:
+                    problemas.append(
+                        f"{codigo}: clave 'categorias': los códigos deben ser los mismos que en "
+                        f"{REFERENCIA} y en el mismo orden (faltan {sorted(set(suyos) - set(mios))}, "
+                        f"sobran {sorted(set(mios) - set(suyos))})")
             if marcadores(datos[clave]) != marcadores(ref[clave]):
                 problemas.append(
                     f"{codigo}: clave '{clave}': marcadores {sorted(marcadores(datos[clave]))} "

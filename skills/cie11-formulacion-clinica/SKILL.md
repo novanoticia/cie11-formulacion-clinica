@@ -83,11 +83,20 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 7. Sigue los pasos correspondientes al modo, en orden, sin saltar ninguno.
 8. Devuelve la salida con el formato y los encabezados especificados, incluida la nota final obligatoria y el bloque de versiones alternativas opcionales.
 
+<!-- i18n:inicio -->
+## Idioma de la salida
+
+El skill responde en español, inglés o francés. Elige el idioma por este orden: petición explícita del clínico (`/cie11-formulacion-clinica completo en`, o «en francés»), idioma en que está escrito el caso, español. Si el idioma pedido no existe, responde en el idioma del caso (o en español) y lo avisa. Los nombres de modo, el trigger y los códigos CIE-11 no se traducen. Las reglas están en `flujo.md` (§0.0) y las frases fijas de cada idioma en `idioma-<código>.md`. Para añadir un idioma basta con soltar un `idioma-<código>.md` con las mismas claves y validarlo con `python3 scripts/validar_idiomas.py`.
+
+<!-- i18n:fin -->
 ## Archivos del skill
 
 - `SKILL.md` — este descriptor.
 - `flujo.md` — flujo de razonamiento de seis pasos con reglas duras transversales y un caso resuelto canónico como apéndice de referencia.
 - `plantilla-caso.md` — formato esperado de entrada como referencia para el clínico.
+<!-- i18n:inicio -->
+- `idioma-es.md`, `idioma-en.md`, `idioma-fr.md` — catálogos de frases fijas, encabezados y glosario por idioma. Léelos según `flujo.md` §0.0.
+<!-- i18n:fin -->
 - `LICENSE` — texto íntegro de la licencia CC BY 4.0 y atribución sugerida.
 
 ## Limitaciones conocidas
@@ -96,6 +105,9 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 - No calibrado para urgencias ni para evaluación de riesgo agudo.
 - No reemplaza pruebas estandarizadas, escalas validadas ni exploración complementaria.
 - Pendiente de validación con casos reales por clínicos habilitados antes de uso en consulta.
+<!-- i18n:inicio -->
+- Las traducciones al inglés y al francés las ha redactado una IA y no las ha revisado una persona nativa ni un clínico: deben revisarse antes de cualquier uso en consulta.
+<!-- i18n:fin -->
 
 ## Instalación
 

@@ -224,7 +224,7 @@ Reglas:
 
 - No transcribas criterios. La justificación se hace por **correspondencia entre relato y categoría general**, no por checklist.
 - No jerarquices todavía las hipótesis. Eso lo decide el clínico tras los pasos 3 y 4.
-- Si dudas entre dos categorías cercanas (p. ej., trastorno depresivo recurrente vs trastorno depresivo persistente / distimia), inclúyelas ambas y márcalo.
+- Si dudas entre dos categorías cercanas (p. ej., trastorno depresivo recurrente vs trastorno distímico), inclúyelas ambas y márcalo.
 - Los especificadores son una herramienta para que el clínico afine, no una invitación a inflar la formulación. Si dudas entre proponer un especificador o no, propón menos.
 
 ### 2b. Hipótesis a vigilar (opcional)
@@ -505,7 +505,7 @@ Imítalo en estilo, no en contenido. Cada caso real exige sus propias hipótesis
 - Alcohol: además de hipótesis a vigilar, contribución directa al insomnio de mantenimiento y fatiga matutina (fragmentación de sueño REM).
 
 *Otros trastornos psiquiátricos primarios:*
-- Trastorno depresivo persistente / distimia con episodio mayor superpuesto: indagar estado anímico basal entre los 26 y los 38.
+- Trastorno distímico con episodio mayor superpuesto: indagar estado anímico basal entre los 26 y los 38.
 - Trastornos de ansiedad comórbidos: la irritabilidad puede ser superficie de ansiedad subyacente.
 
 *Reacción a circunstancias vitales:*
@@ -519,7 +519,7 @@ Marcadas por el clínico: TSH actualizada, AUDIT, detalle del episodio a los 25,
 
 Detectadas por el flujo:
 - Cuantificación de la pérdida de peso (vinculada a H1 y a especificador melancólico).
-- Línea de base anímica entre los 26 y los 38 (vinculada a distimia subyacente).
+- Línea de base anímica entre los 26 y los 38 (vinculada a trastorno distímico subyacente).
 - Indagación conductual específica de hipomanías (vinculada a hipótesis a vigilar bipolaridad II).
 - Caracterización del episodio a los 25 (grupo terapéutico, respuesta, evolución).
 - AUDIT y caracterización funcional del consumo.
@@ -532,7 +532,7 @@ Detectadas por el flujo:
 Para próxima consulta (entrevista clínica):
 - Indagación escalonada de ideación autolítica (deseo de no estar → muerte → ideación → plan → acceso a medios). **Prioritario.**
 - Preguntas conductuales sobre hipomanías: dormir 4h funcionando bien, decisiones impulsivas que sorprendieran después, comentarios de terceros sobre activación. *Vinculado a hipótesis a vigilar bipolaridad II.*
-- Estado anímico basal entre 26 y 38, con preguntas concretas sobre sueño, libido, retirada social. *Vinculado a distimia subyacente.*
+- Estado anímico basal entre 26 y 38, con preguntas concretas sobre sueño, libido, retirada social. *Vinculado a trastorno distímico subyacente.*
 - Caracterización del consumo de alcohol con AUDIT. *Vinculado a hipótesis a vigilar consumo perjudicial.*
 - Antecedentes traumáticos básicos.
 

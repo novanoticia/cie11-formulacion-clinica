@@ -91,6 +91,13 @@ REEMPLAZOS = {
         ("### 2a. Hipótesis principales (entre 1 y 4; solo las que los datos sostienen, véase la "
          "regla anti-inflación de 2b)",
          "### 2a. Hipótesis principales (entre 2 y 4)"),
+        # Decisión del autor: 6A72 se llama en todo el flujo como la OMS en español («Trastorno distímico»).
+        ("trastorno depresivo recurrente vs trastorno distímico), inclúyelas",
+         "trastorno depresivo recurrente vs trastorno depresivo persistente / distimia), inclúyelas"),
+        ("- Trastorno distímico con episodio mayor superpuesto:",
+         "- Trastorno depresivo persistente / distimia con episodio mayor superpuesto:"),
+        ("(vinculada a trastorno distímico subyacente)", "(vinculada a distimia subyacente)"),
+        ("*Vinculado a trastorno distímico subyacente.*", "*Vinculado a distimia subyacente.*"),
         # Apéndice: nombres de categoría = los oficiales de la OMS en español (catálogo `categorias`).
         # Cada par de nombre va ANTES del par de código correspondiente.
         ("**H2 — Síndrome secundario del estado del ánimo, por condición médica y/o sustancia** "
@@ -357,6 +364,15 @@ class TestCatalogosReales(unittest.TestCase):
                 with self.subTest(codigo=codigo):
                     self.assertIn(oficiales[codigo].lower(), linea.lower())
         self.assertGreaterEqual(citadas, 4)
+
+    def test_el_flujo_nombra_6a72_como_la_oms(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8").lower()
+        oficial = dict(self.V.categorias(self.datos("es")["categorias"]))["6A72"].lower()
+        self.assertEqual(oficial, "trastorno distímico")
+        self.assertIn(oficial, flujo)
+        for antiguo in ("depresivo persistente", "distimia"):
+            with self.subTest(antiguo=antiguo):
+                self.assertNotIn(antiguo, flujo)
 
     def test_titulos_de_las_versiones_coinciden_con_su_oferta(self):
         # El título del informe que se genera tiene que ser el mismo que se ofreció.

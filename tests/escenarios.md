@@ -83,7 +83,7 @@ Los agentes tuvieron que resolver por su cuenta, o produjeron, lo siguiente:
 ## Hallazgos de la ronda 4 (2026-10-06)
 
 - **Aviso de notas y número de hipótesis: resueltos** (ver tabla de registro).
-- **Un nombre oficial no usado** (es, 1 de 6): 6A72 salió como «Trastorno depresivo persistente (distimia)», que es la expresión que el propio flujo usa en el paso 2 y en el apéndice («trastorno depresivo persistente / distimia»), no el oficial de la OMS en español («Trastorno distímico»). Decidir si se unifica el texto original del flujo con el catálogo queda pendiente de la revisión del autor.
+- **Un nombre oficial no usado** (es, 1 de 6): 6A72 salió como «Trastorno depresivo persistente (distimia)», que es la expresión que el propio flujo usa en el paso 2 y en el apéndice («trastorno depresivo persistente / distimia»), no el oficial de la OMS en español («Trastorno distímico»). Decidir si se unifica el texto original del flujo con el catálogo queda pendiente de la revisión del autor. *Resuelto: el flujo pasa a llamar «trastorno distímico» a 6A72 en todo el texto.*
 - **Frases todavía sin clave** (residuos menores): el encabezado «Pending», las etiquetas internas de «Plan de exploración» y el matiz de las urgencias (`urg_*` son tres y no dicen cómo combinarlas).
 - **Roces con reglas previas, sin relación con la capa de idioma:** citar la comorbilidad sistémica en las lagunas aunque la capa no esté activada; dónde colocar el aviso de notas respecto al de IA; el solapamiento entre `especificadores_por_determinar` y la lista de especificadores propuestos.
 

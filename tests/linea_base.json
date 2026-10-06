@@ -1,0 +1,15 @@
+{
+  "commit": "a74ec2230c7c4a093f7554760ea46c851cbd0915",
+  "ficheros": {
+    "SKILL.md": "819c5f1e09076cfa249e2d1694d65f620ef23cf7a03eeafc54da0928703e1876",
+    "flujo.md": "5abea5f63cf190c687343565f3af6df869cc81b5b400535da7ba23b9f0738ec0",
+    "plantilla-caso.md": "44d70fd095fdc682d3f6251d069d0e97885c0cd6790b3be25f91a3a5513b163c"
+  },
+  "frontmatter_skill": "7081052181894b6aded3c5278952a4e5a5fd6a6cfc2e370cfe04e6d9f527bd50",
+  "manifiestos": {
+    "plugin.json": "df88e43eba391ce9d9863f46af2309b8f31a82ae802d3e7b49c96bb54145fc9f",
+    ".claude-plugin/plugin.json": "36e75799153ea9d41a6c499fe599509c80b2092f9d399030b7e55afbbcf28615",
+    ".claude-plugin/marketplace.json": "1bb3b5ae3d9a9f1e45224e71b1ed54a075c4e2b007e5b4d74b68fdfe744e4e0f"
+  },
+  "build_dist": "ebafc27cc5717df858dc4fceabca686b1c69319a3d1c3a3c9cad4132c16411f1"
+}

@@ -2,7 +2,7 @@
 
 ## Qué es este proyecto, a efectos de seguridad
 
-Un plugin de instrucciones: tres archivos de texto (Markdown), sin código ejecutable, sin servidores MCP, sin conectores y sin llamadas de red. No recoge, guarda ni envía datos (véase «Privacidad» en el [README](./README.md#privacidad)).
+Un plugin de instrucciones: archivos de texto (Markdown) —el skill, su flujo, la plantilla y los catálogos de idioma—, sin código ejecutable en el paquete, sin servidores MCP, sin conectores y sin llamadas de red. No recoge, guarda ni envía datos (véase «Privacidad» en el [README](./README.md#privacidad)).
 
 Por eso el riesgo técnico es bajo, pero no nulo. Lo que sí puede fallar y conviene comunicar:
 

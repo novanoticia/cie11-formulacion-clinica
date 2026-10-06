@@ -75,7 +75,7 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 ## Cómo usarlo
 
 1. Lee `flujo.md` antes de procesar cualquier caso.
-2. En la primera respuesta de la sesión, abre con el aviso de asistencia de IA, en español, inglés y francés (véase «Aviso de asistencia de IA» en `flujo.md`), antes de cualquier otra cosa, incluso si solo vas a detenerte en una puerta.
+2. En la primera respuesta de la sesión, abre con el aviso de asistencia de IA en el idioma elegido (véase «Aviso de asistencia de IA» y §0.0 en `flujo.md`), antes de cualquier otra cosa, incluso si solo vas a detenerte en una puerta.
 3. Detecta si el usuario ha indicado un modo; si no, asume `completo`.
 4. Verifica las dos puertas de entrada: pseudonimización (con detección de identificadores indirectos) y mediación clínica.
 5. Detecta tipo de entrada (estructurada / prosa / notas) y ajusta paso 1.
@@ -83,11 +83,20 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 7. Sigue los pasos correspondientes al modo, en orden, sin saltar ninguno.
 8. Devuelve la salida con el formato y los encabezados especificados, incluida la nota final obligatoria y el bloque de versiones alternativas opcionales.
 
+<!-- i18n:inicio -->
+## Idioma de la salida
+
+El skill responde en español, inglés o francés. Elige el idioma por este orden: petición explícita del clínico (un código de dos o tres letras justo después del modo y como última palabra de la primera línea, p. ej. `/cie11-formulacion-clinica completo en`, o «responde en francés»), idioma en que está escrito el caso, español. Si el idioma pedido o el del caso no existe, responde en el idioma del caso (o en español), muestra el aviso de IA en los tres idiomas y lo avisa. Los nombres de modo, el trigger y los códigos CIE-11 no se traducen. Las reglas están en `flujo.md` (§0.0) y las frases fijas de cada idioma en `idioma-<código>.md`. Para añadir un idioma basta con soltar un `idioma-<código>.md` con las mismas claves y validarlo con `python3 scripts/validar_idiomas.py`.
+
+<!-- i18n:fin -->
 ## Archivos del skill
 
 - `SKILL.md` — este descriptor.
 - `flujo.md` — flujo de razonamiento de seis pasos con reglas duras transversales y un caso resuelto canónico como apéndice de referencia.
 - `plantilla-caso.md` — formato esperado de entrada como referencia para el clínico.
+<!-- i18n:inicio -->
+- `idioma-es.md`, `idioma-en.md`, `idioma-fr.md` — catálogos de frases fijas, encabezados y glosario por idioma. Léelos según `flujo.md` §0.0.
+<!-- i18n:fin -->
 - `LICENSE` — texto íntegro de la licencia CC BY 4.0 y atribución sugerida.
 
 ## Limitaciones conocidas
@@ -96,6 +105,9 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 - No calibrado para urgencias ni para evaluación de riesgo agudo.
 - No reemplaza pruebas estandarizadas, escalas validadas ni exploración complementaria.
 - Pendiente de validación con casos reales por clínicos habilitados antes de uso en consulta.
+<!-- i18n:inicio -->
+- Las traducciones al inglés y al francés las ha redactado una IA y no las ha revisado una persona nativa ni un clínico: deben revisarse antes de cualquier uso en consulta.
+<!-- i18n:fin -->
 
 ## Instalación
 
@@ -123,3 +135,6 @@ v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con 
 - **v1.5.1** — fix del frontmatter YAML (`description` como bloque escalar `>-`) para parsers estrictos (Perplexity); paquete `dist/` regenerado.
 - **v1.5.2** — compatibilidad con Mistral AI (`description` < 500 caracteres); Mistral documentado en el README; paquete `dist/` regenerado.
 - **v1.6.2** — aviso de asistencia de IA (en español, inglés y francés) al inicio de la primera respuesta de cada sesión (requisito de uso de alto riesgo sanitario), sin cambiar el resto del flujo.
+<!-- i18n:inicio -->
+- **v1.7.0** — salida en español, inglés y francés (`flujo.md` §0.0 y catálogos `idioma-*.md`); el aviso de IA pasa a mostrarse en el idioma elegido, con el bloque trilingüe como respaldo. El razonamiento clínico no cambia.
+<!-- i18n:fin -->

@@ -6,6 +6,35 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
+## [1.7.0] — 2026-10-06
+
+Función nueva compatible: **el skill responde en español, inglés o francés**. **No cambia el razonamiento clínico**: ni los pasos, ni las puertas, ni los modos. El español sigue igual: sus ficheros solo cambian de forma aditiva (bloques marcados con `<!-- i18n:inicio -->` / `<!-- i18n:fin -->`) y en dos líneas que se indican abajo; una prueba lo comprueba contra el hash de la versión 1.6.2.
+
+### Añadido
+
+- **Selección de idioma** (`flujo.md` §0.0): petición explícita (un código de dos o tres letras justo después del modo y como última palabra de la primera línea, o en lenguaje natural; acepta `EN`, `en-US`, `fr_FR`), idioma del caso, español. Se mantiene durante la sesión. Un idioma no disponible (pedido o detectado en el caso) no da error: se responde en el idioma del caso si existe, y si no en español, con aviso de IA trilingüe y la frase `idioma_no_disponible`. Un comando sin caso también usa el aviso trilingüe.
+- **Catálogos de frases fijas** `idioma-es.md`, `idioma-en.md` e `idioma-fr.md` (46 claves cada uno: avisos, cabeceras, nota final, encabezados y rótulos de los pasos, escala de urgencia, recordatorio de riesgo, versiones alternativas, ejemplos orientativos de identificadores y marco legal de la Puerta 1, y glosario de 17 términos). Añadir un idioma es soltar un `idioma-<xx>.md`.
+- **Validador** `scripts/validar_idiomas.py` (mismas claves, marcadores con nombre, textos de máquina idénticos, sin vacíos, glosario con el mismo número de entradas) y **pruebas** en `tests/` (`python3 -m unittest discover -s tests`), con la línea base del español en `tests/linea_base.json`.
+- `README.en.md` y `README.fr.md` (versiones breves), sección «Idiomas» en el README y `CLAUDE.md` con las reglas para editar el repositorio.
+
+### Cambiado
+
+- **Aviso de asistencia de IA:** pasa de ser siempre trilingüe a mostrarse **una vez por sesión, en el idioma elegido** (clave `aviso_ia`), y de nuevo si hay un caso nuevo o cambia el idioma. El bloque trilingüe se conserva como respaldo si el idioma pedido o el del caso no existe, o si no hay base para decidir el idioma (comando sin caso). Los textos en inglés y francés son los mismos ya aprobados en la 1.6.2.
+- **Líneas del español original modificadas:** la viñeta «Redacción fija» del aviso de IA en `flujo.md` y el paso 2 de «Cómo usarlo» en `SKILL.md`. Nada más.
+- Sugerencia cruzada entre `auditoria` y `auditoria-lagunas`: ahora tiene frase fija en los dos sentidos.
+- Versión 1.7.0 en `plugin.json`, `.claude-plugin/plugin.json` y `.claude-plugin/marketplace.json`.
+
+### Limitaciones conocidas
+
+- **Las traducciones al inglés y al francés las ha redactado una IA y no las ha revisado una persona nativa ni un clínico.** Requieren revisión humana antes de cualquier uso profesional.
+- La guía PDF (v1.5), el CHANGELOG, SECURITY y el README completo siguen solo en español.
+- **La capa de idioma no se ha ejecutado todavía en una plataforma real.** Los 21 escenarios de `tests/escenarios.md` están escritos; 9 se simularon con agentes de Claude (no es una plataforma real) y no se han ejecutado en ninguna plataforma real; las pruebas automáticas comprueban catálogos, validador, paquete y que el español no cambia, no el comportamiento del modelo.
+- Los ejemplos de la Puerta 1 son orientativos: el skill no deduce el país del clínico.
+- La descripción del skill (que decide su activación automática) sigue en español; en inglés o francés se invoca con el comando.
+- La salida la genera un modelo de lenguaje: las frases fijas salen del catálogo, pero el resto del texto puede variar entre ejecuciones.
+
+---
+
 ## [1.6.2] — 2026-09-29
 
 Cambio pequeño de comportamiento por cumplimiento normativo: el skill se usa en un ámbito de alto riesgo (salud mental, diagnóstico), donde la política del directorio de plugins de Claude exige informar de que se usa IA al comienzo de cada sesión. **No cambia el razonamiento clínico**: ni los pasos, ni las puertas, ni los modos, ni la nota final.

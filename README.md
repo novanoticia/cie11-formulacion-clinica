@@ -4,7 +4,8 @@ Skill para asistentes conversacionales (Claude de Anthropic; también compatible
 
 > **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
 > **Licencia:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)
-> **Versión actual:** v1.6
+> **Versión actual:** v1.7
+> **Idiomas:** español · [English](./README.en.md) · [Français](./README.fr.md) (el skill responde en los tres; véase [Idiomas](#idiomas))
 
 > **Compatible con [Agent Plugins 1.0.0](https://agent-plugins.org/specification)** — el
 > formato portátil de empaquetado de la Agentic AI Foundation (OpenAI, Amazon, Microsoft,
@@ -33,7 +34,7 @@ Es un documento de unas 22 páginas pensado para leer una vez antes del primer u
 
 ## Estado del proyecto
 
-Versión **1.6**. Probado únicamente con casos sintéticos diseñados para someter el flujo a tensión: un caso depresivo con condición tiroidea y consumo, un caso ansioso-somático con sospecha traumática, un caso oncológico con hormonoterapia para verificar la activación de la capa transversal de comorbilidad, y un ejercicio de modo `auditoria` sobre formulación ya hecha.
+Versión **1.7**. El razonamiento clínico se probó (hasta la 1.6) únicamente con casos sintéticos diseñados para someter el flujo a tensión; la capa de idioma de la 1.7 no se ha ejecutado aún en una plataforma real (véase «Idiomas»): un caso depresivo con condición tiroidea y consumo, un caso ansioso-somático con sospecha traumática, un caso oncológico con hormonoterapia para verificar la activación de la capa transversal de comorbilidad, y un ejercicio de modo `auditoria` sobre formulación ya hecha.
 
 > **No validado con casos reales por clínicos habilitados.** Pendiente de prueba en supervisión y formación reales antes de cualquier uso institucional.
 
@@ -95,6 +96,20 @@ Detalle completo en [`SKILL.md`](./skills/cie11-formulacion-clinica/SKILL.md), l
 - **No sustituye el juicio clínico, la entrevista directa ni los protocolos del centro.**
 - **No está calibrado para población infanto-juvenil** sin revisión específica.
 - **No está calibrado para urgencias** ni para evaluación de riesgo agudo.
+
+---
+
+## Idiomas
+
+El skill responde en **español, inglés o francés**.
+
+- **Cómo se elige el idioma**, por este orden: (1) petición explícita: un código de dos o tres letras justo después del modo, **como última palabra de la primera línea**, y el caso en la línea siguiente (`/cie11-formulacion-clinica completo en`; también `/cie11-formulacion-clinica fr`, que equivale a modo completo), o una petición en lenguaje natural («responde en francés»); acepta `EN`, `en-US` o `fr_FR.UTF-8`; (2) el idioma en que escribes el caso; (3) español. Una palabra suelta dentro de la frase (`completo En consulta refiere…`) no se interpreta como idioma. El idioma se mantiene durante la sesión. No se detecta el idioma del sistema.
+- **Idioma no disponible** (lo pides tú, por ejemplo `de`, o el caso está en portugués, catalán, italiano…): no falla. Responde en el idioma del caso si existe, y si no en español; te lo dice, y el aviso de IA sale entonces en los tres idiomas. Lo mismo ocurre si invocas solo el comando, sin caso.
+- **Qué se traduce:** el aviso de IA, la nota final, los avisos y cabeceras fijas, los encabezados de los pasos, las versiones alternativas (historia clínica y supervisión) y los ejemplos de identificadores y de marco legal de la Puerta 1 (NHS number y GDPR/UK GDPR en inglés; Sécurité sociale y RGPD en francés). Son **orientativos**: el skill no deduce tu país, y el marco aplicable es el de tu jurisdicción, no el del idioma.
+- **Qué no se traduce:** el trigger y los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los códigos CIE-11, los nombres de fichero y la numeración de pasos. Los nombres de categoría usan la traducción oficial de la OMS; si no se conoce con seguridad, se da el código y el nombre inglés. Las citas textuales del caso se conservan en su idioma.
+- **Un solo idioma por salida**, sin mezclar. Excepciones: las citas textuales del caso y el aviso de IA trilingüe de respaldo (idioma no disponible o comando sin caso).
+- **Añadir un idioma:** copia `skills/cie11-formulacion-clinica/idioma-es.md` como `idioma-<xx>.md` (código de dos o tres letras en minúsculas), traduce los valores sin tocar las claves (`## clave`), los `{marcadores}` ni lo que va entre comillas invertidas, y ejecuta `python3 scripts/validar_idiomas.py`: te dice qué falta. No hay que tocar nada más; el paquete lo incluye solo. Las pruebas se lanzan con `python3 -m unittest discover -s tests`.
+- **Limitaciones conocidas:** **la capa de idioma no se ha ejecutado todavía en una plataforma real**: los 21 escenarios de [`tests/escenarios.md`](./tests/escenarios.md) están escritos y 9 de ellos se simularon con agentes de Claude (no es una plataforma real), pero no se han ejecutado en ninguna plataforma real; las pruebas automáticas solo comprueban catálogos, validador, paquete y que el español no cambia. La descripción del skill (la que decide cuándo se activa solo) está en español: en inglés o francés, invócalo con el comando. Las traducciones las ha redactado una IA y **no las ha revisado una persona nativa ni un clínico**; deben revisarse antes de cualquier uso en consulta. La salida la genera un modelo de lenguaje: las frases fijas salen del catálogo, pero el resto lo redacta el modelo y puede variar entre ejecuciones. La documentación (guía PDF, CHANGELOG, SECURITY y este README completo) sigue solo en español; `README.en.md` y `README.fr.md` son versiones breves.
 
 ---
 
@@ -298,11 +313,16 @@ cie11-formulacion-clinica/
 │   └── cie11-formulacion-clinica/
 │       ├── SKILL.md         # Descriptor del skill: trigger y resumen
 │       ├── flujo.md         # Flujo de razonamiento de seis pasos + apéndice canónico
-│       └── plantilla-caso.md # Formato de entrada para el clínico
+│       ├── plantilla-caso.md # Formato de entrada para el clínico
+│       └── idioma-es.md, idioma-en.md, idioma-fr.md  # Catálogos de frases fijas por idioma
 ├── scripts/
-│   └── build-dist.sh        # Genera el zip/.skill en dist/ (no versionado)
+│   ├── build-dist.sh        # Genera el zip/.skill en dist/ (no versionado)
+│   └── validar_idiomas.py   # Valida que los catálogos de idioma están completos
+├── tests/                   # Pruebas de la capa multiidioma y línea base del español
 ├── LICENSE                  # CC BY 4.0
 ├── README.md                # Este archivo
+├── README.en.md, README.fr.md # Versiones breves en inglés y francés
+├── CLAUDE.md                # Reglas para quien edite el repositorio (incluida la de idiomas)
 ├── SECURITY.md              # Cómo informar de un problema de seguridad
 ├── CHANGELOG.md             # Historial de versiones
 ├── .gitignore
@@ -310,7 +330,7 @@ cie11-formulacion-clinica/
     └── cie11-formulacion-clinica-guia-profesional-v1.5.pdf
 ```
 
-El paquete que se adjunta a cada *Release* es ligero (≈ 21 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md) más LICENSE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se genera con `./scripts/build-dist.sh` (crea `dist/`, que no se versiona en el repositorio) y se sube como adjunto de la *Release*, nunca a mano.
+El paquete que se adjunta a cada *Release* es ligero (≈ 30 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md y los catálogos `idioma-*.md`) más LICENSE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se genera con `./scripts/build-dist.sh` (crea `dist/`, que no se versiona en el repositorio) y se sube como adjunto de la *Release*, nunca a mano.
 
 ---
 
@@ -334,7 +354,7 @@ Ni el autor ni la herramienta ofrecen garantía alguna sobre la exactitud, idone
 
 ## Privacidad
 
-- **Qué es el plugin:** tres archivos de texto (Markdown) con instrucciones. No contiene código ejecutable, no incluye servidores MCP ni conectores, y no hace llamadas de red.
+- **Qué es el plugin:** archivos de texto (Markdown) con instrucciones: el skill, su flujo, la plantilla y los catálogos de idioma. Los scripts de `scripts/` y las pruebas de `tests/` son herramientas de mantenimiento del repositorio y no forman parte del paquete. No contiene código ejecutable, no incluye servidores MCP ni conectores, y no hace llamadas de red.
 - **Qué datos recoge, guarda o envía el autor:** ninguno. No hay servidor, base de datos, analítica ni registro de uso asociados a este proyecto.
 - **Qué datos trata la plataforma donde lo uses:** el texto que escribas en la conversación (por ejemplo, el caso clínico) lo procesa la plataforma de IA que hayas elegido (Claude, ChatGPT, Perplexity, Mistral u otra), bajo **sus** condiciones y su política de privacidad, no bajo las de este proyecto. Consúltalas antes de usarlo.
 - **Qué no debes introducir:** datos identificables de pacientes reales. Trabaja siempre con casos pseudonimizados (véase «Qué NO hace»). El uso con datos sensibles es responsabilidad del profesional, según el marco normativo aplicable (RGPD, LOPDGDD, secreto profesional).
@@ -361,6 +381,8 @@ Toda referencia es nominativa y conceptual. El usuario es responsable de cumplir
 ## Asistencia de IA
 
 Este skill ha sido elaborado con asistencia de **Claude (Anthropic)**. Su contenido refleja decisiones, criterios y revisión del autor humano, pero requiere revisión profesional adicional antes de cualquier uso real con pacientes.
+
+Las **traducciones al inglés y al francés** (catálogos de idioma y READMEs breves) las ha redactado también Claude y **no las ha revisado una persona nativa ni un clínico**; requieren revisión humana antes de cualquier uso profesional.
 
 El **icono** del plugin se generó con asistencia de **ChatGPT (OpenAI)** a partir de un prompt del autor, que lo revisó y lo adoptó.
 

@@ -43,7 +43,7 @@ Idiomas disponibles: los de los ficheros `idioma-<código>.md` de esta carpeta (
 - **Un solo idioma en toda la salida**, incluidas las versiones alternativas (historia clínica y supervisión). Excepciones: las citas textuales del caso, que se conservan entre comillas en su idioma original, y el bloque trilingüe del aviso de IA en los dos supuestos anteriores (idioma no disponible y comando sin caso).
 - **Aviso de IA:** va primero y en el idioma elegido (clave `aviso_ia`); el bloque trilingüe solo se usa en los dos supuestos anteriores.
 - **No se traduce lo que es contrato:** el trigger, los nombres de modo (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), los nombres de fichero, los códigos de la clasificación (p. ej. `6A70`) y la numeración de los pasos. Cítalos tal cual en cualquier idioma. La sigla de la clasificación sí se escribe según el glosario del idioma elegido (CIE-11, ICD-11 o CIM-11); no dejes «CIE-11» en una salida inglesa o francesa.
-- **Nombres de categorías CIE-11:** si el código figura en `categorias`, usa exactamente el nombre de esa lista en el idioma elegido (es la traducción oficial de la OMS, ya verificada); no lo cambies por otro de memoria. Para un código que no figure en la lista, usa la traducción oficial solo si la conoces con seguridad. Ante la menor duda, nunca traduzcas el nombre: escribe el código y el nombre inglés de la OMS tal cual. Un nombre dudoso en el idioma elegido es peor que un nombre inglés correcto.
+- **Nombres de categorías CIE-11:** si el código figura en `categorias`, usa exactamente el nombre de esa lista en el idioma elegido, copiado letra por letra y con el mismo orden de palabras (es la traducción oficial de la OMS, ya verificada); no lo reformules, no lo reordenes ni lo cambies por otro de memoria. Para un código que no figure en la lista, usa la traducción oficial solo si la conoces con seguridad. Ante la menor duda, nunca traduzcas el nombre: escribe el código y el nombre inglés de la OMS tal cual. Un nombre dudoso en el idioma elegido es peor que un nombre inglés correcto.
 
 ---
 
@@ -139,7 +139,7 @@ El caso recibido puede llegar en tres formatos. Detecta cuál es y ajusta el pas
 - Acción: extrae lo que puedas y sé **especialmente generoso** marcando *[no documentado en el caso]*, porque la estructura fragmentaria suele esconder más lagunas reales que la prosa redactada. No fuerces coherencia narrativa donde no la hay.
 - Si la fragmentación es tal que apartados enteros quedan vacíos o casi, indica al clínico al inicio: *"El material aportado tiene formato de notas; algunos apartados quedarán parcialmente vacíos. Si dispone de un relato más estructurado, el flujo aprovechará mejor la información."* No deniegues procesamiento; procede de todos modos.
 
-**Detección:** el tipo se infiere del aspecto del input. Encabezados claros y secciones organizadas → A. Párrafos continuos con contenido completo → B. Frases sueltas, listas, marcas de tiempo, abreviaturas tipo apunte → C. Ante duda, asume B.
+**Detección:** el tipo se infiere del aspecto del input. Encabezados claros y secciones organizadas → A. Párrafos continuos con contenido completo → B. Frases sueltas, listas, marcas de tiempo, abreviaturas tipo apunte → C. **Criterio para decidir entre B y C (cuenta antes de decidir):** divide el texto en oraciones; si más de la mitad carecen de verbo conjugado (fragmentos nominales, listas, apuntes), es Tipo C, aunque estén bien ordenadas; si la mayoría son oraciones completas, es Tipo B. Solo si el recuento queda empatado, asume B.
 
 ---
 
@@ -211,7 +211,7 @@ Si alguno de estos apartados queda vacío, márcalo explícitamente como **[no d
 
 Genera una sección con **hipótesis principales** y, si procede, una segunda sección con **hipótesis a vigilar**.
 
-### 2a. Hipótesis principales (entre 2 y 4)
+### 2a. Hipótesis principales (entre 1 y 4; solo las que los datos sostienen, véase la regla anti-inflación de 2b)
 
 Son las que se sostienen con los datos disponibles. Para cada una:
 
@@ -484,15 +484,15 @@ Imítalo en estilo, no en contenido. Cada caso real exige sus propias hipótesis
 *A favor:* anhedonia + fatiga + despertar precoz + pérdida de peso + sentimientos de inutilidad + pensamientos pasivos de muerte; episodio previo a los 25; AF materna.
 *En contra / matiza:* coincidencia temporal con separación introduce componente reactivo; función tiroidea no actualizada y consumo de alcohol no caracterizado.
 
-**H2 — Trastorno depresivo secundario o agravado por condición médica y/o sustancia** (CIE-11 6E62).
+**H2 — Síndrome secundario del estado del ánimo, por condición médica y/o sustancia** (CIE-11 6E62).
 *Especificadores: por determinar* hasta resolver TSH y AUDIT.
 *A favor:* hipotiroidismo conocido sin control reciente; alcohol diario nocturno con efecto depresógeno conocido.
 *En contra / matiza:* el cuadro precede al consumo de alcohol; TSH en rango hace 9 meses, sin datos actuales no se sostiene componente tiroideo, solo se vigila.
 
 *2b. Hipótesis a vigilar*
 
-- **Trastorno bipolar tipo II** (CIE-11 6A61): episodio depresivo + AF materna inespecífica. Indagación de hipomanías por preguntas conductuales antes de cualquier consideración farmacológica.
-- **Trastornos por consumo de alcohol, uso perjudicial** (CIE-11 6C40.1): consumo diario reciente con autorreconocimiento parcial. Caracterización con AUDIT antes de etiquetar como diagnóstico independiente.
+- **Trastorno bipolar de tipo II** (CIE-11 6A61): episodio depresivo + AF materna inespecífica. Indagación de hipomanías por preguntas conductuales antes de cualquier consideración farmacológica.
+- **Patrón nocivo de uso de alcohol** (CIE-11 6C40.1): consumo diario reciente con autorreconocimiento parcial. Caracterización con AUDIT antes de etiquetar como diagnóstico independiente.
 
 **3. Diagnóstico diferencial obligatorio**
 

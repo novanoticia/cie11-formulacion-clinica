@@ -221,6 +221,9 @@ Prioritaire
 ## lbl_5_no_exploradas
 Indicateurs non explorés lors de cet entretien (non documenté ≠ absent)
 
+## lbl_hc_enfermedad_actual
+Histoire de la maladie actuelle
+
 ## lbl_hc_antecedentes
 Antécédents
 

@@ -58,12 +58,12 @@ CLAVES = [
     "lbl_2_a_favor", "lbl_2_en_contra", "lbl_2_especificadores",
     "lbl_4a_marcadas", "lbl_4a_detectadas", "lbl_prioritario", "lbl_5_no_exploradas",
     "lbl_hc_antecedentes", "lbl_hc_exploracion", "lbl_hc_impresion", "lbl_hc_plan",
-    "lbl_version_hc", "lbl_version_supervision",
+    "lbl_version_hc", "lbl_version_supervision", "lbl_hc_enfermedad_actual",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
 SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria", "sin_datos_documentados", "categorias",
                         "lbl_1_referido", "lbl_1_observado", "lbl_hc_antecedentes", "lbl_hc_exploracion",
-                        "lbl_hc_impresion", "lbl_hc_plan",
+                        "lbl_hc_impresion", "lbl_hc_plan", "lbl_hc_enfermedad_actual",
                         "puerta1_identificadores", "puerta1_marco_legal", "glosario"}
 # Frases en cursiva entrecomillada de flujo.md que son etiquetas, no texto para personas.
 NO_SON_FRASE = {"1 + 1-2"}
@@ -81,6 +81,25 @@ REEMPLAZOS = {
         "juntos y en ese orden, sin importar en qué idioma escriba el clínico. No los "
         "resumas, no los suavices, no omitas ninguno ni los mezcles con el contenido del "
         "paso 1. El resto de la salida sigue siendo en español."),
+        # Decisión del autor (aviso de notas): criterio determinista entre Tipo B y Tipo C.
+        ("**Criterio para decidir entre B y C (cuenta antes de decidir):** divide el texto en "
+         "oraciones; si más de la mitad carecen de verbo conjugado (fragmentos nominales, listas, "
+         "apuntes), es Tipo C, aunque estén bien ordenadas; si la mayoría son oraciones completas, "
+         "es Tipo B. Solo si el recuento queda empatado, asume B.",
+         "Ante duda, asume B."),
+        # Decisión del autor: la regla anti-inflación prevalece sobre el mínimo de hipótesis.
+        ("### 2a. Hipótesis principales (entre 1 y 4; solo las que los datos sostienen, véase la "
+         "regla anti-inflación de 2b)",
+         "### 2a. Hipótesis principales (entre 2 y 4)"),
+        # Apéndice: nombres de categoría = los oficiales de la OMS en español (catálogo `categorias`).
+        # Cada par de nombre va ANTES del par de código correspondiente.
+        ("**H2 — Síndrome secundario del estado del ánimo, por condición médica y/o sustancia** "
+         "(CIE-11 6E62).",
+         "**H2 — Trastorno depresivo secundario o agravado por condición médica y/o sustancia** "
+         "(CIE-11 6E62)."),
+        ("- **Trastorno bipolar de tipo II** (CIE-11 6A61)", "- **Trastorno bipolar tipo II** (CIE-11 6A61)"),
+        ("- **Patrón nocivo de uso de alcohol** (CIE-11 6C40.1)",
+         "- **Trastornos por consumo de alcohol, uso perjudicial** (CIE-11 6C40.1)"),
         # Corrección clínica de dos códigos CIE-11 del apéndice (PR #11). Contenido clínico,
         # verificado por esa sesión contra la tabulación simple de la OMS 2024-01.
         ("(CIE-11 6E62).", "(CIE-11 6E60-6E61)."),
@@ -318,6 +337,27 @@ class TestCatalogosReales(unittest.TestCase):
                 self.assertIn("2024-01", preambulo)
                 self.assertIn("OMS", preambulo)
 
+    def test_criterio_determinista_entre_tipo_b_y_tipo_c(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        self.assertIn("más de la mitad carecen de verbo conjugado", flujo)
+        self.assertIn("Solo si el recuento queda empatado, asume B.", flujo)
+
+    def test_el_minimo_de_hipotesis_no_contradice_la_regla_anti_inflacion(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        self.assertIn("### 2a. Hipótesis principales (entre 1 y 4;", flujo)
+        self.assertNotIn("(entre 2 y 4)", flujo)
+
+    def test_el_apendice_usa_los_nombres_oficiales_del_catalogo(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        oficiales = dict(self.V.categorias(self.datos("es")["categorias"]))
+        citadas = 0
+        for linea in flujo.splitlines():
+            for codigo in re.findall(r"\(CIE-11 (6[A-E]\d{2}(?:\.\d)?)\)", linea):
+                citadas += 1
+                with self.subTest(codigo=codigo):
+                    self.assertIn(oficiales[codigo].lower(), linea.lower())
+        self.assertGreaterEqual(citadas, 4)
+
     def test_titulos_de_las_versiones_coinciden_con_su_oferta(self):
         # El título del informe que se genera tiene que ser el mismo que se ofreció.
         for codigo in ("es", "en", "fr"):
@@ -365,6 +405,7 @@ class TestCatalogosReales(unittest.TestCase):
             # Rótulos de todos los pasos desde el catálogo
             "`lbl_1_*`",
             "`lbl_hc_*`",
+            "letra por letra",   # el nombre oficial no se parafrasea ni se reordena
         ):
             with self.subTest(centinela=centinela):
                 self.assertIn(centinela, bloque)

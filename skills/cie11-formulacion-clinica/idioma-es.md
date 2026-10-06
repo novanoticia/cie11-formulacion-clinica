@@ -248,6 +248,9 @@ Prioritario
 ## lbl_5_no_exploradas
 Señales no exploradas en la entrevista (no documentado ≠ ausente)
 
+## lbl_hc_enfermedad_actual
+Enfermedad actual
+
 ## lbl_hc_antecedentes
 Antecedentes
 

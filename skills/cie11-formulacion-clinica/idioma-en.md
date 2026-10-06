@@ -9,10 +9,10 @@ Mode not recognised, running full mode.
 Step 5 activated outside the requested mode because of risk indicators in the case.
 
 ## aviso_poblacion
-This flow is not calibrated for child and adolescent populations; the considerations that follow should be reviewed with a specialist in that field.
+This workflow is not calibrated for child and adolescent populations; the considerations that follow should be reviewed with a specialist in that field.
 
 ## aviso_notas
-The material provided is in note format; some sections will be partly empty. If you have a more structured account, the flow will make better use of the information.
+The material provided is in note format; some sections will be partly empty. If you have a more structured account, the workflow will make better use of the information.
 
 ## cabecera_comorbilidad
 ⚠ *Systemic comorbidity layer activated — condition detected: {condicion}.*
@@ -29,7 +29,7 @@ This document is a formulation scaffold, not a diagnosis. The clinical decision 
 
 ## versiones_alternativas
 *If you wish, I can also generate:*
-- *Condensed version for the clinical record* (report format: reason for consultation, history, examination, diagnostic impression with ICD-11 codes, plan; without epistemic questioning or metacomments).
+- *Condensed version for the clinical record* (report format: presenting complaint, history, mental state examination, diagnostic impression with ICD-11 codes, plan; without epistemic questioning or meta-commentary).
 - *Summary version for supervision* (5-10 lines with the main hypotheses, critical gaps and risk indicators, for quick discussion).
 
 ## auditoria_solida
@@ -48,7 +48,7 @@ Suspicion developed in H1; here it is recorded only as an element that requires 
 suicidal ideation not explored in this interview
 
 ## idioma_no_disponible
-The requested language is not available. Available languages: {idiomas}.
+This language is not available. Available languages: {idiomas}.
 
 ## enc_1
 Structured case
@@ -84,16 +84,61 @@ Epistemic questioning
 Detection of specific errors
 
 ## enc_B
-Critical gaps needed to sustain the audited formulation
+Critical gaps needed to support the audited formulation
 
 ## enc_nota_final
 Final note
 
 ## puerta1_identificadores
-NHS number, medical record number, national insurance number, or any other national identity or health insurance number.
+For example, NHS number, medical record number, national insurance number, or the equivalent identifiers of the clinician's jurisdiction.
 
 ## puerta1_marco_legal
-GDPR and UK GDPR (health data is a special category of personal data).
+For example, GDPR and UK GDPR, or whichever data protection law applies (health data is a special category of personal data).
+
+## lbl_3_organicas
+Organic causes
+
+## lbl_3_sustancias
+Substances and medication
+
+## lbl_3_psiquiatricos
+Other primary psychiatric disorders
+
+## lbl_3_reaccion
+Reaction to life circumstances
+
+## lbl_4b_consulta
+For the next consultation (clinical interview)
+
+## lbl_4b_pruebas
+Complementary tests and objective examination
+
+## lbl_4b_fuentes
+Information from external sources
+
+## urg_necesaria
+necessary before closing the formulation
+
+## urg_util
+useful in the coming weeks
+
+## urg_opcional
+optional if doubt persists
+
+## lbl_5_explicitas
+Explicit indicators
+
+## lbl_5_implicitas
+Implicit or subthreshold indicators
+
+## lbl_5_protectores
+Protective factors
+
+## recordatorio_riesgo
+Reminder: if the case describes acute or imminent risk, this workflow does not replace the centre's risk assessment protocols or direct clinical evaluation.
+
+## especificadores_por_determinar
+specifiers to be determined after extending the assessment
 
 ## glosario
 - formulation scaffold

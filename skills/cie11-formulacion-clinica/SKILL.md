@@ -86,7 +86,7 @@ Los dos modos de auditoría se diseñan para invocarse por separado, no juntos. 
 <!-- i18n:inicio -->
 ## Idioma de la salida
 
-El skill responde en español, inglés o francés. Elige el idioma por este orden: petición explícita del clínico (`/cie11-formulacion-clinica completo en`, o «en francés»), idioma en que está escrito el caso, español. Si el idioma pedido no existe, responde en el idioma del caso (o en español) y lo avisa. Los nombres de modo, el trigger y los códigos CIE-11 no se traducen. Las reglas están en `flujo.md` (§0.0) y las frases fijas de cada idioma en `idioma-<código>.md`. Para añadir un idioma basta con soltar un `idioma-<código>.md` con las mismas claves y validarlo con `python3 scripts/validar_idiomas.py`.
+El skill responde en español, inglés o francés. Elige el idioma por este orden: petición explícita del clínico (un código de dos o tres letras justo después del modo y como última palabra de la primera línea, p. ej. `/cie11-formulacion-clinica completo en`, o «responde en francés»), idioma en que está escrito el caso, español. Si el idioma pedido o el del caso no existe, responde en el idioma del caso (o en español), muestra el aviso de IA en los tres idiomas y lo avisa. Los nombres de modo, el trigger y los códigos CIE-11 no se traducen. Las reglas están en `flujo.md` (§0.0) y las frases fijas de cada idioma en `idioma-<código>.md`. Para añadir un idioma basta con soltar un `idioma-<código>.md` con las mismas claves y validarlo con `python3 scripts/validar_idiomas.py`.
 
 <!-- i18n:fin -->
 ## Archivos del skill

@@ -16,13 +16,13 @@ Qualified professionals in **psychiatry** and **clinical psychology** who want a
 
 ## Language of the output
 
-The skill answers in **Spanish, English or French**. The language is chosen in this order: (1) an explicit request, with a word after the mode (`/cie11-formulacion-clinica completo en`) or in plain language ("in French"); (2) the language in which you write the case; (3) Spanish. If the requested language is not available, it tells you and continues in the language of the case (or in Spanish).
+The skill answers in **Spanish, English or French**. The language is chosen in this order: (1) an explicit request: a two- or three-letter code right after the mode, **as the last word of the first line**, with the case on the following line (`/cie11-formulacion-clinica completo en`; `/cie11-formulacion-clinica fr` alone means full mode), or a plain-language request ("respond in French"); (2) the language in which you write the case; (3) Spanish. A stray word inside the sentence is not read as a language. If the language is not available (requested, or the case is written in, say, Portuguese), it tells you, shows the AI notice in all three languages, and continues in the language of the case if available, otherwise in Spanish.
 
 **Not translated:** the trigger and the mode names (`completo`, `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`), ICD-11 codes and file names. Quotations from the case are kept in their original language.
 
 ## Install and use
 
-Install it from the repository or from the package attached to each Release; the step-by-step instructions for each platform are in the [main README](./README.md#instalación). Then invoke it with `/cie11-formulacion-clinica [mode]` followed by the case, for example:
+Install it from the repository or from the package attached to each Release; the step-by-step instructions for each platform are in the [main README](./README.md#instalación). Then invoke it with `/cie11-formulacion-clinica [mode] [language]` followed by the case on the next line. The skill's description, which decides when it activates on its own, is in Spanish, so in English use the command. For example:
 
 ```
 /cie11-formulacion-clinica diferenciales en
@@ -32,7 +32,7 @@ Install it from the repository or from the package attached to each Release; the
 
 ## Limitations and disclaimer
 
-This is an **experimental methodological tool, not validated with real cases by qualified clinicians**. It is calibrated for adults, not for emergencies or acute risk assessment. Its output is a scaffold of hypotheses for the responsible clinician to weigh; any real use with sensitive data is the sole responsibility of the professional using it and must comply with the applicable legal framework.
+This is an **experimental methodological tool, not validated with real cases by qualified clinicians**, and the language layer has **not yet been run on a real platform** (the 21 scenarios in `tests/escenarios.md` are written but have not been run). It is calibrated for adults, not for emergencies or acute risk assessment. Its output is a scaffold of hypotheses for the responsible clinician to weigh; any real use with sensitive data is the sole responsibility of the professional using it and must comply with the applicable legal framework.
 
 ## AI assistance and review
 

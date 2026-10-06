@@ -44,6 +44,11 @@ CLAVES = [
     "enc_1", "enc_2", "enc_2a", "enc_2b", "enc_3", "enc_4", "enc_4a", "enc_4b",
     "enc_5", "enc_6", "enc_A", "enc_B", "enc_nota_final",
     "puerta1_identificadores", "puerta1_marco_legal", "glosario",
+    "lbl_3_organicas", "lbl_3_sustancias", "lbl_3_psiquiatricos", "lbl_3_reaccion",
+    "lbl_4b_consulta", "lbl_4b_pruebas", "lbl_4b_fuentes",
+    "urg_necesaria", "urg_util", "urg_opcional",
+    "lbl_5_explicitas", "lbl_5_implicitas", "lbl_5_protectores",
+    "recordatorio_riesgo", "especificadores_por_determinar",
 ]
 # Claves cuyo texto en español no figura literal en flujo.md (se añaden con la capa de idioma).
 SIN_LITERAL_EN_FLUJO = {"idioma_no_disponible", "sugerencia_auditoria",
@@ -73,7 +78,7 @@ REEMPLAZOS = {
 
 
 def normaliza(texto):
-    texto = re.sub(r"(?m)^>\s?", "", texto)
+    texto = re.sub(r"(?m)^>\s?", "", texto).replace("**", "")  # sin citas ni negrita
     return re.sub(r"\s+", " ", texto).strip()
 
 
@@ -175,6 +180,11 @@ class TestValidadorSintetico(unittest.TestCase):
         self.escribe("en", catalogo(["glosario"], glosario="- one\n- two"))
         self.assertEqual(self.V.validar(self.dir), [])
 
+    def test_comillas_invertidas_sin_cerrar(self):
+        self.escribe("es", catalogo(["a"], a="invoca `auditoria"))
+        self.escribe("en", catalogo(["a"], a="invoke `auditoria"))
+        self.assertIn("comillas invertidas", "\n".join(self.V.validar(self.dir)))
+
     def test_codigos_de_maquina_identicos_entre_idiomas(self):
         # Lo que va entre comillas invertidas (modos, comandos) es contrato: no se traduce.
         self.escribe("es", catalogo(["a"], a="invoca `auditoria`"))
@@ -200,7 +210,7 @@ class TestCatalogosReales(unittest.TestCase):
         flujo = normaliza((SKILL / "flujo.md").read_text(encoding="utf-8"))
         datos = self.V.parse_catalogo((SKILL / "idioma-es.md").read_text(encoding="utf-8"))
         for clave in CLAVES:
-            if clave in SIN_LITERAL_EN_FLUJO or clave.startswith("enc_"):
+            if clave in SIN_LITERAL_EN_FLUJO:
                 continue
             with self.subTest(clave=clave):
                 frase = normaliza(datos[clave].replace("{condicion}", "[descripción breve]"))
@@ -221,6 +231,73 @@ class TestCatalogosReales(unittest.TestCase):
         for nueva, vieja in REEMPLAZOS["flujo.md"]:
             self.assertIn(nueva, flujo)
             self.assertNotIn(vieja, flujo)
+
+    def datos(self, codigo):
+        return self.V.parse_catalogo((SKILL / f"idioma-{codigo}.md").read_text(encoding="utf-8"))
+
+    def test_claves_criticas_conservan_la_forma(self):
+        # Forma, no sentido: la revisión del sentido clínico es humana (véase CLAUDE.md).
+        frases = lambda s: len(re.findall(r"[.;]\s|[.;]$", s))
+        es = self.datos("es")
+        for codigo in ("en", "fr"):
+            d = self.datos(codigo)
+            with self.subTest(idioma=codigo):
+                self.assertTrue(d["no_documentado"].startswith("[") and d["no_documentado"].endswith("]"))
+                self.assertTrue(d["cabecera_comorbilidad"].startswith("⚠"))
+                self.assertEqual(len(d["cabecera_comorbilidad"].splitlines()), 2)
+                for clave in ("nota_final", "aviso_poblacion", "paso5_fuera_de_modo",
+                              "recordatorio_riesgo", "aviso_notas"):
+                    self.assertEqual(frases(d[clave]), frases(es[clave]), clave)
+                    self.assertEqual(re.findall(r"\d+", d[clave]), re.findall(r"\d+", es[clave]), clave)
+
+    def test_puerta1_son_ejemplos_no_una_jurisdiccion(self):
+        for codigo, giro in (("es", "por ejemplo"), ("en", "for example"), ("fr", "par exemple")):
+            d = self.datos(codigo)
+            for clave in ("puerta1_identificadores", "puerta1_marco_legal"):
+                with self.subTest(idioma=codigo, clave=clave):
+                    self.assertIn(giro, d[clave].lower())
+
+    def test_idioma_no_disponible_vale_para_pedido_y_para_detectado(self):
+        for codigo in ("es", "en", "fr"):
+            with self.subTest(idioma=codigo):
+                self.assertNotRegex(self.datos(codigo)["idioma_no_disponible"].lower(),
+                                    r"solicitad|requested|demandée")
+
+    def test_regla_de_idioma_cierra_las_ambiguedades_de_la_revision(self):
+        flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
+        bloque = re.search(r"(?s)<!-- i18n:inicio -->\n## 0\.0.*?<!-- i18n:fin -->", flujo).group(0)
+        for centinela in (
+            "última palabra de la primera línea",        # código delimitado: «completo En consulta…» no es inglés
+            "dos o tres letras",
+            "solo si existe el fichero",                  # sin rutas arbitrarias
+            "no es un modo pero es un código de idioma",  # «/cie11… en» sin modo
+            "el caso está escrito en un idioma sin catálogo",  # caso en pt/ca/it
+            "o cambie el idioma de la salida",            # el aviso se repite al cambiar de idioma
+            "jurisdicción",                               # idioma ≠ país
+            "El apéndice es solo un modelo de estructura",
+            "(clave `no_documentado`)",
+            "`sugerencia_auditoria`",
+        ):
+            with self.subTest(centinela=centinela):
+                self.assertIn(centinela, bloque)
+
+    def test_marcadores_i18n_emparejados(self):
+        for nombre in ("flujo.md", "SKILL.md"):
+            texto = (SKILL / nombre).read_text(encoding="utf-8")
+            marcas = re.findall(r"<!-- i18n:(inicio|fin) -->", texto)
+            with self.subTest(fichero=nombre):
+                self.assertTrue(marcas)
+                self.assertEqual(marcas, ["inicio", "fin"] * (len(marcas) // 2))
+
+    def test_documentacion_no_promete_mas_de_lo_verificado(self):
+        readme = (RAIZ / "README.md").read_text(encoding="utf-8")
+        cambios = (RAIZ / "CHANGELOG.md").read_text(encoding="utf-8")
+        self.assertNotIn("propios de cada país", readme)
+        self.assertNotIn("por país", cambios)
+        for nombre, texto in (("README", readme), ("CHANGELOG", cambios)):
+            with self.subTest(doc=nombre):
+                self.assertIn("escenarios.md", texto)
+                self.assertIn("no se han ejecutado", texto)
 
     def test_bloque_trilingue_del_aviso_sigue_como_respaldo(self):
         flujo = (SKILL / "flujo.md").read_text(encoding="utf-8")
@@ -252,6 +329,20 @@ class TestEspanolInvariante(unittest.TestCase):
             with self.subTest(fichero=nombre):
                 self.assertEqual(sha(self.restaurado(nombre)), esperado)
 
+    @unittest.skipUnless(shutil.which("git"), "falta git")
+    def test_espanol_identico_al_commit_base_de_git(self):
+        # Defensa adicional: si alguien recalculara linea_base.json, esto lo detectaría.
+        ok = subprocess.run(["git", "cat-file", "-e", f"{BASE['commit']}^{{commit}}"],
+                            cwd=RAIZ, capture_output=True).returncode == 0
+        if not ok:
+            self.skipTest("el commit base no está en este clon")
+        for nombre in BASE["ficheros"]:
+            original = subprocess.run(
+                ["git", "show", f"{BASE['commit']}:skills/cie11-formulacion-clinica/{nombre}"],
+                cwd=RAIZ, capture_output=True, check=True).stdout.decode("utf-8")
+            with self.subTest(fichero=nombre):
+                self.assertEqual(self.restaurado(nombre), original)
+
     def test_frontmatter_intacto_y_cerrado(self):
         texto = (SKILL / "SKILL.md").read_text(encoding="utf-8")
         fm = re.match(r"---\n.*?\n---\n", texto, re.S).group(0)
@@ -274,19 +365,23 @@ class TestEspanolInvariante(unittest.TestCase):
             with self.subTest(manifiesto=ruta):
                 self.assertIn('"version": "1.7.0"', (RAIZ / ruta).read_text(encoding="utf-8"))
 
-    def test_build_dist_no_se_ha_tocado(self):
-        texto = (RAIZ / "scripts" / "build-dist.sh").read_text(encoding="utf-8")
-        self.assertEqual(sha(texto), BASE["build_dist"])
-
     @unittest.skipUnless(shutil.which("zip") and shutil.which("unzip"), "faltan zip/unzip")
-    def test_el_paquete_incluye_los_catalogos(self):
-        subprocess.run(["bash", str(RAIZ / "scripts" / "build-dist.sh")],
-                       check=True, capture_output=True, cwd=RAIZ)
-        listado = subprocess.run(
-            ["unzip", "-l", str(RAIZ / "dist" / "cie11-formulacion-clinica.zip")],
-            check=True, capture_output=True, text=True).stdout
-        for codigo in ("es", "en", "fr"):
-            self.assertIn(f"idioma-{codigo}.md", listado)
+    def test_el_paquete_contiene_exactamente_lo_esperado(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            (tmp / "scripts").mkdir()
+            shutil.copy(RAIZ / "scripts" / "build-dist.sh", tmp / "scripts")
+            shutil.copy(RAIZ / "LICENSE", tmp)
+            shutil.copytree(RAIZ / "skills", tmp / "skills")
+            subprocess.run(["bash", str(tmp / "scripts" / "build-dist.sh")],
+                           check=True, capture_output=True, cwd=tmp)
+            listado = subprocess.run(
+                ["unzip", "-Z1", str(tmp / "dist" / "cie11-formulacion-clinica.zip")],
+                check=True, capture_output=True, text=True).stdout.split()
+        esperado = {"cie11-formulacion-clinica/" + n for n in
+                    ["SKILL.md", "flujo.md", "plantilla-caso.md", "LICENSE",
+                     "idioma-es.md", "idioma-en.md", "idioma-fr.md"]}
+        self.assertEqual(set(listado) - {"cie11-formulacion-clinica/"}, esperado)
 
 
 if __name__ == "__main__":

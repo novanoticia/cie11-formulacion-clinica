@@ -3,7 +3,8 @@
 Cada `##` es una clave. Las frases de este catálogo salen **literales de `flujo.md`**
 (la prueba `test_frases_es_son_literales_de_flujo` lo comprueba); las claves
 `idioma_no_disponible`, `sugerencia_auditoria`, `puerta1_*` y `glosario` son texto
-añadido por la capa de idioma. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
+añadido por la capa de idioma. Las claves `lbl_*`, `urg_*`, `recordatorio_riesgo` y
+`especificadores_por_determinar` son los rótulos y frases que el flujo prescribe. Los demás idiomas (`idioma-en.md`, `idioma-fr.md`…)
 deben tener exactamente estas claves, los mismos marcadores `{nombre}` y los mismos
 textos entre comillas invertidas. Valídalo con `python3 scripts/validar_idiomas.py`.
 
@@ -53,7 +54,7 @@ Sospecha desarrollada en H1; aquí solo se consigna como elemento que requiere c
 ideación autolítica no explorada en esta entrevista
 
 ## idioma_no_disponible
-El idioma solicitado no está disponible. Idiomas disponibles: {idiomas}.
+Este idioma no está disponible. Idiomas disponibles: {idiomas}.
 
 ## enc_1
 Caso estructurado
@@ -95,10 +96,10 @@ Lagunas críticas para sostener la formulación auditada
 Nota final
 
 ## puerta1_identificadores
-DNI/NIE, número de historia clínica y número de tarjeta sanitaria o de afiliación a la Seguridad Social.
+Por ejemplo, DNI/NIE, número de historia clínica y número de tarjeta sanitaria o de afiliación a la Seguridad Social, u otros identificadores equivalentes de la jurisdicción del clínico.
 
 ## puerta1_marco_legal
-RGPD y LOPDGDD (los datos de salud son una categoría especial de datos).
+Por ejemplo, RGPD y LOPDGDD, o la normativa de protección de datos que sea aplicable (los datos de salud son una categoría especial de datos).
 
 ## glosario
 - andamio de formulación
@@ -118,3 +119,48 @@ RGPD y LOPDGDD (los datos de salud son una categoría especial de datos).
 - CIE-11
 - puerta de entrada
 - mediación clínica
+
+## lbl_3_organicas
+Causas orgánicas
+
+## lbl_3_sustancias
+Sustancias y medicación
+
+## lbl_3_psiquiatricos
+Otros trastornos psiquiátricos primarios
+
+## lbl_3_reaccion
+Reacción a circunstancias vitales
+
+## lbl_4b_consulta
+Para próxima consulta (entrevista clínica)
+
+## lbl_4b_pruebas
+Pruebas complementarias y exploración objetiva
+
+## lbl_4b_fuentes
+Información de fuentes externas
+
+## urg_necesaria
+necesaria antes de cerrar formulación
+
+## urg_util
+útil en próximas semanas
+
+## urg_opcional
+opcional si persiste duda
+
+## lbl_5_explicitas
+Señales explícitas
+
+## lbl_5_implicitas
+Señales implícitas o subumbrales
+
+## lbl_5_protectores
+Factores protectores
+
+## recordatorio_riesgo
+Recordatorio: si el caso describe riesgo agudo o inminente, este flujo no sustituye los protocolos de evaluación de riesgo del centro ni la valoración clínica directa.
+
+## especificadores_por_determinar
+especificadores por determinar tras ampliar exploración

@@ -92,6 +92,8 @@ def _validar_uno(codigo, texto):
         vistas.add(clave)
         if not valor:
             problemas.append(f"{codigo}: la clave '{clave}' está vacía")
+        if valor.count("`") % 2:
+            problemas.append(f"{codigo}: clave '{clave}': comillas invertidas sin cerrar")
         for p in problemas_marcadores(valor):
             problemas.append(f"{codigo}: clave '{clave}': {p}")
     return problemas

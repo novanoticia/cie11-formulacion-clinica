@@ -9,10 +9,10 @@ Mode non reconnu, j'exécute le mode complet.
 Étape 5 activée hors du mode demandé en raison d'indicateurs de risque dans le cas.
 
 ## aviso_poblacion
-Ce flux n'est pas calibré pour la population des enfants et des adolescents ; les considérations suivantes doivent être revues avec un spécialiste de ce domaine.
+Cette démarche n'est pas calibrée pour la population des enfants et des adolescents ; les considérations suivantes doivent être revues avec un spécialiste de ce domaine.
 
 ## aviso_notas
-Le matériel fourni a la forme de notes ; certaines rubriques resteront en partie vides. Si vous disposez d'un récit plus structuré, le flux exploitera mieux l'information.
+Le matériel fourni a la forme de notes ; certaines rubriques resteront en partie vides. Si vous disposez d'un récit plus structuré, la démarche exploitera mieux l'information.
 
 ## cabecera_comorbilidad
 ⚠ *Couche de comorbidité systémique activée — condition détectée : {condicion}.*
@@ -29,7 +29,7 @@ Ce document est une trame de formulation, non un diagnostic. La décision cliniq
 
 ## versiones_alternativas
 *Si vous le souhaitez, je peux également générer :*
-- *Version condensée pour le dossier clinique* (format de compte rendu : motif de consultation, antécédents, examen, impression diagnostique avec codes CIM-11, plan ; sans questionnement épistémique ni métacommentaires).
+- *Version condensée pour le dossier patient* (format de compte rendu : motif de consultation, antécédents, examen psychique, orientation diagnostique avec codes CIM-11, plan ; sans questionnement épistémique ni métacommentaires).
 - *Version synthétique pour la supervision* (5-10 lignes avec les hypothèses principales, les lacunes critiques et les indicateurs de risque, pour une discussion rapide).
 
 ## auditoria_solida
@@ -48,7 +48,7 @@ Soupçon développé en H1 ; ici il est seulement consigné comme élément néc
 idéation suicidaire non explorée lors de cet entretien
 
 ## idioma_no_disponible
-La langue demandée n'est pas disponible. Langues disponibles : {idiomas}.
+Cette langue n'est pas disponible. Langues disponibles : {idiomas}.
 
 ## enc_1
 Cas structuré
@@ -90,10 +90,55 @@ Lacunes critiques pour soutenir la formulation auditée
 Note finale
 
 ## puerta1_identificadores
-numéro de Sécurité sociale (NIR), numéro de dossier médical et identifiant national de santé (INS).
+Par exemple, numéro de Sécurité sociale (NIR), numéro de dossier médical et identifiant national de santé (INS), ou les identifiants équivalents de la juridiction du clinicien.
 
 ## puerta1_marco_legal
-RGPD (les données de santé relèvent des catégories particulières de données à caractère personnel).
+Par exemple, le RGPD, ou la réglementation applicable en matière de protection des données (les données de santé relèvent des catégories particulières de données à caractère personnel).
+
+## lbl_3_organicas
+Causes organiques
+
+## lbl_3_sustancias
+Substances et médicaments
+
+## lbl_3_psiquiatricos
+Autres troubles psychiatriques primaires
+
+## lbl_3_reaccion
+Réaction aux circonstances de vie
+
+## lbl_4b_consulta
+Pour la prochaine consultation (entretien clinique)
+
+## lbl_4b_pruebas
+Examens complémentaires et exploration objective
+
+## lbl_4b_fuentes
+Informations issues de sources externes
+
+## urg_necesaria
+nécessaire avant de clore la formulation
+
+## urg_util
+utile dans les semaines à venir
+
+## urg_opcional
+facultatif si le doute persiste
+
+## lbl_5_explicitas
+Indicateurs explicites
+
+## lbl_5_implicitas
+Indicateurs implicites ou infraliminaires
+
+## lbl_5_protectores
+Facteurs protecteurs
+
+## recordatorio_riesgo
+Rappel : si le cas décrit un risque aigu ou imminent, cette démarche ne remplace ni les protocoles d'évaluation du risque de l'établissement ni l'évaluation clinique directe.
+
+## especificadores_por_determinar
+spécificateurs à déterminer après élargissement de l'exploration
 
 ## glosario
 - trame de formulation

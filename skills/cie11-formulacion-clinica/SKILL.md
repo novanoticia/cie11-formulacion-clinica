@@ -122,7 +122,7 @@ Después, invocar con `/cie11-formulacion-clinica [modo]` en una conversación c
 
 ## Versión
 
-v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con parsers YAML estrictos (Perplexity: `description` como bloque escalar `>-`); paquete `dist/` regenerado. Base funcional en v1.5 (división de `auditoria` en `auditoria` y `auditoria-lagunas`). Sigue pendiente de validación con casos reales por clínicos habilitados.
+v1.7.0 — versión vigente (cambios en el historial de versiones y en `CHANGELOG.md`). Mantiene la compatibilidad con Mistral AI (`description` < 500 caracteres) y con parsers YAML estrictos (Perplexity: `description` como bloque escalar `>-`). Base funcional en v1.5 (división de `auditoria` en `auditoria` y `auditoria-lagunas`). Sigue pendiente de validación con casos reales por clínicos habilitados.
 
 ## Historial de versiones
 

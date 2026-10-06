@@ -73,7 +73,15 @@ REEMPLAZOS = {
         "abre con el aviso de asistencia de IA en el idioma elegido (véase «Aviso de "
         "asistencia de IA» y §0.0 en `flujo.md`), antes",
         "abre con el aviso de asistencia de IA, en español, inglés y francés (véase «Aviso "
-        "de asistencia de IA» en `flujo.md`), antes")],
+        "de asistencia de IA» en `flujo.md`), antes"),
+        # Corrección de deriva de versión (sección «## Versión»; el frontmatter no se toca).
+        ("v1.7.0 — versión vigente (cambios en el historial de versiones y en `CHANGELOG.md`). "
+         "Mantiene la compatibilidad con Mistral AI (`description` < 500 caracteres) y con "
+         "parsers YAML estrictos (Perplexity: `description` como bloque escalar `>-`). Base "
+         "funcional en v1.5",
+         "v1.5.2 — compatibilidad con Mistral AI (`description` < 500 caracteres) y con "
+         "parsers YAML estrictos (Perplexity: `description` como bloque escalar `>-`); paquete "
+         "`dist/` regenerado. Base funcional en v1.5")],
 }
 
 

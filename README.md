@@ -319,6 +319,7 @@ cie11-formulacion-clinica/
 │   ├── build-dist.sh        # Genera el zip/.skill en dist/ (no versionado)
 │   └── validar_idiomas.py   # Valida que los catálogos de idioma están completos
 ├── tests/                   # Pruebas de la capa multiidioma y línea base del español
+├── .github/workflows/tests.yml  # Ejecuta el validador y las pruebas en cada pull request
 ├── LICENSE                  # CC BY 4.0
 ├── README.md                # Este archivo
 ├── README.en.md, README.fr.md # Versiones breves en inglés y francés

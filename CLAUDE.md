@@ -20,6 +20,8 @@ python3 scripts/validar_idiomas.py        # los catálogos están completos y co
 python3 -m unittest discover -s tests -v  # validador, catálogos, español invariante y paquete
 ```
 
+GitHub ejecuta esas mismas dos comprobaciones en cada pull request (`.github/workflows/tests.yml`); si fallan, no se fusiona. Existe porque el PR #11 se fusionó sin pasar por las pruebas y dejó `main` en rojo.
+
 Si subes la versión, cámbiala a la vez en `plugin.json`, `.claude-plugin/plugin.json` y `.claude-plugin/marketplace.json`, y añade la entrada al `CHANGELOG.md`.
 
 ## Añadir un idioma

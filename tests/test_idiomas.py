@@ -406,5 +406,20 @@ class TestEspanolInvariante(unittest.TestCase):
         self.assertEqual(set(listado) - {"cie11-formulacion-clinica/"}, esperado)
 
 
+class TestIntegracionContinua(unittest.TestCase):
+    """El #11 dejó main en rojo porque nada ejecutaba estas pruebas al fusionar."""
+
+    def test_workflow_ejecuta_validador_y_pruebas_con_historial_completo(self):
+        ruta = RAIZ / ".github" / "workflows" / "tests.yml"
+        self.assertTrue(ruta.exists(), "falta .github/workflows/tests.yml")
+        texto = ruta.read_text(encoding="utf-8")
+        for orden in ("python3 scripts/validar_idiomas.py", "python3 -m unittest discover -s tests"):
+            with self.subTest(orden=orden):
+                self.assertIn(orden, texto)
+        self.assertIn("pull_request", texto)      # se ejecuta antes de fusionar
+        self.assertIn("fetch-depth: 0", texto)    # el commit base debe existir para comparar el español
+        self.assertIn("contents: read", texto)    # permisos mínimos
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -52,7 +52,7 @@ Cómo usarlos: pega la entrada, comprueba cada punto de «Debe cumplirse» y ano
 Instrucciones que los agentes tuvieron que resolver por su cuenta (no son fallos de la capa de idioma, pero afectan a la coherencia entre ejecuciones):
 
 - **«Comando sin caso» y paradas de las puertas:** el flujo no dice si llevan nota final ni versiones alternativas. Todos los agentes pusieron la nota final y omitieron las versiones, y añadieron por su cuenta recordatorios sobre modos, idioma y pseudonimización. *Corregido en `flujo.md` §0.0 (respuestas de parada); pendiente de re-simular.*
-- **Aviso de notas (Tipo B/C):** con el mismo caso breve y telegráfico, unas ejecuciones lo trataron como Tipo C (con `aviso_notas`) y otras como Tipo B. Ambigüedad previa del flujo («Ante duda, asume B» frente a «frases sueltas → C»).
+- **Aviso de notas (Tipo B/C):** con el mismo caso breve y telegráfico, unas ejecuciones lo trataron como Tipo C (con `aviso_notas`) y otras como Tipo B. Ambigüedad previa del flujo («Ante duda, asume B» frente a «frases sueltas → C»). *Resuelto en 1.7.0 con un criterio de recuento en §0.6 (más de la mitad de las oraciones sin verbo conjugado → Tipo C); pendiente de re-simular.*
 - **Códigos CIE-11:** todos los agentes sustituyeron de memoria los del apéndice (6A60.1, 6E60-6E61) por 6A61 y 6E62. No está verificado contra la OMS (tarea aparte). *Resuelto en el PR #11, que los corrigió en el apéndice tras verificarlos contra la OMS.*
 - **Frases sin clave:** «ninguna señal explícita documentada» se improvisó con redacciones distintas; el título de 2a/2b se abrevió en una ejecución (escenario 6). *Corregido: clave `sin_datos_documentados` y regla de encabezados sin abreviar; pendiente de re-simular.*
 - **Vocabulario del caso:** en la salida en español del caso en portugués se coló «anedonia».
@@ -74,8 +74,8 @@ Los agentes tuvieron que resolver por su cuenta, o produjeron, lo siguiente:
 
 ## Hallazgos de la ronda 3 (2026-10-06)
 
-- **Un nombre oficial parafraseado** (1 de 7 en francés): 6A73 salió como «trouble mixte anxieux et dépressif» en lugar de «Trouble anxieux et dépressif mixte». La regla dice «usa exactamente el nombre de esa lista»; un modelo puede parafrasear igualmente.
+- **Un nombre oficial parafraseado** (1 de 7 en francés): 6A73 salió como «trouble mixte anxieux et dépressif» en lugar de «Trouble anxieux et dépressif mixte». La regla dice «usa exactamente el nombre de esa lista»; un modelo puede parafrasear igualmente. *Reforzado: «copiado letra por letra y con el mismo orden de palabras»; pendiente de re-simular.*
 - **Aviso de notas (Tipo B/C), con el mismo caso en tres idiomas:** el español y el inglés lo trataron como Tipo C (con `aviso_notas`) y el francés como Tipo B (sin él). Es la ambigüedad previa del flujo («Ante duda, asume B» frente a «frases sueltas → C») y es el único hallazgo recurrente que sigue abierto. Corregirlo exige una regla determinista en el español original (no en la capa de idioma): decisión del autor.
-- **Rótulo todavía sin clave:** en la versión para historia clínica, el agente puso «Tableau actuel» (la enfermedad actual) por su cuenta.
-- **Hipótesis mínimas:** los tres agentes mantuvieron 6E62 como H2 con base débil para llegar al mínimo de 2 («entre 2 y 4» frente a la regla anti-inflación). Contradicción previa del flujo.
+- **Rótulo todavía sin clave:** en la versión para historia clínica, el agente puso «Tableau actuel» (la enfermedad actual) por su cuenta. *Resuelto: clave `lbl_hc_enfermedad_actual`.*
+- **Hipótesis mínimas:** los tres agentes mantuvieron 6E62 como H2 con base débil para llegar al mínimo de 2 («entre 2 y 4» frente a la regla anti-inflación). Contradicción previa del flujo. *Resuelto: «entre 1 y 4; solo las que los datos sostienen»; pendiente de re-simular.*
 

@@ -1,5 +1,7 @@
 # cie11-formulacion-clinica
 
+[![Versión actual en main](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnovanoticia%2Fcie11-formulacion-clinica%2Fmain%2Fplugin.json&query=%24.version&prefix=v&label=Versi%C3%B3n%20actual%20en%20main&color=blue)](https://github.com/novanoticia/cie11-formulacion-clinica/blob/main/plugin.json)
+
 Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de ChatGPT**, de **Perplexity** y de **Mistral AI**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
 
 > **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)

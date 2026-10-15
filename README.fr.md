@@ -1,5 +1,7 @@
 # cie11-formulacion-clinica
 
+[![Version actuelle sur main](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnovanoticia%2Fcie11-formulacion-clinica%2Fmain%2Fplugin.json&query=%24.version&prefix=v&label=Version%20actuelle%20sur%20main&color=blue)](https://github.com/novanoticia/cie11-formulacion-clinica/blob/main/plugin.json)
+
 > 🌐 **Langues :** [Español](./README.md) (documentation complète) · [English](./README.en.md) · Français
 
 Un skill pour assistants d'IA (Claude, ainsi que les Skills de ChatGPT, de Perplexity et de Mistral AI) qui **soutient la formulation clinique** de cas en psychiatrie et en psychologie clinique, avec la **CIM-11** comme référence diagnostique principale. Il reçoit un cas pseudonymisé, déjà évalué en entretien par un professionnel habilité, et renvoie une trame structurée : hypothèses argumentées, diagnostic différentiel obligatoire, lacunes d'information avec plan d'exploration, indicateurs de risque et questionnement épistémique. **Il ne pose pas de diagnostic.**

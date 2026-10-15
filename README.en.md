@@ -1,5 +1,7 @@
 # cie11-formulacion-clinica
 
+[![Current version on main](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnovanoticia%2Fcie11-formulacion-clinica%2Fmain%2Fplugin.json&query=%24.version&prefix=v&label=Current%20version%20on%20main&color=blue)](https://github.com/novanoticia/cie11-formulacion-clinica/blob/main/plugin.json)
+
 > 🌐 **Languages:** [Español](./README.md) (full documentation) · English · [Français](./README.fr.md)
 
 A skill for AI assistants (Claude, and also ChatGPT, Perplexity and Mistral AI Skills) that **supports the clinical formulation** of cases in psychiatry and clinical psychology, using **ICD-11** as the primary diagnostic reference. It takes a pseudonymised case that a qualified professional has already interviewed and returns a structured scaffold: reasoned hypotheses, mandatory differential diagnosis, information gaps with an assessment plan, risk indicators and epistemic questioning. **It does not diagnose.**

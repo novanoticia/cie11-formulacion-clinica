@@ -1,6 +1,7 @@
 # cie11-formulacion-clinica
 
-[![Current version on main](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnovanoticia%2Fcie11-formulacion-clinica%2Fmain%2Fplugin.json&query=%24.version&prefix=v&label=Current%20version%20on%20main&color=blue)](https://github.com/novanoticia/cie11-formulacion-clinica/blob/main/plugin.json)
+[![Version on main](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fnovanoticia%2Fcie11-formulacion-clinica%2Fmain%2Fplugin.json&query=%24.version&prefix=v&label=Version%20on%20main&color=blue)](https://github.com/novanoticia/cie11-formulacion-clinica/blob/main/plugin.json)
+[![Latest published version](https://img.shields.io/github/v/release/novanoticia/cie11-formulacion-clinica?display_name=tag&label=Latest%20published%20version&color=green)](https://github.com/novanoticia/cie11-formulacion-clinica/releases/latest)
 
 > 🌐 **Languages:** [Español](./README.md) (full documentation) · English · [Français](./README.fr.md)
 

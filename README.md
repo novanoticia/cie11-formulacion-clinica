@@ -6,7 +6,7 @@
 Skill para asistentes conversacionales (Claude de Anthropic; también compatible con las **Skills de ChatGPT**, de **Perplexity** y de **Mistral AI**) de **apoyo a la formulación clínica** de casos en psiquiatría y psicología clínica, basado en **CIE-11** como referencia diagnóstica primaria. Recibe un caso pseudonimizado ya entrevistado y devuelve un andamio estructurado de hipótesis razonadas, diferenciales obligatorios, lagunas con plan de exploración, señales de riesgo y cuestionamiento epistémico. **No diagnostica.**
 
 > **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
-> **Licencia:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.es)
+> **Licencia:** [Apache-2.0](LICENSE)
 > **Versión actual:** v1.7
 > **Idiomas:** español · [English](./README.en.md) · [Français](./README.fr.md) (el skill responde en los tres; véase [Idiomas](#idiomas))
 
@@ -323,7 +323,8 @@ cie11-formulacion-clinica/
 │   └── validar_idiomas.py   # Valida que los catálogos de idioma están completos
 ├── tests/                   # Pruebas de la capa multiidioma y línea base del español
 ├── .github/workflows/tests.yml  # Ejecuta el validador y las pruebas en cada pull request
-├── LICENSE                  # CC BY 4.0
+├── LICENSE                  # Apache-2.0
+├── NOTICE                   # Autoría, avisos y alcance de la licencia
 ├── README.md                # Este archivo
 ├── README.en.md, README.fr.md # Versiones breves en inglés y francés
 ├── CLAUDE.md                # Reglas para quien edite el repositorio (incluida la de idiomas)
@@ -334,7 +335,7 @@ cie11-formulacion-clinica/
     └── cie11-formulacion-clinica-guia-profesional-v1.5.pdf
 ```
 
-El paquete que se adjunta a cada *Release* es ligero (≈ 30 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md y los catálogos `idioma-*.md`) más LICENSE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se genera con `./scripts/build-dist.sh` (crea `dist/`, que no se versiona en el repositorio) y se sube como adjunto de la *Release*, nunca a mano.
+El paquete que se adjunta a cada *Release* es ligero (≈ 30 KB): contiene solo los archivos que el skill necesita en tiempo de ejecución (SKILL.md, flujo.md, plantilla-caso.md y los catálogos `idioma-*.md`) más LICENSE y NOTICE, dentro de una carpeta `cie11-formulacion-clinica/`. Esa carpeta importa: el estándar Agent Skills exige que su nombre coincida con el `name` del frontmatter, y ChatGPT rechaza los zips que no tienen una única carpeta en la raíz. Se genera con `./scripts/build-dist.sh` (crea `dist/`, que no se versiona en el repositorio) y se sube como adjunto de la *Release*, nunca a mano.
 
 ---
 
@@ -394,16 +395,13 @@ El **icono** del plugin se generó con asistencia de **ChatGPT (OpenAI)** a part
 
 ## Licencia
 
-[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.es). Texto resumido en [`LICENSE`](./LICENSE).
+[Apache License 2.0](LICENSE) (`Apache-2.0`). Copyright (c) 2026 Pablo — mindandhealth.org · github.com/novanoticia.
 
-Eres libre de:
+Permite usar, modificar y redistribuir el material, incluso comercialmente, conforme al texto íntegro de `LICENSE`. Al redistribuir, conserva la licencia y los avisos aplicables de autoría y atribución, incluye `NOTICE` e indica los archivos modificados. Se distribuye sin garantías; Apache 2.0 incluye una concesión de patentes y no concede derechos sobre marcas.
 
-- **Compartir** — copiar y redistribuir el material en cualquier medio o formato.
-- **Adaptar** — remezclar, transformar y construir a partir del material para cualquier propósito, incluso comercialmente.
+El cambio se aplica al material original del proyecto. Las referencias y materiales de terceros conservan sus propios derechos y condiciones; en particular, esta licencia no relicencia clasificaciones, publicaciones ni normas externas. Las salidas generadas sobre casos concretos no quedan automáticamente sujetas a esta licencia.
 
-Bajo el siguiente término:
-
-- **Atribución** — Debes dar crédito de manera adecuada, proporcionar un enlace a la licencia, e indicar si se han realizado cambios. Puedes hacerlo en cualquier forma razonable, pero no de forma tal que sugiera que tienes el apoyo del licenciante o lo recibes por el uso que haces.
+Las versiones ya distribuidas bajo CC BY 4.0 conservan los permisos concedidos. Los PDF versionados de `docs/` se mantienen como documentos históricos bajo la licencia indicada en ellos; no se sustituyen retroactivamente los archivos de releases anteriores. Véase `NOTICE`.
 
 ---
 
@@ -422,3 +420,5 @@ Cualquier feedback profesional es valioso, especialmente sobre: salidas que han 
 El autor puede ser contactado a través de [mindandhealth.org](https://mindandhealth.org). Issues y pull requests en GitHub también son bienvenidos. Las contribuciones de **clínicos habilitados** que quieran probar el skill con casos reales son especialmente valoradas.
 
 Más detalles sobre cómo dar feedback en la guía PDF.
+
+Nota sobre esta actualización de licencia: preparada con asistencia de IA (Codex, OpenAI); pendiente de revisión humana.

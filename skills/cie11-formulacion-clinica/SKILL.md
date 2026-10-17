@@ -2,7 +2,7 @@
 name: cie11-formulacion-clinica
 description: >-
   Apoya a clínicos (psiquiatría, psicología clínica) a estructurar la formulación de casos ya entrevistados, con CIE-11 como referencia diagnóstica primaria. Trigger obligatorio: "/cie11-formulacion-clinica"; actívalo cuando se escriba ese comando o ante peticiones como "formula este caso" o "audita esta formulación". Modos: completo (default), diferenciales, lagunas, riesgo, auditoria, auditoria-lagunas. NO para autodiagnóstico ni con datos identificables de pacientes reales.
-license: CC BY 4.0
+license: Apache-2.0
 metadata:
   author: "Pablo"
   homepage: "https://mindandhealth.org"
@@ -13,7 +13,7 @@ metadata:
 
 **Autor:** Pablo
 **Web:** [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
-**Licencia:** Creative Commons Atribución 4.0 Internacional (CC BY 4.0)
+**Licencia:** Apache License 2.0 (Apache-2.0)
 **Diseño asistido por IA (Claude, Anthropic). El diseño, las decisiones arquitectónicas y la dirección son responsabilidad del autor.**
 
 ---
@@ -97,7 +97,7 @@ El skill responde en español, inglés o francés. Elige el idioma por este orde
 <!-- i18n:inicio -->
 - `idioma-es.md`, `idioma-en.md`, `idioma-fr.md` — catálogos de frases fijas, encabezados y glosario por idioma. Léelos según `flujo.md` §0.0.
 <!-- i18n:fin -->
-- `LICENSE` — texto íntegro de la licencia CC BY 4.0 y atribución sugerida.
+- `LICENSE` — texto íntegro de la licencia Apache-2.0; avisos de autoría en `NOTICE`.
 
 ## Limitaciones conocidas
 

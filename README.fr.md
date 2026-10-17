@@ -8,7 +8,7 @@
 Un skill pour assistants d'IA (Claude, ainsi que les Skills de ChatGPT, de Perplexity et de Mistral AI) qui **soutient la formulation clinique** de cas en psychiatrie et en psychologie clinique, avec la **CIM-11** comme référence diagnostique principale. Il reçoit un cas pseudonymisé, déjà évalué en entretien par un professionnel habilité, et renvoie une trame structurée : hypothèses argumentées, diagnostic différentiel obligatoire, lacunes d'information avec plan d'exploration, indicateurs de risque et questionnement épistémique. **Il ne pose pas de diagnostic.**
 
 > **Auteur :** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
-> **Licence :** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.fr)
+> **Licence :** [Apache License 2.0 (Apache-2.0)](LICENSE)
 > **Version actuelle :** v1.7
 
 > **Ceci est une version courte.** La documentation complète (installation pour chaque plateforme, les six modes, garde-fous, confidentialité, références et guide professionnel) est en espagnol dans le [README principal](./README.md).
@@ -43,4 +43,6 @@ Ce skill a été élaboré avec l'aide de **Claude (Anthropic)**, sous la direct
 
 ## Licence
 
-[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.fr). Voir [`LICENSE`](./LICENSE).
+[Apache License 2.0 (Apache-2.0)](LICENSE). Voir [`LICENSE`](./LICENSE).
+
+Les versions antérieures sous CC BY 4.0 conservent les autorisations accordées. Les PDF versionnés de `docs/` restent des documents historiques sous leur licence indiquée. Les éléments de tiers conservent leurs propres conditions ; voir `NOTICE`.

@@ -8,7 +8,7 @@
 A skill for AI assistants (Claude, and also ChatGPT, Perplexity and Mistral AI Skills) that **supports the clinical formulation** of cases in psychiatry and clinical psychology, using **ICD-11** as the primary diagnostic reference. It takes a pseudonymised case that a qualified professional has already interviewed and returns a structured scaffold: reasoned hypotheses, mandatory differential diagnosis, information gaps with an assessment plan, risk indicators and epistemic questioning. **It does not diagnose.**
 
 > **Author:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
-> **Licence:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+> **Licence:** [Apache License 2.0 (Apache-2.0)](LICENSE)
 > **Current version:** v1.7
 
 > **This is a short version.** The full documentation (installation for each platform, the six modes, safeguards, privacy, references and the professional guide) is in Spanish in the [main README](./README.md).
@@ -43,4 +43,6 @@ This skill was produced with the assistance of **Claude (Anthropic)**, under the
 
 ## Licence
 
-[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/). See [`LICENSE`](./LICENSE).
+[Apache License 2.0 (Apache-2.0)](LICENSE). See [`LICENSE`](./LICENSE).
+
+Earlier CC BY 4.0 releases retain their granted permissions. Versioned PDFs in `docs/` remain historical documents under their stated licences. Third-party materials retain their own terms; see `NOTICE`.

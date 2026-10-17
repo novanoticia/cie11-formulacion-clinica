@@ -6,6 +6,14 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/) y e
 
 ---
 
+
+## [Sin publicar] — Apache 2.0
+
+- Sustituida CC BY 4.0 por Apache-2.0 para el material original de esta revisión, a petición del titular; conservados los permisos de las versiones anteriores y los PDF históricos.
+- Actualizados LICENSE, manifiestos, documentación y referencias de licencia del skill cuando existen. NOTICE conserva la autoría, los avisos profesionales y el alcance respecto de terceros; se incluye en los paquetes .zip y .skill.
+- Excepción autorizada por la petición de cambio de licencia: se ajustan únicamente las expectativas de licencia y empaquetado de las comprobaciones, sin recapturar el contenido clínico o jurídico ni los catálogos de idioma.
+- Actualización preparada con asistencia de IA (Codex, OpenAI); pendiente de revisión humana.
+
 ## [1.7.0] — 2026-10-06
 
 Función nueva compatible: **el skill responde en español, inglés o francés**. **No cambia el razonamiento clínico**: ni los pasos, ni las puertas, ni los modos. El español cambia solo de forma aditiva (bloques marcados con `<!-- i18n:inicio -->` / `<!-- i18n:fin -->`) y en las líneas que se enumeran abajo (la viñeta del aviso de IA, el paso 2 de «Cómo usarlo» y tres correcciones de contenido, en «Corregido»); `tests/test_idiomas.py` (`REEMPLAZOS`) lista exactamente esas líneas y una prueba comprueba todo lo demás contra la versión 1.6.2.

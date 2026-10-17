@@ -1,7 +1,7 @@
 # flujo.md — Razonamiento del skill *cie11-formulación-clínica*
 
 **Autor:** Pablo · [mindandhealth.org](https://mindandhealth.org) · [github.com/novanoticia](https://github.com/novanoticia)
-**Licencia:** CC BY 4.0 (ver `LICENSE`)
+**Licencia:** Apache-2.0 (ver `LICENSE`)
 **Trigger de invocación:** `/cie11-formulacion-clinica [modo]`
 
 Modos disponibles: `completo` (default), `diferenciales`, `lagunas`, `riesgo`, `auditoria`, `auditoria-lagunas`. Ver §0.5.

@@ -462,6 +462,19 @@ class TestCatalogosReales(unittest.TestCase):
                 self.assertIn(normaliza(datos["aviso_ia"]), flujo)
 
 
+# Excepción de licencia solicitada por el titular; no se recaptura la línea base.
+REEMPLAZOS["SKILL.md"] += [
+    ("license: Apache-2.0", "license: CC BY 4.0"),
+    ("**Licencia:** Apache License 2.0 (Apache-2.0)",
+     "**Licencia:** Creative Commons Atribución 4.0 Internacional (CC BY 4.0)"),
+    ("`LICENSE` — texto íntegro de la licencia Apache-2.0; avisos de autoría en `NOTICE`.",
+     "`LICENSE` — texto íntegro de la licencia CC BY 4.0 y atribución sugerida."),
+]
+REEMPLAZOS["flujo.md"] += [
+    ("**Licencia:** Apache-2.0 (ver `LICENSE`)", "**Licencia:** CC BY 4.0 (ver `LICENSE`)"),
+]
+
+
 class TestEspanolInvariante(unittest.TestCase):
     """El idioma por defecto no cambia: solo se admiten añadidos marcados y una frase."""
 
@@ -494,7 +507,8 @@ class TestEspanolInvariante(unittest.TestCase):
     def test_frontmatter_intacto_y_cerrado(self):
         texto = (SKILL / "SKILL.md").read_text(encoding="utf-8")
         fm = re.match(r"---\n.*?\n---\n", texto, re.S).group(0)
-        self.assertEqual(sha(fm), BASE["frontmatter_skill"])
+        self.assertIn("license: Apache-2.0\n", fm)
+        self.assertEqual(sha(fm.replace("license: Apache-2.0\n", "license: CC BY 4.0\n")), BASE["frontmatter_skill"])
         claves = set(re.findall(r"(?m)^([a-z-]+):", fm))
         self.assertLessEqual(claves, {"name", "description", "license", "compatibility",
                                       "metadata", "allowed-tools", "author", "homepage",
@@ -502,11 +516,13 @@ class TestEspanolInvariante(unittest.TestCase):
         desc = re.search(r"description: >-\n((?:  .*\n)+)", fm).group(1)
         self.assertLess(len(" ".join(l.strip() for l in desc.splitlines())), 500)
 
-    def test_manifiestos_solo_cambian_la_version(self):
+    def test_manifiestos_solo_cambian_version_y_licencia_autorizada(self):
         for ruta, esperado in BASE["manifiestos"].items():
             with self.subTest(manifiesto=ruta):
                 texto = (RAIZ / ruta).read_text(encoding="utf-8").replace("1.7.0", "1.6.2")
-                self.assertEqual(sha(texto), esperado)
+                if ruta != ".claude-plugin/marketplace.json":
+                    self.assertEqual(json.loads(texto)["license"], "Apache-2.0")
+                self.assertEqual(sha(texto.replace('"license": "Apache-2.0"', '"license": "CC-BY-4.0"')), esperado)
 
     def test_version_1_7_0_en_los_tres_manifiestos(self):
         for ruta in BASE["manifiestos"]:
@@ -520,6 +536,7 @@ class TestEspanolInvariante(unittest.TestCase):
             (tmp / "scripts").mkdir()
             shutil.copy(RAIZ / "scripts" / "build-dist.sh", tmp / "scripts")
             shutil.copy(RAIZ / "LICENSE", tmp)
+            shutil.copy(RAIZ / "NOTICE", tmp)
             shutil.copytree(RAIZ / "skills", tmp / "skills")
             subprocess.run(["bash", str(tmp / "scripts" / "build-dist.sh")],
                            check=True, capture_output=True, cwd=tmp)
@@ -527,7 +544,7 @@ class TestEspanolInvariante(unittest.TestCase):
                 ["unzip", "-Z1", str(tmp / "dist" / "cie11-formulacion-clinica.zip")],
                 check=True, capture_output=True, text=True).stdout.split()
         esperado = {"cie11-formulacion-clinica/" + n for n in
-                    ["SKILL.md", "flujo.md", "plantilla-caso.md", "LICENSE",
+                    ["SKILL.md", "flujo.md", "plantilla-caso.md", "LICENSE", "NOTICE",
                      "idioma-es.md", "idioma-en.md", "idioma-fr.md"]}
         self.assertEqual(set(listado) - {"cie11-formulacion-clinica/"}, esperado)
 

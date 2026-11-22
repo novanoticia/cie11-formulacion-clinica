@@ -10,18 +10,8 @@ Skill para asistentes conversacionales (Claude de Anthropic; también compatible
 > **Versión actual:** v1.7
 > **Idiomas:** español · [English](./README.en.md) · [Français](./README.fr.md) (el skill responde en los tres; véase [Idiomas](#idiomas))
 
-> **Compatible con [Agent Plugins 1.0.0](https://agent-plugins.org/specification)** — el
-> formato portátil de empaquetado de la Agentic AI Foundation (OpenAI, Amazon, Microsoft,
-> Cursor y Vercel, con Google como *core maintainer*). El paquete lleva el manifiesto
-> portable `plugin.json` en la raíz y el skill en `skills/cie11-formulacion-clinica/`, así
-> que cualquier cliente conformante lo descubre.
->
-> **Funciona en ChatGPT.** El skill es texto —protocolo de razonamiento, criterios y
-> plantilla, sin ejecución local—, así que se sube tal cual y funciona igual que en
-> Claude. Su frontmatter valida contra el conjunto cerrado de
-> [Agent Skills](https://agentskills.io/specification), que es lo que ChatGPT, claude.ai
-> y la Skills API exigen para aceptar la subida: una clave de más ahí no se ignora, falla
-> con error duro. Disponible también en el **plan gratuito**, con límites de uso.
+**En esta página:**
+[Antes de empezar](#antes-de-empezar-lee-la-guía) · [Cómo empezar](#cómo-empezar) · [Estado](#estado-del-proyecto) · [Audiencia](#audiencia-esperada) · [Qué hace](#qué-hace) · [Qué NO hace](#qué-no-hace) · [Idiomas](#idiomas) · [Instalación](#instalación) · [Ejemplos](#tres-ejemplos-de-uso) · [Privacidad](#privacidad) · [Licencia](#licencia) · [Cómo citarlo](#cómo-citarlo)
 
 ---
 
@@ -32,6 +22,18 @@ Antes de probar el skill, conviene leer la guía profesional. Explica filosofía
 📄 **[Guía para profesionales (PDF, v1.5)](./docs/cie11-formulacion-clinica-guia-profesional-v1.5.pdf)**
 
 Es un documento de unas 22 páginas pensado para leer una vez antes del primer uso. Sin esa lectura, hay riesgo de tratar la herramienta como caja negra: la salida del skill está bien redactada y produce la tentación de aceptarla sin más, lo cual es justamente lo que hay que resistir.
+
+---
+
+## Cómo empezar
+
+1. **Lee la guía** (enlace de arriba) una vez antes del primer uso.
+2. **Instala el skill** donde vayas a usarlo; elige tu opción en [Instalación](#instalación).
+3. **Seudonimiza el caso** y abre una conversación temporal antes de pegar nada sensible.
+4. **Invoca** `/cie11-formulacion-clinica` (modo `completo`) o añade un modo: `diferenciales`, `lagunas`, `riesgo`, `auditoria` o `auditoria-lagunas`.
+5. **Revisa la salida con sentido crítico**, sobre todo las señales de riesgo, el plan de exploración y el cuestionamiento epistémico. Está bien redactada por diseño; eso no la hace correcta.
+
+Detalle de cada paso en [Modo recomendado de uso](#modo-recomendado-de-uso-cualquier-opción) y casos reales en [Tres ejemplos de uso](#tres-ejemplos-de-uso).
 
 ---
 
@@ -118,7 +120,30 @@ El skill responde en **español, inglés o francés**.
 
 ## Instalación
 
-Hay cinco formas de usar el skill, según dónde quieras invocarlo. La primera es la más sencilla.
+Hay siete formas de usar el skill, según dónde quieras invocarlo. La primera es la más sencilla.
+
+| Dónde lo usas | Opción |
+|---|---|
+| Claude.ai (web, escritorio o móvil) | [1](#opción-1--claudeai-web-app-de-escritorio-o-móvil) |
+| ChatGPT | [2](#opción-2--chatgpt-complementos) |
+| Perplexity | [3](#opción-3--perplexity-skills) |
+| Mistral AI | [4](#opción-4--mistral-ai-skills) |
+| Claude Code, como skill suelto | [5](#opción-5--claude-code-línea-de-comandos) |
+| Claude Code o Cowork, como plugin | [6](#opción-6--como-plugin-claude-code-y-cowork) |
+| Cualquier otra IA | [7](#opción-7--otras-inteligencias-artificiales) |
+
+> **Compatible con [Agent Plugins 1.0.0](https://agent-plugins.org/specification)** — el
+> formato portátil de empaquetado de la Agentic AI Foundation (OpenAI, Amazon, Microsoft,
+> Cursor y Vercel, con Google como *core maintainer*). El paquete lleva el manifiesto
+> portable `plugin.json` en la raíz y el skill en `skills/cie11-formulacion-clinica/`, así
+> que cualquier cliente conformante lo descubre.
+>
+> **Funciona en ChatGPT.** El skill es texto —protocolo de razonamiento, criterios y
+> plantilla, sin ejecución local—, así que se sube tal cual y funciona igual que en
+> Claude. Su frontmatter valida contra el conjunto cerrado de
+> [Agent Skills](https://agentskills.io/specification), que es lo que ChatGPT, claude.ai
+> y la Skills API exigen para aceptar la subida: una clave de más ahí no se ignora, falla
+> con error duro. Disponible también en el **plan gratuito**, con límites de uso.
 
 ### Opción 1 — Claude.ai (web, app de escritorio o móvil)
 
